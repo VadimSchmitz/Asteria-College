@@ -1,20 +1,20 @@
 ---
-name: Feature request
-about: Suggest an idea for this project
-title: ''
-labels: ''
-assignees: ''
+Naam: Feature
+Betreft: Een nieuwe functionaliteit binnen project
+Titel: ''
+Labels: ''
+Developer: ''
 
 ---
 
-**Is your feature request related to a problem? Please describe.**
-A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
+**Is de functionaliteit voortgekomen uit een probleem? (Zo ja, omschrijf het probleem)**
+Duidelijke omschrijving van het probleem. B.V. iedere keer moet ik dezelfde handeling uitvoeren [...]
 
-**Describe the solution you'd like**
-A clear and concise description of what you want to happen.
+**Beschrijf de betreffende feature**
+Duidelijke beschrijving over wat de nieuwe functionaliteit voor eigenschappen en mogelijkheden heeft.
 
-**Describe alternatives you've considered**
-A clear and concise description of any alternative solutions or features you've considered.
+**Zijn er ook alternatieve oplossingen? (Zo ja, omschrijf ze)**
+[...]
 
-**Additional context**
-Add any other context or screenshots about the feature request here.
+**Heb je nog toevoegingen**
+Verder nog dingen die je over de functionaliteit kwijt wil? Schrijf ze dan hier op.
