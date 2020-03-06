@@ -1,38 +1,33 @@
 ---
-name: Bug report
-about: Create a report to help us improve
-title: ''
-labels: ''
-assignees: ''
+Naam: Bug report
+Betreft: Functionaliteit welke niet naar behoren werkt
+Titel: ''
+Labels: ''
+Developer: ''
 
 ---
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+**Omschrijf de bug**
+Omschrijf duidelijk wat niet naar behoren werkt aan een specifieke functionaliteit.
 
-**To Reproduce**
-Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
+**Hoe te reproduceren?**
+Stappen om bug te reproduceren:
+1. Ga naar '...'
+2. Klik op '....'
+3. Scrol omlaag tot '....'
+4. Bekijk de foutmelding
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+**Wat hoort er te gebeuren?**
+Een duidelijke omschrijving van hoe de functionaliteit wel zou moeten werken.
 
 **Screenshots**
-If applicable, add screenshots to help explain your problem.
+(Indien mogelijk) screenshots invoegen over wat er gebeurd en niet volgens verwachting is.
 
-**Desktop (please complete the following information):**
- - OS: [e.g. iOS]
+**Device (vul de volgende informatie in):**
+ - Device: [b.v. PC, Mac, iPad, iPhone, HTC One]
+ - Operating System: [b.v. iOS]
  - Browser [e.g. chrome, safari]
  - Version [e.g. 22]
-
-**Smartphone (please complete the following information):**
- - Device: [e.g. iPhone6]
- - OS: [e.g. iOS8.1]
- - Browser [e.g. stock browser, safari]
- - Version [e.g. 22]
-
-**Additional context**
-Add any other context about the problem here.
+ 
+**Overige omschrijving**
+Vul hier eventueel nog verdere informatie toe.
