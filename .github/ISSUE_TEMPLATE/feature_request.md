@@ -1,9 +1,9 @@
 ---
 Naam: Feature
 Betreft: Een nieuwe functionaliteit binnen project
-Titel: ''
-Labels: ''
-Developer: ''
+Titel:  
+Labels:  
+Developer:  
 
 ---
 
