@@ -2,9 +2,6 @@ import Vue from 'vue';
 import store from './stores' ;
 import router from './router';
 import App from './App.vue';
-import './modules/index';
-
-window._ = require('lodash');
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
