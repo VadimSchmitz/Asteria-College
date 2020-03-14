@@ -1,4 +1,10 @@
-////
-//@import '~bootstrap/theme/bootstrap';
-//@import "~bootstrap/scss/bootstrap";
-@import "./theme/AdminLTE";
+// Custom variables
+@import 'variables';
+
+// Include Bootstrap Framework
+@import "~bootstrap/scss/bootstrap";
+// And the Bootstrap Vue wrapper
+@import "~bootstrap-vue/dist/bootstrap-vue.css";
+
+// Import AdminLTE theme
+@import "theme/AdminLTE";

@@ -30,8 +30,7 @@
 
                             <div class="info-box-content">
                                 <span class="info-box-text">CPU Traffic</span>
-                                <span class="info-box-number">
-                  10
+                                <span class="info-box-number">10
                   <small>%</small>
                 </span>
                             </div>
@@ -293,7 +292,8 @@
                                             <button class="btn btn-tool" data-card-widget="collapse" type="button"><i
                                                 class="fas fa-minus"></i>
                                             </button>
-                                            <button class="btn btn-tool" data-toggle="tooltip" data-widget="chat-pane-toggle"
+                                            <button class="btn btn-tool" data-toggle="tooltip"
+                                                    data-widget="chat-pane-toggle"
                                                     title="Contacts"
                                                     type="button">
                                                 <i class="fas fa-comments"></i></button>
@@ -384,7 +384,8 @@
                                             <ul class="contacts-list">
                                                 <li>
                                                     <a href="#">
-                                                        <img class="contacts-list-img" src="assets/img/user1-128x128.jpg">
+                                                        <img class="contacts-list-img"
+                                                             src="assets/img/user1-128x128.jpg">
 
                                                         <div class="contacts-list-info">
                               <span class="contacts-list-name">
@@ -400,7 +401,8 @@
                                                 <!-- End Contact Item -->
                                                 <li>
                                                     <a href="#">
-                                                        <img class="contacts-list-img" src="assets/img/user7-128x128.jpg">
+                                                        <img class="contacts-list-img"
+                                                             src="assets/img/user7-128x128.jpg">
 
                                                         <div class="contacts-list-info">
                               <span class="contacts-list-name">
@@ -416,7 +418,8 @@
                                                 <!-- End Contact Item -->
                                                 <li>
                                                     <a href="#">
-                                                        <img class="contacts-list-img" src="assets/img/user3-128x128.jpg">
+                                                        <img class="contacts-list-img"
+                                                             src="assets/img/user3-128x128.jpg">
 
                                                         <div class="contacts-list-info">
                               <span class="contacts-list-name">
@@ -432,7 +435,8 @@
                                                 <!-- End Contact Item -->
                                                 <li>
                                                     <a href="#">
-                                                        <img class="contacts-list-img" src="assets/img/user5-128x128.jpg">
+                                                        <img class="contacts-list-img"
+                                                             src="assets/img/user5-128x128.jpg">
 
                                                         <div class="contacts-list-info">
                               <span class="contacts-list-name">
@@ -447,7 +451,8 @@
                                                 <!-- End Contact Item -->
                                                 <li>
                                                     <a href="#">
-                                                        <img class="contacts-list-img" src="assets/img/user6-128x128.jpg">
+                                                        <img class="contacts-list-img"
+                                                             src="assets/img/user6-128x128.jpg">
 
                                                         <div class="contacts-list-info">
                               <span class="contacts-list-name">
@@ -463,7 +468,8 @@
                                                 <!-- End Contact Item -->
                                                 <li>
                                                     <a href="#">
-                                                        <img class="contacts-list-img" src="assets/img/user8-128x128.jpg">
+                                                        <img class="contacts-list-img"
+                                                             src="assets/img/user8-128x128.jpg">
 
                                                         <div class="contacts-list-info">
                               <span class="contacts-list-name">
@@ -485,7 +491,8 @@
                                     <div class="card-footer">
                                         <form action="#" method="post">
                                             <div class="input-group">
-                                                <input class="form-control" name="message" placeholder="Type Message ..."
+                                                <input class="form-control" name="message"
+                                                       placeholder="Type Message ..."
                                                        type="text">
                                                 <span class="input-group-append">
                           <button class="btn btn-warning" type="button">Send</button>

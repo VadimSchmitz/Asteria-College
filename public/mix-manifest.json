@@ -29,16 +29,5 @@
     "/assets/img/user6-128x128.jpg": "/assets/img/user6-128x128.jpg",
     "/assets/img/user7-128x128.jpg": "/assets/img/user7-128x128.jpg",
     "/assets/img/user8-128x128.jpg": "/assets/img/user8-128x128.jpg",
-    "/assets/statiç/AdminLTE.js": "/assets/statiç/AdminLTE.js",
-    "/assets/statiç/CardRefresh.js": "/assets/statiç/CardRefresh.js",
-    "/assets/statiç/CardWidget.js": "/assets/statiç/CardWidget.js",
-    "/assets/statiç/ControlSidebar.js": "/assets/statiç/ControlSidebar.js",
-    "/assets/statiç/DirectChat.js": "/assets/statiç/DirectChat.js",
-    "/assets/statiç/Dropdown.js": "/assets/statiç/Dropdown.js",
-    "/assets/statiç/Layout.js": "/assets/statiç/Layout.js",
-    "/assets/statiç/PushMenu.js": "/assets/statiç/PushMenu.js",
-    "/assets/statiç/SiteSearch.js": "/assets/statiç/SiteSearch.js",
-    "/assets/statiç/Toasts.js": "/assets/statiç/Toasts.js",
-    "/assets/statiç/TodoList.js": "/assets/statiç/TodoList.js",
-    "/assets/statiç/Treeview.js": "/assets/statiç/Treeview.js"
+    "/assets/static/fontawesome-all.min.js": "/assets/static/fontawesome-all.min.js"
 }

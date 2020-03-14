@@ -23,6 +23,11 @@
 
 
 </div><!-- Scripts -->
+<script
+    src="https://code.jquery.com/jquery-3.4.1.js"
+    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+    crossorigin="anonymous"></script>
+<script src=./assets/static/fontawesome-all.min.js"></script>
 <script src="{{ mix('assets/static/AdminLTE.js')}}"></script>
 <script src="{{ mix('assets/scripts/app.js') }}"></script>
 </body>
