@@ -1,18 +1,19 @@
 <template class="app">
     <section>
-            <navigation-component></navigation-component>
+        <header-navigation></header-navigation>
+        <main-sidebar></main-sidebar>
+        <content-section></content-section>
 
-            <div class="container pt-5">
-                <router-view></router-view>
-            </div>
+        <main-footer></main-footer>
 
-            <footer-component></footer-component>
     </section>
 </template>
 
-
 <script>
+    import ContentSection from "./components/ContentSection";
+
     export default {
-        name: 'app'
+        name: 'App',
+        components: {ContentSection}
     }
 </script>

@@ -1,6 +1,6 @@
-export * from 'admin-lte/build/js/AdminLTE'
+// export * from 'admin-lte/build/js/AdminLTE'
 import Axios from 'axios';
-import 'jquery';
+// import 'jquery';
 window.axios = Axios;
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 

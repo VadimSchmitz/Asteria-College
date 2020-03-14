@@ -13,6 +13,7 @@ const PeerDepsExternalsPlugin = require('peer-deps-externals-webpack-plugin');
  */
 
 mix.js('resources/assets/scripts/app.js', 'public/assets/scripts');
+mix.js('resources/assets/static/*', 'public/assets/static');
 mix.sass('resources/assets/sass/app.scss', 'public/assets/css', {implementation: require('node-sass')});
 
 // Full API
@@ -30,7 +31,6 @@ mix.browserSync('http://localhost:8000/');
 // mix.combine(files, destination);
 // mix.babel(files, destination); <-- Identical to mix.combine(), but also includes Babel compilation.
 mix.copy('resources/assets/img/*', 'public/assets/img');
-// mix.copyDirectory(fromDir, toDir);
 // mix.minify();
 // mix.sourceMaps(); // Enable sourcemaps
 // mix.version(); // Enable versioning.
