@@ -54,30 +54,8 @@ const routes = [
 
 const router = new VueRouter({
     routes,
-    linkActiveClass: "active",
+    linkActiveClass: "router-link-exact-active",
     mode: "hash"
 });
-
-//
-//      Function to do something before redirecting to other route
-//
-// router.beforeEach((to, from, next) => {
-//     const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
-//     const currentUser = Store.getters["global/currentUser"];
-//     const isLoggedIn = Store.getters["global/isLoggedIn"];
-//
-//     if (isLoggedIn) {
-//         axios.defaults.headers.common["Authorization"] = `Bearer ${
-//             currentUser.token
-//         }`;
-//     }
-//
-//     // if (requiresAuth && !isLoggedIn) next("/login");
-//     else if (
-//         (to.path === "/login" && isLoggedIn) ||
-//         (to.path === "/register" && isLoggedIn)
-//     )  next("/");
-//     else next();
-// });
 
 export default router;
