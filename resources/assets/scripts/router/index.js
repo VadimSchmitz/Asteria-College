@@ -6,17 +6,17 @@ Vue.use(VueRouter);
 const routes = [
     {
         path: '/',
-        component: () => import('../layouts/Main'),
+        component: () => import('../template/layouts/Main'),
         meta: { label: 'Home' },
         children: [
             {
                 path: '/',
-                component: () => import('../views/Dashboard'),
+                component: () => import('../template/views/Dashboard'),
                 meta: { label: 'Dashboard' },
             },
             {
                 path: 'widgets',
-                component: () => import('../views/Widgets'),
+                component: () => import('../template/views/Widgets'),
                 meta: { label: 'Widgets' },
             },
             // {
@@ -48,7 +48,7 @@ const routes = [
             // },
         ],
     },
-    // { path: '/pages/login', component: LoginPage },
+    // { path: '/views/login', component: LoginPage },
     { path: '*', redirect: '/404' },
 ];
 

@@ -6,9 +6,5 @@ export default {
     removeCurrentUser: state => {
         state.currentUser = null;
         state.isLoggedIn = false;
-    },
-    setSettings: (state, firstName, lastName) => {
-        state.settings.firstName = firstName;
-        state.settings.lastname = lastName;
     }
 };

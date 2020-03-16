@@ -6,25 +6,13 @@
             <li class="nav-item">
                 <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
             </li>
-            <li class="nav-item d-none d-sm-inline-block">
-                <a class="nav-link" href="#">Home</a>
-            </li>
-            <li class="nav-item d-none d-sm-inline-block">
-                <a class="nav-link" href="#">Contact</a>
+
+            <li class="nav-item d-none d-sm-inline-block" :key="item.key" v-for="item of headerMenu">
+                <router-link class="nav-link" :to="item.path" v-text="item.title"></router-link>
             </li>
         </ul>
 
-        <!-- SEARCH FORM -->
-        <form class="form-inline ml-3">
-            <div class="input-group input-group-sm">
-                <input aria-label="Search" class="form-control form-control-navbar" placeholder="Search" type="search">
-                <div class="input-group-append">
-                    <button class="btn btn-navbar" type="submit">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </div>
-            </div>
-        </form>
+        <search-bar placeholder="Zoeken naar..." icon="fas fa-search"></search-bar>
 
         <!-- Right navbar links -->
         <ul class="navbar-nav ml-auto">
@@ -34,7 +22,7 @@
                     <i class="far fa-comments"></i>
                     <span class="badge badge-danger navbar-badge">3</span>
                 </a>
-                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" aria-expanded="true">
                     <a class="dropdown-item" href="#">
                         <!-- Message Start -->
                         <div class="media">
@@ -124,8 +112,23 @@
 </template>
 
 <script>
-
     export default {
-        name: 'HeaderNavigation'
+        name: 'HeaderNavigation',
+        data() {
+            return {
+                headerMenu: [
+                    {
+                        path: '',
+                        title: 'Dashboard',
+                        meta: {icon: ''}
+                    },
+                    {
+                        path: '/logout',
+                        title: 'Uitloggen',
+                        meta: {icon: ''}
+                    }
+                ]
+            }
+        }
     }
 </script>
