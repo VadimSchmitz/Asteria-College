@@ -13,16 +13,23 @@
     <title>{{ config('app.name', 'App name') }}</title>
     <!-- Styles -->
     <link rel="stylesheet" href="{{ mix('assets/css/app.css') }} "/>
-{{--    <base href="{{ url('/') }}">--}}
+    <base href="{{ url('/') }}">
 </head>
-
-<body>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper">
     <div id="app">
         <div id="vue-loading">{{ __('Loading') }}...</div>
     </div>
 
-    <!-- Scripts -->
-    <script src="{{ mix('assets/scripts/app.js') }}"></script>
+
+</div><!-- Scripts -->
+<script
+    src="https://code.jquery.com/jquery-3.4.1.js"
+    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+    crossorigin="anonymous"></script>
+<script src="{{ mix('assets/static/fontawesome-all.min.js')}}"></script>
+<script src="{{ mix('assets/static/AdminLTE.js')}}"></script>
+<script src="{{ mix('assets/scripts/app.js') }}"></script>
 </body>
 </html>
 

@@ -17,7 +17,7 @@ export default {
         return state.currentUser;
     },
 
-    settings(state ) {
+    settings(state) {
         return state.settings;
     }
 };
