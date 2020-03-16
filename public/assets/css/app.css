@@ -38659,10 +38659,24 @@ html.maximized-card {
   box-shadow: inset 0 0 0 2px #f012be, inset 0 0 0 7px #fff;
 }
 
+<<<<<<< Updated upstream
 .pace-mac-osx-fuchsia .pace .pace-progress {
   background-color: #f012be;
   box-shadow: inset -1px 0 #f012be, inset 0 -1px #f012be, inset 0 2px rgba(255, 255, 255, 0.5), inset 0 6px rgba(255, 255, 255, 0.3);
 }
+=======
+@media (min-width: 576px) {
+  .card-columns {
+    -webkit-column-count: 3;
+       -moz-column-count: 3;
+            column-count: 3;
+    -webkit-column-gap: 1.25rem;
+       -moz-column-gap: 1.25rem;
+            column-gap: 1.25rem;
+    orphans: 1;
+    widows: 1;
+  }
+>>>>>>> Stashed changes
 
 .pace-mac-osx-fuchsia .pace .pace-activity {
   background-image: radial-gradient(rgba(255, 255, 255, 0.65) 0%, rgba(255, 255, 255, 0.15) 100%);
