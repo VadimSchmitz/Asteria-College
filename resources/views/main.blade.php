@@ -17,11 +17,11 @@
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed">
-    <div class="wrapper">
-        <div id="app">
-            <div id="vue-loading">{{ __('Loading') }}...</div>
-        </div>
+<div class="wrapper">
+    <div id="app">
+        <div id="vue-loading">{{ __('Loading') }}...</div>
     </div>
+</div>
 </body>
 
 <!-- Scripts -->

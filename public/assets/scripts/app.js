@@ -1946,6 +1946,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'SearchBar',
   props: (_props = {}, _defineProperty(_props, 'placeholder', {
@@ -2034,6 +2035,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'ContentSection',
   props: _defineProperty({}, 'pageTitle', {
@@ -2076,6 +2079,9 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
 //
 //
 //
@@ -2329,6 +2335,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
 //
 //
 //
@@ -2941,8 +2950,8 @@ var render = function() {
       _c("input", {
         staticClass: "form-control form-control-navbar",
         attrs: {
-          "aria-label": "Search",
           placeholder: this.placeholder,
+          "aria-label": "Search",
           type: "search"
         }
       }),
@@ -3134,7 +3143,7 @@ var render = function() {
       ),
       _vm._v(" "),
       _c("search-bar", {
-        attrs: { placeholder: "Zoeken naar...", icon: "fas fa-search" }
+        attrs: { icon: "fas fa-search", placeholder: "Zoeken naar..." }
       }),
       _vm._v(" "),
       _vm._m(1)
@@ -3624,7 +3633,7 @@ var render = function() {
               _c("th", { attrs: { scope: "col" } }, [_vm._v("Naam")]),
               _vm._v(" "),
               _c("th", { attrs: { scope: "col" } }, [
-                _vm._v("Emailadres\n                            "),
+                _vm._v("Emailadres\n                        "),
                 _c(
                   "div",
                   {
@@ -3686,7 +3695,7 @@ var staticRenderFns = [
       "button",
       {
         staticClass: "btn btn-tool",
-        attrs: { type: "button", "data-card-widget": "maximize" }
+        attrs: { "data-card-widget": "maximize", type: "button" }
       },
       [_c("i", { staticClass: "fas fa-expand" })]
     )
@@ -3699,7 +3708,7 @@ var staticRenderFns = [
       "button",
       {
         staticClass: "btn btn-tool",
-        attrs: { type: "button", "data-card-widget": "collapse" }
+        attrs: { "data-card-widget": "collapse", type: "button" }
       },
       [_c("i", { staticClass: "fas fa-minus" })]
     )

@@ -11,9 +11,7 @@
     export default {
         name: 'Example',
         data() {
-            return {
-
-            }
+            return {}
         }
     }
 </script>

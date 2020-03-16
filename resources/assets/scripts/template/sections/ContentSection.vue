@@ -10,7 +10,9 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><router-link to="/">Home</router-link></li>
+                            <li class="breadcrumb-item">
+                                <router-link to="/">Home</router-link>
+                            </li>
                             <li class="breadcrumb-item active">{{ pageTitle }}</li>
                         </ol>
                     </div>
@@ -37,10 +39,10 @@
     export default {
         name: 'ContentSection',
         props: {
-          ['pageTitle']:{
-              type: String,
-              default: 'Dashboard'
-          }
+            ['pageTitle']: {
+                type: String,
+                default: 'Dashboard'
+            }
         }
     }
 </script>

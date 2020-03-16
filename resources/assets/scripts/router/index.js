@@ -7,17 +7,17 @@ const routes = [
     {
         path: '/',
         component: () => import('../template/layouts/Main'),
-        meta: { label: 'Home' },
+        meta: {label: 'Home'},
         children: [
             {
                 path: '/',
                 component: () => import('../template/views/Dashboard'),
-                meta: { label: 'Dashboard' },
+                meta: {label: 'Dashboard'},
             },
             {
                 path: 'widgets',
                 component: () => import('../template/views/Widgets'),
-                meta: { label: 'Widgets' },
+                meta: {label: 'Widgets'},
             },
             // {
             //     path: 'ui',
@@ -49,7 +49,7 @@ const routes = [
         ],
     },
     // { path: '/views/login', component: LoginPage },
-    { path: '*', redirect: '/404' },
+    {path: '*', redirect: '/404'},
 ];
 
 const router = new VueRouter({

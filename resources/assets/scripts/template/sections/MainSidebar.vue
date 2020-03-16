@@ -26,12 +26,12 @@
                     role="menu">
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
-<!--                    <li class="nav-item" v-for="item in menu">-->
-<!--                        <router-link class="nav-link" :to="item.path">-->
-<!--                            <i class="nav-icon fas fa-tachometer-alt"></i>-->
-<!--                            <p>{{item.label}} </p>-->
-<!--                        </router-link>-->
-<!--                    </li>-->
+                    <!--                    <li class="nav-item" v-for="item in menu">-->
+                    <!--                        <router-link class="nav-link" :to="item.path">-->
+                    <!--                            <i class="nav-icon fas fa-tachometer-alt"></i>-->
+                    <!--                            <p>{{item.label}} </p>-->
+                    <!--                        </router-link>-->
+                    <!--                    </li>-->
                     <li class="nav-item">
                         <router-link class="nav-link" to="/">
                             <i class="nav-icon fas fas fa-tree"></i>
@@ -57,7 +57,7 @@
     export default {
         name: 'MainSidebar',
         props: {
-            ['menu']:{
+            ['menu']: {
                 type: Array,
                 default: []
             }

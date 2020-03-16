@@ -7,12 +7,12 @@
                 <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
             </li>
 
-            <li class="nav-item d-none d-sm-inline-block" :key="item.key" v-for="item of headerMenu">
-                <router-link class="nav-link" :to="item.path" v-text="item.title"></router-link>
+            <li :key="item.key" class="nav-item d-none d-sm-inline-block" v-for="item of headerMenu">
+                <router-link :to="item.path" class="nav-link" v-text="item.title"></router-link>
             </li>
         </ul>
 
-        <search-bar placeholder="Zoeken naar..." icon="fas fa-search"></search-bar>
+        <search-bar icon="fas fa-search" placeholder="Zoeken naar..."></search-bar>
 
         <!-- Right navbar links -->
         <ul class="navbar-nav ml-auto">
@@ -22,11 +22,12 @@
                     <i class="far fa-comments"></i>
                     <span class="badge badge-danger navbar-badge">3</span>
                 </a>
-                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" aria-expanded="true">
+                <div aria-expanded="true" class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                     <a class="dropdown-item" href="#">
                         <!-- Message Start -->
                         <div class="media">
-                            <img alt="User Avatar" class="img-size-50 mr-3 img-circle" src="assets/img/user1-128x128.jpg">
+                            <img alt="User Avatar" class="img-size-50 mr-3 img-circle"
+                                 src="assets/img/user1-128x128.jpg">
                             <div class="media-body">
                                 <h3 class="dropdown-item-title">
                                     Brad Diesel
@@ -42,7 +43,8 @@
                     <a class="dropdown-item" href="#">
                         <!-- Message Start -->
                         <div class="media">
-                            <img alt="User Avatar" class="img-size-50 img-circle mr-3" src="assets/img/user8-128x128.jpg">
+                            <img alt="User Avatar" class="img-size-50 img-circle mr-3"
+                                 src="assets/img/user8-128x128.jpg">
                             <div class="media-body">
                                 <h3 class="dropdown-item-title">
                                     John Pierce
@@ -58,7 +60,8 @@
                     <a class="dropdown-item" href="#">
                         <!-- Message Start -->
                         <div class="media">
-                            <img alt="User Avatar" class="img-size-50 img-circle mr-3" src="assets/img/user3-128x128.jpg">
+                            <img alt="User Avatar" class="img-size-50 img-circle mr-3"
+                                 src="assets/img/user3-128x128.jpg">
                             <div class="media-body">
                                 <h3 class="dropdown-item-title">
                                     Nora Silvester
