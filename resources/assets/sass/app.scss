@@ -4,7 +4,10 @@
 // Include Bootstrap Framework
 @import "~bootstrap/scss/bootstrap";
 // And the Bootstrap Vue wrapper
-@import "~bootstrap-vue/dist/bootstrap-vue.css";
+@import "~bootstrap-vue/src/index";
+
+// Plugins
+@import '~overlayscrollbars/css/OverlayScrollbars.min.css';
 
 // Import AdminLTE theme
 @import "theme/AdminLTE";

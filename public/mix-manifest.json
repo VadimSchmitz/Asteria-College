@@ -1,7 +1,7 @@
 {
+    "/assets/plugins/AdminLTE.js": "/assets/plugins/AdminLTE.js",
     "/assets/scripts/app.js": "/assets/scripts/app.js",
     "/assets/css/app.css": "/assets/css/app.css",
-    "/assets/static/AdminLTE.js": "/assets/static/AdminLTE.js",
     "/assets/img/AdminLTELogo.png": "/assets/img/AdminLTELogo.png",
     "/assets/img/avatar.png": "/assets/img/avatar.png",
     "/assets/img/avatar04.png": "/assets/img/avatar04.png",
@@ -29,5 +29,6 @@
     "/assets/img/user6-128x128.jpg": "/assets/img/user6-128x128.jpg",
     "/assets/img/user7-128x128.jpg": "/assets/img/user7-128x128.jpg",
     "/assets/img/user8-128x128.jpg": "/assets/img/user8-128x128.jpg",
-    "/assets/static/fontawesome-all.min.js": "/assets/static/fontawesome-all.min.js"
+    "/assets/plugins/fontawesome-all.min.js": "/assets/plugins/fontawesome-all.min.js",
+    "/assets/plugins/jquery.js": "/assets/plugins/jquery.js"
 }

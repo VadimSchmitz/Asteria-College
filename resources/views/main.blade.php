@@ -15,21 +15,19 @@
     <link rel="stylesheet" href="{{ mix('assets/css/app.css') }} "/>
     <base href="{{ url('/') }}">
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
-<div class="wrapper">
-    <div id="app">
-        <div id="vue-loading">{{ __('Loading') }}...</div>
+
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed lockscreen">
+    <div class="wrapper">
+        <div id="app">
+            <div id="vue-loading">{{ __('Loading') }}...</div>
+        </div>
     </div>
-
-
-</div><!-- Scripts -->
-<script
-    src="https://code.jquery.com/jquery-3.4.1.js"
-    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-    crossorigin="anonymous"></script>
-<script src="{{ mix('assets/static/fontawesome-all.min.js')}}"></script>
-<script src="{{ mix('assets/static/AdminLTE.js')}}"></script>
-<script src="{{ mix('assets/scripts/app.js') }}"></script>
 </body>
+
+<!-- Scripts -->
+<script src="{{ mix('assets/plugins/jquery.js')}}"></script>
+<script src="{{ mix('assets/plugins/AdminLTE.js')}}"></script>
+<script src="{{ mix('assets/scripts/app.js') }}"></script>
+<script src="{{ mix('assets/plugins/fontawesome-all.min.js')}}"></script>
 </html>
 
