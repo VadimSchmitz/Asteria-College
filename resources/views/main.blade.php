@@ -16,12 +16,12 @@
     <base href="{{ url('/') }}">
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed">
-<div class="wrapper">
-    <div id="app">
-        <div id="vue-loading">{{ __('Loading') }}...</div>
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed lockscreen">
+    <div class="wrapper">
+        <div id="app">
+            <div id="vue-loading">{{ __('Loading') }}...</div>
+        </div>
     </div>
-</div>
 </body>
 
 <!-- Scripts -->

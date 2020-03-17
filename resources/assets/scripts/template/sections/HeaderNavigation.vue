@@ -1,14 +1,14 @@
 <template>
     <!-- Navbar -->
-    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <nav class="main-header navbar navbar-expand navbar-light">
         <!-- Left navbar links -->
         <ul class="navbar-nav">
             <li class="nav-item">
                 <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
             </li>
 
-            <li :key="item.key" class="nav-item d-none d-sm-inline-block" v-for="item of headerMenu">
-                <router-link :to="item.path" class="nav-link" v-text="item.title"></router-link>
+            <li class="nav-item d-none d-sm-inline-block" v-for="item in headerMenu">
+                <router-link class="nav-link" :to="item.path">{{ item.meta.label }}</router-link>
             </li>
         </ul>
 
@@ -119,18 +119,10 @@
         name: 'HeaderNavigation',
         data() {
             return {
-                headerMenu: [
-                    {
-                        path: '',
-                        title: 'Dashboard',
-                        meta: {icon: ''}
-                    },
-                    {
-                        path: '/logout',
-                        title: 'Uitloggen',
-                        meta: {icon: ''}
-                    }
-                ]
+                headerMenu: [{
+                    path: '/login',
+                    meta: {label: "Login"}
+                }]
             }
         }
     }

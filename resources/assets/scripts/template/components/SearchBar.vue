@@ -24,7 +24,7 @@
             },
             ['icon']: {
                 type: String,
-                default: 'search'
+                default: 'fas fa-search'
             }
         }
     }

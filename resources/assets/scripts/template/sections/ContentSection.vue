@@ -25,7 +25,7 @@
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <router-view></router-view>
+                    <router-view transition="fade"></router-view>
                 </div>
             </div>
         </section>

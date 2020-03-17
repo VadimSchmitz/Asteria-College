@@ -9,34 +9,37 @@
         </div>
 
         <div class="card card-outline card-info mt-3">
-            <div class="overlay dark" v-show="usersLoading && users == null">
-                <i class="fas fa-2x fa-sync-alt fa-spin text-white"></i>
+            <div class="overlay" v-show="usersLoading && users == null">
+                <i class="fas fa-2x fa-sync-alt fa-spin"></i>
             </div>
 
             <div class="p-0">
                 <table class="table table-striped">
                     <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Naam</th>
-                        <th scope="col">Emailadres
-                            <div class="card-tools d-inline float-right pr-0 mr-0 pb-0">
-                                <button class="btn btn-tool" data-card-widget="maximize" type="button"><i
-                                    class="fas fa-expand"></i></button>
-                                <button class="btn btn-tool" data-card-widget="collapse" type="button"><i
-                                    class="fas fa-minus"></i></button>
-                                <button @click="users = null" class="btn btn-tool" type="button"><i
-                                    class="fas fa-times"></i></button>
-                            </div>
-                        </th>
-                    </tr>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Naam</th>
+                            <th scope="col">Emailadres
+                                <div class="card-tools d-inline float-right pr-0 mr-0 pb-0">
+                                    <button class="btn btn-tool" data-card-widget="maximize" type="button">
+                                        <i class="fas fa-expand"></i>
+                                    </button>
+                                    <button class="btn btn-tool" data-card-widget="collapse" type="button">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                    <button @click="users = null" class="btn btn-tool" type="button">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            </th>
+                        </tr>
                     </thead>
                     <tbody v-if="users">
-                    <tr :key="user.id" v-for="user in users">
-                        <th scope="row">{{ user.id }}</th>
-                        <td>{{ user.name }}</td>
-                        <td>{{ user.email }}</td>
-                    </tr>
+                        <tr :key="user.id" v-for="user in users">
+                            <th scope="row">{{ user.id }}</th>
+                            <td>{{ user.name }}</td>
+                            <td>{{ user.email }}</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>

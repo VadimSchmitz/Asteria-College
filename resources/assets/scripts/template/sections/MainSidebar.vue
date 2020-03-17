@@ -1,12 +1,12 @@
 <template>
     <!-- Main Sidebar Container -->
-    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <aside class="main-sidebar sidebar-light-secondary elevation-4">
         <!-- Brand Logo -->
-        <a class="brand-link" href="/">
-            <img alt="AdminLTE Logo" class="brand-image img-circle elevation-3" src="assets/img/AdminLTELogo.png"
+        <router-link class="brand-link" to="dashboard">
+            <img alt="Logo" class="brand-image img-circle elevation-3" src="assets/img/AdminLTELogo.png"
                  style="opacity: .8">
             <span class="brand-text font-weight-light">Asteria College</span>
-        </a>
+        </router-link>
 
         <!-- Sidebar -->
         <div class="sidebar">
@@ -24,29 +24,27 @@
             <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-accordion="false" data-widget="treeview"
                     role="menu">
-                    <!-- Add icons to the links using the .nav-icon class
-                         with font-awesome or any other icon font library -->
-                    <!--                    <li class="nav-item" v-for="item in menu">-->
-                    <!--                        <router-link class="nav-link" :to="item.path">-->
-                    <!--                            <i class="nav-icon fas fa-tachometer-alt"></i>-->
-                    <!--                            <p>{{item.label}} </p>-->
-                    <!--                        </router-link>-->
-                    <!--                    </li>-->
-                    <li class="nav-item">
-                        <router-link class="nav-link" to="/">
-                            <i class="nav-icon fas fas fa-tree"></i>
-                            <p>Dashboard </p>
+
+                    <li class="nav-item" :class="(item.children) ? 'has-treeview' : '' " v-for="item in router">
+                        <router-link :class="(item.path === $router.currentRoute.path) ? 'nav-link active' : 'nav-link'" :key="item" :to="item.path">
+                            <i class="nav-icon fal " :class="'fa-' + item.meta.icon"></i>
+                            <p>{{ item.meta.label }}</p>
                         </router-link>
-                    </li>
-                    <li class="nav-item">
-                        <router-link class="nav-link" to="widgets">
-                            <i class="nav-icon fas fas fa-user"></i>
-                            <p>Widgets </p>
-                        </router-link>
+
+                        <ul :class="(item.path === $router.currentRoute.path) ? 'nav nav-treeview menu-open has-treeview' : 'nav nav-treeview '" v-on="item.children >= 1">
+                            <li class="nav-item" v-for="child in item.children">
+                                <router-link :to="child.path" :class="(item.path === $router.currentRoute.path) ? 'nav-link active' : 'nav-link'" >
+                                    <i class="nav-icon fal " :class="'fa-' + child.meta.icon"></i>
+                                    <p>{{child.meta.label}}</p>
+                                </router-link>
+                            </li>
+                        </ul>
+
                     </li>
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->
+
         </div>
         <!-- /.sidebar -->
     </aside>
@@ -54,20 +52,22 @@
 </template>
 
 <script>
+    import {routes} from "../../router";
+
     export default {
         name: 'MainSidebar',
-        props: {
-            ['menu']: {
-                type: Array,
-                default: []
+        data() {
+            return {
+                router: Array
             }
         },
         mounted() {
-            let menu = this.$router.routes;
-            // for(let route in menu){
-            //     this.menu.push(route);
-            // }
-
+            this.getRoutes()
+        },
+        methods: {
+            getRoutes() {
+                this.router = routes[0].children;
+            }
         }
     }
 </script>

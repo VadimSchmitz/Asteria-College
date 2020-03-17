@@ -1,6 +1,6 @@
 <template>
     <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
+    <aside class="control-sidebar control-sidebar-light">
         //
     </aside>
     <!-- /.control-sidebar -->
