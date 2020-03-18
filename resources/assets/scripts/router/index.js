@@ -2,59 +2,59 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 
 Vue.use(VueRouter);
-
-const routes = [
+export let auth = false;
+export const routes = [
     {
-        path: '/',
-        component: () => import('../layouts/Main'),
+        path: '',
+        component: () => import('../template/layouts/Main'),
+        redirect: 'login',
         meta: { label: 'Home' },
         children: [
             {
-                path: '/',
-                component: () => import('../views/Dashboard'),
-                meta: { label: 'Dashboard' },
+                path: 'dashboard',
+                component: () =>  import('../template/views/Dashboard'),
+                meta: { label: 'Dashboard', icon: 'user' },
             },
             {
-                path: 'widgets',
-                component: () => import('../views/Widgets'),
-                meta: { label: 'Widgets' },
-            },
-            // {
-            //     path: 'ui',
-            //     component: Empty,
-            //     meta: { label: 'UI Elements' },
-            //     children: [
-            //         {
-            //             path: 'general',
-            //             component: UiGeneralPage,
-            //             meta: { label: 'General' },
-            //         },
-            //         {
-            //             path: 'icons',
-            //             component: UiIconsPage,
-            //             meta: { label: 'Icons' },
-            //         },
-            //         {
-            //             path: 'buttons',
-            //             component: UiButtonsPage,
-            //             meta: { label: 'Buttons' },
-            //         },
-            //     ],
-            // },
-            // {
-            //     path: '404',
-            //     component: NotFoundPage,
-            //     meta: { label: '404 Error Page' },
-            // },
-        ],
+                path: '/widgets',
+                component: () => import('../template/views/Widgets'),
+                meta: { label: 'Widgets', icon: 'alicorn' },
+                children: [
+                    {
+                        path: '/widgets/hejfnee',
+                        component: () => import('../template/views/Dashboard'),
+                        meta: { label: 'Voorbeeld 1', icon: 'search' }
+                    },
+                    {
+                        path: '/widgets/ererereer',
+                        component: () => import('../template/views/Widgets'),
+                        meta: { label: 'Voorbeeld 2', icon: 'search' }
+                    }
+
+                ]
+            }],
     },
-    // { path: '/pages/login', component: LoginPage },
-    { path: '*', redirect: '/404' },
+    {
+        path: 'authenticate',
+        component: () => import('../template/layouts/Authenticate'),
+        redirect: '/login',
+        meta: {label: 'Authenticate'},
+        children: [
+                {
+                    path: '/login',
+                    component: () => import('../template/views/auth/Login'),
+                    meta: {label: 'Inloggen', icon: 'user'}
+                }
+            ]
+    },
+    // { path: '/views/login', component: LoginPage },
+
+    {path: '404', redirect: '/error/404'}
 ];
 
 const router = new VueRouter({
     routes,
-    linkActiveClass: "router-link-exact-active",
+    linkActiveClass: "active",
     mode: "hash"
 });
 

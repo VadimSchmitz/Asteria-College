@@ -15,9 +15,5 @@ export default {
      */
     currentUser(state) {
         return state.currentUser;
-    },
-
-    settings(state) {
-        return state.settings;
     }
 };

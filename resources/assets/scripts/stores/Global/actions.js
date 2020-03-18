@@ -9,12 +9,5 @@ export default {
         if (currentUser) {
             context.commit("setCurrentUser", currentUser);
         }
-    },
-
-    fetchSettingsFromDB(context) {
-        // TODO: make fetch call to db
-        const firstName = 'Sheep';
-        const lastName = "Company";
-        context.commit("setSettings", firstName, lastName);
     }
 };
