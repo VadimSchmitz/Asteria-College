@@ -15,7 +15,7 @@ Then:
         
         > php artisan key:generate
         
-        > php artisan jwt:secret
+        > php artisan jwt:secret  (if this doesn't work first > composer require tymon/jwt-auth)
         
         > php artisan migrate:refresh —seed
         
