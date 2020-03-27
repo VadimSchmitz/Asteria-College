@@ -8,7 +8,7 @@ use Faker\Generator as Faker;
 $factory->define(Test::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
-        'grade'=> $faker->numberBetween(0,10),
-        'has_passed'=> $faker->boolean
+//        'grade'=> $faker->numberBetween(0,10),
+//        'has_passed'=> $faker->boolean
     ];
 });

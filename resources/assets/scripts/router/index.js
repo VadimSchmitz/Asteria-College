@@ -2,7 +2,6 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 
 Vue.use(VueRouter);
-export let auth = false;
 export const routes = [
     {
         path: '',
@@ -48,7 +47,6 @@ export const routes = [
             ]
     },
     // { path: '/views/login', component: LoginPage },
-
     {path: '404', redirect: '/error/404'}
 ];
 

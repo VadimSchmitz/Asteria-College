@@ -44,11 +44,9 @@ mix.browserSync('http://localhost:8000');
 // mix.less(src, output);
 // mix.stylus(src, output);
 // mix.postCss(src, output, [require('postcss-some-plugin')()]);
-mix.browserSync('http://localhost:8000/');
+
 // mix.combine(files, destination);
 // mix.babel(files, destination); <-- Identical to mix.combine(), but also includes Babel compilation.
-mix.copy('resources/assets/img/*', 'public/assets/img');
-mix.copy('resources/assets/plugins/fontawesome-all.min.js', 'public/assets/plugins');
     // .copy('node_modules/jquery/dist/jquery.js', 'public/assets/plugins');
 // mix.minify();
 // mix.sourceMaps(); // Enable sourcemaps

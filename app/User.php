@@ -37,6 +37,12 @@ class User extends Authenticatable implements JWTSubject
         'email_verified_at' => 'datetime',
     ];
 
+
+    public function students()
+    {
+        return $this->belongsToMany(Students::class, 'users_students');
+    }
+
     /**
      * Get the identifier
      * @return JWTSubject
