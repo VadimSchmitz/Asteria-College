@@ -13,10 +13,5 @@
     export default {
         name: 'App',
         components: {Authorized, Authenticate},
-        data() {
-            return {
-
-            }
-        }
     }
 </script>

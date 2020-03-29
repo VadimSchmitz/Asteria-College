@@ -21,8 +21,6 @@ const includes = {
             router: require('@websanova/vue-auth/drivers/router/vue-router.2.x.js'),
             authorize
         });
-    },
-    component(Vue) {
         Vue.component('v-gravatar', Gravatar);
     }
 };

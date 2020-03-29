@@ -7,8 +7,8 @@
                 <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
             </li>
 
-            <li class="nav-item d-none d-sm-inline-block" v-for="item in headerMenu">
-                <router-link class="nav-link" :to="item.path">{{ item.meta.label }}</router-link>
+            <li class="nav-item d-none d-sm-inline-block">
+                <span class="nav-link" @click.prevent="logout()">Uitloggen</span>
             </li>
         </ul>
 
@@ -117,12 +117,18 @@
 <script>
     export default {
         name: 'HeaderNavigation',
-        data() {
-            return {
-                headerMenu: [{
-                    path: '/login',
-                    meta: {label: "Login"}
-                }]
+        methods: {
+            logout() {
+                this.$auth.logout({
+                    redirect: 'login',
+                    makeRequest: true,
+                    success() {
+                        // TODO: add message signout succeeed
+                    },
+                    error() {
+                        console.error();
+                    }
+                });
             }
         }
     }
