@@ -13,6 +13,7 @@
     <title>{{ config('app.name', 'App name') }}</title>
     <!-- Styles -->
     <link rel="stylesheet" href="{{ mix('assets/css/app.css') }} "/>
+    <link rel="stylesheet" href="{{ mix('assets/css/element.css') }} "/>
     <base href="{{ url('/') }}">
 </head>
 

@@ -62,7 +62,7 @@
             get() {
                 this.usersLoading = true;
 
-                axios.get(`/api/users`)
+                axios.get(`/users`)
                     .then(response => {
                         // Timeout only to show loading screen
                         setTimeout(() => {

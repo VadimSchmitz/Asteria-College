@@ -25,17 +25,17 @@
                 <ul class="nav nav-pills nav-sidebar flex-column" data-accordion="false" data-widget="treeview"
                     role="menu">
 
-                    <li class="nav-item" :class="(item.children) ? 'has-treeview' : '' " v-for="item in router">
-                        <router-link :class="(item.path === $router.currentRoute.path) ? 'nav-link active' : 'nav-link'" :key="item" :to="item.path">
-                            <i class="nav-icon fal " :class="'fa-' + item.meta.icon"></i>
-                            <p>{{ item.meta.label }}</p>
+                    <li class="nav-item" :class="(route.children > 0) ? 'has-treeview' : '' " v-for="route in navRoutes">
+                        <router-link :class="(route.path === currentRoute.fullpath) ? 'nav-link active' : 'nav-link'" :to="route.path">
+                            <i class="nav-icon fal " :class="'fa-' + route.meta.icon"></i>
+                            <p>{{ route.name }}</p>
                         </router-link>
 
-                        <ul :class="(item.path === $router.currentRoute.path) ? 'nav nav-treeview menu-open has-treeview' : 'nav nav-treeview '" v-on="item.children >= 1">
-                            <li class="nav-item" v-for="child in item.children">
-                                <router-link :to="child.path" :class="(item.path === $router.currentRoute.path) ? 'nav-link active' : 'nav-link'" >
-                                    <i class="nav-icon fal " :class="'fa-' + child.meta.icon"></i>
-                                    <p>{{child.meta.label}}</p>
+                        <ul :class="(route.path === currentRoute.fullPath ) ? 'nav nav-treeview menu-open has-treeview' : 'nav nav-treeview'" v-if="route.children">
+                            <li class="nav-item" v-for="childRoute in route.children">
+                                <router-link :to="childRoute.path" :class="(childRoute.path === currentRoute.path) ? 'nav-link active' : 'nav-link'" >
+<!--                                    <i class="nav-icon fal " :class="'fa-' + childRoute.meta.icon"></i>-->
+                                    <p>{{ childRoute.name }}</p>
                                 </router-link>
                             </li>
                         </ul>
@@ -52,21 +52,26 @@
 </template>
 
 <script>
-    import {routes} from "../../router";
+    import router, {routes} from "../../../core/utils/router";
 
     export default {
         name: 'MainSidebar',
         data() {
             return {
-                router: Array
+                navRoutes: [
+                ],
+                currentRoute: router.currentRoute
             }
         },
         mounted() {
-            this.getRoutes()
+           this.getRoutes()
         },
         methods: {
             getRoutes() {
-                this.router = routes[0].children;
+                routes.forEach(route =>{
+                    if(!route.hidden)
+                        this.navRoutes.push(route);
+                })
             }
         }
     }
