@@ -12,11 +12,10 @@
         <div class="sidebar">
             <!-- Sidebar user panel (optional) -->
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                <div class="image">
-                    <img alt="User Image" class="img-circle elevation-2" src="assets/img/user2-160x160.jpg">
-                </div>
+                <avatar-initials></avatar-initials>
+
                 <div class="info">
-                    <a class="d-block" href="#">Levi Deurloo</a>
+                    <a class="d-block" href="#">{{user.firstName + ' ' + user.lastName}}</a>
                 </div>
             </div>
 
@@ -25,16 +24,16 @@
                 <ul class="nav nav-pills nav-sidebar flex-column" data-accordion="false" data-widget="treeview"
                     role="menu">
 
-                    <li class="nav-item" :class="(route.children > 0) ? 'has-treeview' : '' " v-for="route in navRoutes">
-                        <router-link :class="(route.path === currentRoute.fullpath) ? 'nav-link active' : 'nav-link'" :to="route.path">
+                    <li class="nav-item" :class="route.children ? 'has-treeview' : '' " v-for="route in navRoutes">
+                        <router-link :class="(route.path === currentRoute.path) ? 'nav-link active' : 'nav-link'" :to="route.path">
                             <i class="nav-icon fal " :class="'fa-' + route.meta.icon"></i>
                             <p>{{ route.name }}</p>
                         </router-link>
 
-                        <ul :class="(route.path === currentRoute.fullPath ) ? 'nav nav-treeview menu-open has-treeview' : 'nav nav-treeview'" v-if="route.children">
+                        <ul class='nav has-treeview' v-if="route.children">
                             <li class="nav-item" v-for="childRoute in route.children">
                                 <router-link :to="childRoute.path" :class="(childRoute.path === currentRoute.path) ? 'nav-link active' : 'nav-link'" >
-<!--                                    <i class="nav-icon fal " :class="'fa-' + childRoute.meta.icon"></i>-->
+                                    <i class="nav-icon fal " :class="'fa-' + childRoute.meta.icon"></i>
                                     <p>{{ childRoute.name }}</p>
                                 </router-link>
                             </li>
@@ -53,14 +52,20 @@
 
 <script>
     import router, {routes} from "../../../core/utils/router";
+    import AvatarInitials from "../components/AvatarInitials";
 
     export default {
         name: 'MainSidebar',
+        components: {AvatarInitials},
         data() {
             return {
-                navRoutes: [
-                ],
+                navRoutes: [],
                 currentRoute: router.currentRoute
+            }
+        },
+        computed: {
+            user() {
+                return this.$store.state.user;
             }
         },
         mounted() {
@@ -68,10 +73,27 @@
         },
         methods: {
             getRoutes() {
-                routes.forEach(route =>{
-                    if(!route.hidden)
-                        this.navRoutes.push(route);
-                })
+                routes.forEach((route) => {
+                    if(!route.hidden) {
+                        if(!route.children) {
+                            this.navRoutes.push(route);
+                        } else {
+                            let pushRoute = {
+                                path: route.path,
+                                name: route.name,
+                                meta: route.meta,
+                                hidden: route.hidden,
+                                children: []
+                            };
+
+                            route.children.forEach((child) => {
+                                pushRoute.children.push(child);
+                            });
+
+                            this.navRoutes.push(pushRoute);
+                        }
+                    }
+                });
             }
         }
     }
