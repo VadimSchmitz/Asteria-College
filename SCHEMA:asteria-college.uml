@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>DATABASE</ID>
+  <OriginalElement>72945623-3166-47b0-b239-c3fa39a3fc01.SCHEMA:asteria-college</OriginalElement>
+  <nodes>
+    <node x="990.0" y="630.0">72945623-3166-47b0-b239-c3fa39a3fc01.TABLE:asteria-college.users_students</node>
+    <node x="266.0" y="299.88453608247414">72945623-3166-47b0-b239-c3fa39a3fc01.TABLE:asteria-college.courses</node>
+    <node x="444.0" y="804.0">72945623-3166-47b0-b239-c3fa39a3fc01.TABLE:asteria-college.password_resets</node>
+    <node x="732.2916666666667" y="299.0">72945623-3166-47b0-b239-c3fa39a3fc01.TABLE:asteria-college.students</node>
+    <node x="244.0" y="576.0">72945623-3166-47b0-b239-c3fa39a3fc01.TABLE:asteria-college.activities</node>
+    <node x="739.0" y="587.0">72945623-3166-47b0-b239-c3fa39a3fc01.TABLE:asteria-college.reports</node>
+    <node x="731.7916666666666" y="0.0">72945623-3166-47b0-b239-c3fa39a3fc01.TABLE:asteria-college.contacts</node>
+    <node x="217.0" y="804.0">72945623-3166-47b0-b239-c3fa39a3fc01.TABLE:asteria-college.migrations</node>
+    <node x="0.0" y="804.0">72945623-3166-47b0-b239-c3fa39a3fc01.TABLE:asteria-college.failed_jobs</node>
+    <node x="1049.25" y="299.0">72945623-3166-47b0-b239-c3fa39a3fc01.TABLE:asteria-college.users</node>
+    <node x="0.0" y="587.0">72945623-3166-47b0-b239-c3fa39a3fc01.TABLE:asteria-college.tests</node>
+    <node x="488.0" y="630.0">72945623-3166-47b0-b239-c3fa39a3fc01.TABLE:asteria-college.courses_students</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="72945623-3166-47b0-b239-c3fa39a3fc01.TABLE:asteria-college.courses_students" target="72945623-3166-47b0-b239-c3fa39a3fc01.TABLE:asteria-college.students">
+      <point x="57.75" y="-37.5" />
+      <point x="661.25" y="551.0" />
+      <point x="770.625" y="551.0" />
+      <point x="-76.66666666666669" y="113.5" />
+    </edge>
+    <edge source="72945623-3166-47b0-b239-c3fa39a3fc01.TABLE:asteria-college.users_students" target="72945623-3166-47b0-b239-c3fa39a3fc01.TABLE:asteria-college.students">
+      <point x="-57.75" y="-37.5" />
+      <point x="1047.75" y="551.0" />
+      <point x="923.9583333333334" y="551.0" />
+      <point x="76.66666666666669" y="113.5" />
+    </edge>
+    <edge source="72945623-3166-47b0-b239-c3fa39a3fc01.TABLE:asteria-college.courses_students" target="72945623-3166-47b0-b239-c3fa39a3fc01.TABLE:asteria-college.courses">
+      <point x="-57.75" y="-37.5" />
+      <point x="545.75" y="551.0" />
+      <point x="416.0" y="551.0" />
+      <point x="60.0" y="80.5" />
+    </edge>
+    <edge source="72945623-3166-47b0-b239-c3fa39a3fc01.TABLE:asteria-college.activities" target="72945623-3166-47b0-b239-c3fa39a3fc01.TABLE:asteria-college.courses">
+      <point x="0.0" y="-91.5" />
+      <point x="0.0" y="80.5" />
+    </edge>
+    <edge source="72945623-3166-47b0-b239-c3fa39a3fc01.TABLE:asteria-college.tests" target="72945623-3166-47b0-b239-c3fa39a3fc01.TABLE:asteria-college.courses">
+      <point x="0.0" y="-80.5" />
+      <point x="112.0" y="551.0" />
+      <point x="296.0" y="551.0" />
+      <point x="-60.0" y="80.5" />
+    </edge>
+    <edge source="72945623-3166-47b0-b239-c3fa39a3fc01.TABLE:asteria-college.reports" target="72945623-3166-47b0-b239-c3fa39a3fc01.TABLE:asteria-college.students">
+      <point x="0.0" y="-80.5" />
+      <point x="854.5" y="551.0" />
+      <point x="847.2916666666667" y="551.0" />
+      <point x="0.0" y="113.5" />
+    </edge>
+    <edge source="72945623-3166-47b0-b239-c3fa39a3fc01.TABLE:asteria-college.students" target="72945623-3166-47b0-b239-c3fa39a3fc01.TABLE:asteria-college.contacts">
+      <point x="-5.6843418860808015E-14" y="-113.5" />
+      <point x="0.0" y="124.5" />
+    </edge>
+    <edge source="72945623-3166-47b0-b239-c3fa39a3fc01.TABLE:asteria-college.users_students" target="72945623-3166-47b0-b239-c3fa39a3fc01.TABLE:asteria-college.users">
+      <point x="57.75" y="-37.5" />
+      <point x="0.0" y="113.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.3736517719568567" x="889.2329896907216" y="493.5" />
+  <SelectedNodes>
+    <node>72945623-3166-47b0-b239-c3fa39a3fc01.TABLE:asteria-college.courses</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Key columns</Category>
+    <Category>Columns</Category>
+    <Category>Virtual foreign keys</Category>
+  </Categories>
+</Diagram>
+
