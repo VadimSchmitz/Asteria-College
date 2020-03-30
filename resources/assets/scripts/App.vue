@@ -1,11 +1,17 @@
 <template class="app">
-    <router-view></router-view>
+    <section id="app">
+        <authenticate v-if="!this.$auth.check()"></authenticate>
+
+        <authorized v-else-if="this.$auth.check()"></authorized>
+    </section>
 </template>
 
 <script>
+    import Authenticate from "./template/layouts/Authenticate";
+    import Authorized from "./template/layouts/Authorized";
 
-    let auth = false;
     export default {
-        name: 'App'
+        name: 'App',
+        components: {Authorized, Authenticate},
     }
 </script>
