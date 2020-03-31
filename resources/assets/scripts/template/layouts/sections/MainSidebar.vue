@@ -33,8 +33,9 @@
 
                         <ul class='nav has-treeview' v-if="route.children">
                             <li class="nav-item" v-for="childRoute in route.children">
-                                <router-link :class="(childRoute.path === currentRoute.path) ? 'nav-link active' : 'nav-link'"
-                                             :to="childRoute.path">
+                                <router-link
+                                        :class="(childRoute.path === currentRoute.path) ? 'nav-link active' : 'nav-link'"
+                                        :to="childRoute.path">
                                     <i :class="'fa-' + childRoute.meta.icon" class="nav-icon fal "></i>
                                     <p>{{ childRoute.name }}</p>
                                 </router-link>

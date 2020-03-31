@@ -18,7 +18,7 @@ class CreateGradesTable extends Migration
             $table->unsignedBigInteger('test_id');
             $table->foreign('test_id')->references('id')->on('tests');
 
-            $table->string('grade')->nullable();
+            $table->decimal('grade', 3, 1)->nullable();
             $table->timestamps();
         });
     }

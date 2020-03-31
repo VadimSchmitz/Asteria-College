@@ -4,10 +4,8 @@
             <a href=""><b>Asteria</b>College</a>
         </div>
 
-
         <div class="lockscreen-name mb-2">
-            <avatar-initials :key="key" v-if="avatar"></avatar-initials>
-            <el-avatar :key="!key" :size=100 icon="fal fa-user fa-2x" v-else-if="!avatar"></el-avatar>
+            <el-avatar :key="!key" :size=100 icon="fal fa-user fa-2x"></el-avatar>
         </div>
 
         <div style="height: 45px">
@@ -69,8 +67,6 @@
             return {
                 error: null,
                 loading: false,
-                avatar: false,
-                key: 0,
                 credentials: {
                     email: '',
                     password: '',
@@ -82,18 +78,7 @@
                 }
             }
         },
-
-        watch: {
-            credentials(val) {
-                this.$emit('onchange', this.credentials.email);
-                this.checkAvatar('avatarEmail');
-            }
-        },
         methods: {
-            checkAvatar(name) {
-                this.avatar !== this.avatar;
-                return this.key++;
-            },
             submit(name) {
                 this.loading = true;
                 this.error = null;
