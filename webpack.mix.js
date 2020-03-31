@@ -52,7 +52,7 @@ mix.webpackConfig(webpack => {// Override webpack.config.js, without editing the
     };
 });
 
-mix.browserSync('http://localhost:8001');
+mix.browserSync('http://localhost:8000');
 // Full API
 // mix.js(src, output);
 // mix.react(src, output); <-- Identical to mix.js(), but registers React Babel compilation.

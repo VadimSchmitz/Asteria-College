@@ -6,7 +6,8 @@
 
 
         <div class="lockscreen-name mb-2">
-            <el-avatar :size=100 icon="fal fa-user fa-2x"></el-avatar>
+            <avatar-initials :key="key" v-if="avatar"></avatar-initials>
+            <el-avatar :key="!key" :size=100 icon="fal fa-user fa-2x" v-else-if="!avatar"></el-avatar>
         </div>
 
         <div style="height: 45px">
@@ -19,8 +20,8 @@
         </div>
 
         <el-form :model="credentials" :rules="rules" name='login' ref="login">
-            <el-form-item prop="email" v-bind:class="error ? 'is-error' : ' '">
-                <el-input autofocus="true" clearable placeholder="E-mailadres"
+            <el-form-item :class="error ? 'is-error' : ' '" prop="email" ref="emailAvatar">
+                <el-input clearable placeholder="E-mailadres"
                           tabindex="1" type="email" v-model="credentials.email">
                     <template slot="prepend">
                         <i class="fas fa-user"></i>
@@ -68,6 +69,8 @@
             return {
                 error: null,
                 loading: false,
+                avatar: false,
+                key: 0,
                 credentials: {
                     email: '',
                     password: '',
@@ -79,7 +82,18 @@
                 }
             }
         },
+
+        watch: {
+            credentials(val) {
+                this.$emit('onchange', this.credentials.email);
+                this.checkAvatar('avatarEmail');
+            }
+        },
         methods: {
+            checkAvatar(name) {
+                this.avatar !== this.avatar;
+                return this.key++;
+            },
             submit(name) {
                 this.loading = true;
                 this.error = null;

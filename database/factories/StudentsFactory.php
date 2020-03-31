@@ -1,14 +1,14 @@
 <?php
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+/** @var Factory $factory */
 
 use App\Students;
 use Faker\Generator as Faker;
+use Illuminate\Database\Eloquent\Factory;
 
 $factory->define(Students::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
-        'present' => $faker->boolean,
-        'class' => $faker->numberBetween(0,5)
+        'class' => $faker->numberBetween(0, 5)
     ];
 });
