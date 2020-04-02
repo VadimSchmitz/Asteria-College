@@ -11,7 +11,7 @@ class Students extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'present'];
+    protected $fillable = ['name'];
 
     /**
      * Hidden attributes in arrays

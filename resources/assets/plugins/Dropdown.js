@@ -11,24 +11,24 @@ const Dropdown = (($) => {
      * ====================================================
      */
 
-    const NAME = 'Dropdown'
-    const DATA_KEY = 'lte.dropdown'
-    const EVENT_KEY = `.${DATA_KEY}`
-    const JQUERY_NO_CONFLICT = $.fn[NAME]
+    const NAME = 'Dropdown';
+    const DATA_KEY = 'lte.dropdown';
+    const EVENT_KEY = `.${DATA_KEY}`;
+    const JQUERY_NO_CONFLICT = $.fn[NAME];
 
     const Selector = {
         NAVBAR: '.navbar',
         DROPDOWN_MENU: '.dropdown-menu',
         DROPDOWN_MENU_ACTIVE: '.dropdown-menu.show',
         DROPDOWN_TOGGLE: '[data-toggle="dropdown"]',
-    }
+    };
 
     const ClassName = {
         DROPDOWN_HOVER: 'dropdown-hover',
         DROPDOWN_RIGHT: 'dropdown-menu-right'
-    }
+    };
 
-    const Default = {}
+    const Default = {};
 
 
     /**
@@ -38,7 +38,7 @@ const Dropdown = (($) => {
 
     class Dropdown {
         constructor(element, config) {
-            this._config = config
+            this._config = config;
             this._element = element
         }
 
@@ -46,11 +46,11 @@ const Dropdown = (($) => {
 
         static _jQueryInterface(config) {
             return this.each(function () {
-                let data = $(this).data(DATA_KEY)
-                const _config = $.extend({}, Default, $(this).data())
+                let data = $(this).data(DATA_KEY);
+                const _config = $.extend({}, Default, $(this).data());
 
                 if (!data) {
-                    data = new Dropdown($(this), _config)
+                    data = new Dropdown($(this), _config);
                     $(this).data(DATA_KEY, data)
                 }
 
@@ -61,7 +61,7 @@ const Dropdown = (($) => {
         }
 
         toggleSubmenu() {
-            this._element.siblings().show().toggleClass("show")
+            this._element.siblings().show().toggleClass("show");
 
             if (!this._element.next().hasClass('show')) {
                 this._element.parents('.dropdown-menu').first().find('.show').removeClass("show").hide()
@@ -75,28 +75,28 @@ const Dropdown = (($) => {
         // Static
 
         fixPosition() {
-            let elm = $(Selector.DROPDOWN_MENU_ACTIVE)
+            let elm = $(Selector.DROPDOWN_MENU_ACTIVE);
 
             if (elm.length !== 0) {
                 if (elm.hasClass(ClassName.DROPDOWN_RIGHT)) {
-                    elm.css('left', 'inherit')
+                    elm.css('left', 'inherit');
                     elm.css('right', 0)
                 } else {
-                    elm.css('left', 0)
+                    elm.css('left', 0);
                     elm.css('right', 'inherit')
                 }
 
-                let offset = elm.offset()
-                let width = elm.width()
-                let windowWidth = $(window).width()
-                let visiblePart = windowWidth - offset.left
+                let offset = elm.offset();
+                let width = elm.width();
+                let windowWidth = $(window).width();
+                let visiblePart = windowWidth - offset.left;
 
                 if (offset.left < 0) {
-                    elm.css('left', 'inherit')
+                    elm.css('left', 'inherit');
                     elm.css('right', (offset.left - 5))
                 } else {
                     if (visiblePart < width) {
-                        elm.css('left', 'inherit')
+                        elm.css('left', 'inherit');
                         elm.css('right', 0)
                     }
                 }
@@ -110,14 +110,14 @@ const Dropdown = (($) => {
      */
 
     $(Selector.DROPDOWN_MENU + ' ' + Selector.DROPDOWN_TOGGLE).on("click", function (event) {
-        event.preventDefault()
-        event.stopPropagation()
+        event.preventDefault();
+        event.stopPropagation();
 
         Dropdown._jQueryInterface.call($(this), 'toggleSubmenu')
     });
 
     $(Selector.NAVBAR + ' ' + Selector.DROPDOWN_TOGGLE).on("click", function (event) {
-        event.preventDefault()
+        event.preventDefault();
 
         setTimeout(function () {
             Dropdown._jQueryInterface.call($(this), 'fixPosition')
@@ -129,14 +129,14 @@ const Dropdown = (($) => {
      * ====================================================
      */
 
-    $.fn[NAME] = Dropdown._jQueryInterface
-    $.fn[NAME].Constructor = Dropdown
+    $.fn[NAME] = Dropdown._jQueryInterface;
+    $.fn[NAME].Constructor = Dropdown;
     $.fn[NAME].noConflict = function () {
-        $.fn[NAME] = JQUERY_NO_CONFLICT
+        $.fn[NAME] = JQUERY_NO_CONFLICT;
         return Dropdown._jQueryInterface
-    }
+    };
 
     return Dropdown
-})(jQuery)
+})(jQuery);
 
 export default Dropdown

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
@@ -15,17 +16,14 @@ class User extends Authenticatable implements JWTSubject
      *
      * @var array
      */
-    protected $fillable = [
-        'name', 'email', 'first_name', 'last_name', 'password',
-    ];
+    protected $fillable = ['name', 'email', 'first_name', 'last_name', 'password'];
 
     /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
      */
-    protected $hidden = [
-        'password', 'remember_token',
+    protected $hidden = ['password', 'remember_token',
     ];
 
     /**
@@ -37,10 +35,14 @@ class User extends Authenticatable implements JWTSubject
         'email_verified_at' => 'datetime',
     ];
 
-
+    /**
+     * Get all of the Students this user can
+     * manage
+     * @return HasMany
+     */
     public function students()
     {
-        return $this->belongsToMany(Students::class, 'users_students');
+        return $this->hasMany(Students::class, 'users_students');
     }
 
     /**
