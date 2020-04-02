@@ -4,8 +4,9 @@
             <a href=""><b>Asteria</b>College</a>
         </div>
 
+
         <div class="lockscreen-name mb-2">
-            <el-avatar :key="!key" :size=100 icon="fal fa-user fa-2x"></el-avatar>
+            <el-avatar :size=100 icon="fal fa-user fa-2x"></el-avatar>
         </div>
 
         <div style="height: 45px">
@@ -18,8 +19,8 @@
         </div>
 
         <el-form :model="credentials" :rules="rules" name='login' ref="login">
-            <el-form-item :class="error ? 'is-error' : ' '" prop="email" ref="emailAvatar">
-                <el-input clearable placeholder="E-mailadres"
+            <el-form-item prop="email" v-bind:class="error ? 'is-error' : ' '">
+                <el-input autofocus="true" clearable placeholder="E-mailadres"
                           tabindex="1" type="email" v-model="credentials.email">
                     <template slot="prepend">
                         <i class="fas fa-user"></i>

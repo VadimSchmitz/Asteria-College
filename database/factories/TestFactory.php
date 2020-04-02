@@ -1,10 +1,9 @@
 <?php
 
-/** @var Factory $factory */
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
 
 use App\Test;
 use Faker\Generator as Faker;
-use Illuminate\Database\Eloquent\Factory;
 
 $factory->define(Test::class, function (Faker $faker) {
     return [

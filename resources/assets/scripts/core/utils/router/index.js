@@ -16,7 +16,7 @@ export const routes = [
         path: '/dashboard',
         name: 'Dashboard',
         component: () => import('../../../template/pages/Dashboard'),
-        hidden: false,
+        hidden:false,
         meta: {
             auth: true,
             icon: 'user'

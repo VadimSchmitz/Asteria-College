@@ -8,7 +8,7 @@
             </li>
 
             <li class="nav-item d-none d-sm-inline-block">
-                <span @click.prevent="logout()" class="nav-link">Uitloggen</span>
+                <span class="nav-link" @click.prevent="logout()">Uitloggen</span>
             </li>
         </ul>
 

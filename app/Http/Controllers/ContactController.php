@@ -4,14 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Contact;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 
 class ContactController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
@@ -21,7 +20,7 @@ class ContactController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function create()
     {
@@ -31,8 +30,8 @@ class ContactController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
-     * @return Response
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
@@ -42,8 +41,8 @@ class ContactController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param Contact $contact
-     * @return Response
+     * @param  \App\Contact  $contact
+     * @return \Illuminate\Http\Response
      */
     public function show(Contact $contact)
     {
@@ -53,8 +52,8 @@ class ContactController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param Contact $contact
-     * @return Response
+     * @param  \App\Contact  $contact
+     * @return \Illuminate\Http\Response
      */
     public function edit(Contact $contact)
     {
@@ -64,9 +63,9 @@ class ContactController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
-     * @param Contact $contact
-     * @return Response
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Contact  $contact
+     * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Contact $contact)
     {
@@ -76,8 +75,8 @@ class ContactController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param Contact $contact
-     * @return Response
+     * @param  \App\Contact  $contact
+     * @return \Illuminate\Http\Response
      */
     public function destroy(Contact $contact)
     {

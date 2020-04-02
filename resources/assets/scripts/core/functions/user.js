@@ -1,3 +1,7 @@
+
+import authorize from "../utils/authorize";
+
+
 export let login = (credentials, loading, error) => {
     this.$auth.login({
         body: credentials, // Vue-resource

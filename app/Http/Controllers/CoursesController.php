@@ -4,14 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Courses;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 
 class CoursesController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
@@ -21,7 +20,7 @@ class CoursesController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function create()
     {
@@ -31,8 +30,8 @@ class CoursesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
-     * @return Response
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
@@ -42,8 +41,8 @@ class CoursesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param Courses $courses
-     * @return Response
+     * @param  \App\Courses  $courses
+     * @return \Illuminate\Http\Response
      */
     public function show(Courses $courses)
     {
@@ -53,8 +52,8 @@ class CoursesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param Courses $courses
-     * @return Response
+     * @param  \App\Courses  $courses
+     * @return \Illuminate\Http\Response
      */
     public function edit(Courses $courses)
     {
@@ -64,9 +63,9 @@ class CoursesController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
-     * @param Courses $courses
-     * @return Response
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Courses  $courses
+     * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Courses $courses)
     {
@@ -76,8 +75,8 @@ class CoursesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param Courses $courses
-     * @return Response
+     * @param  \App\Courses  $courses
+     * @return \Illuminate\Http\Response
      */
     public function destroy(Courses $courses)
     {

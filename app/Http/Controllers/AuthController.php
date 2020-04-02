@@ -6,6 +6,8 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use PhpParser\Node\Scalar\DNumber;
+use Tymon\JWTAuth\JWTAuth;
 
 class AuthController extends Controller
 {
@@ -57,6 +59,11 @@ class AuthController extends Controller
         ], 200);
     }
 
+    private function guard()
+    {
+        return Auth::guard();
+    }
+
     public function user(Request $request)
     {
         $user = User::find(Auth::user()->id);
@@ -70,10 +77,5 @@ class AuthController extends Controller
     public function refresh()
     {
         return response(['status' => 'success']);
-    }
-
-    private function guard()
-    {
-        return Auth::guard();
     }
 }

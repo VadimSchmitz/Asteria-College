@@ -15,9 +15,10 @@ class CreateCoursesStudentsTable extends Migration
     {
         Schema::create('courses_students', function (Blueprint $table) {
             $table->unsignedBigInteger('course_id')->unsigned();
+            $table->unsignedBigInteger('student_id')->unsigned();
+
             $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
 
-            $table->unsignedBigInteger('student_id')->unsigned();
             $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
         });
     }
