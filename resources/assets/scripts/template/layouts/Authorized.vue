@@ -22,27 +22,13 @@
                 return this.$store.state.user;
             }
         },
-        created() {
+        mounted() {
             this.fetchUser()
         },
         methods: {
             fetchUser() {
                 const data = this.$auth.watch.data;
-                let user = new User({
-                    id: data.id,
-                    name: data.name,
-                    firstName: data.first_name,
-                    lastName: data.last_name,
-                    email: data.email
-                });
-                this.$store.commit('updateUser', new User({
-                    id: data.id,
-                    name: data.name,
-                    firstName: data.first_name,
-                    lastName: data.last_name,
-                    email: data.email,
-                    createdAt: data.createdAt
-                }));
+                this.$store.commit('updateUser', new User(data));
             },
         }
     }

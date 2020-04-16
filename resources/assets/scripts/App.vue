@@ -7,11 +7,11 @@
 </template>
 
 <script>
-    import Authenticate from "./template/layouts/Authenticate";
-    import Authorized from "./template/layouts/Authorized";
-
     export default {
         name: 'App',
-        components: {Authorized, Authenticate},
+        components: {
+            Authorized: () => import('./template/layouts/Authorized'),
+            Authenticate: () => import('./template/layouts/Authenticate')
+        },
     }
 </script>
