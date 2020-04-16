@@ -4,14 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Test;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 
 class TestController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return Response
+     * @return void
      */
     public function index()
     {
@@ -21,7 +20,7 @@ class TestController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return Response
+     * @return void
      */
     public function create()
     {
@@ -31,8 +30,8 @@ class TestController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
-     * @return Response
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
@@ -42,8 +41,8 @@ class TestController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param Test $test
-     * @return Response
+     * @param  \App\Test  $test
+     * @return \Illuminate\Http\Response
      */
     public function show(Test $test)
     {
@@ -53,8 +52,8 @@ class TestController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param Test $test
-     * @return Response
+     * @param  \App\Test  $test
+     * @return \Illuminate\Http\Response
      */
     public function edit(Test $test)
     {
@@ -64,9 +63,9 @@ class TestController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
-     * @param Test $test
-     * @return Response
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Test  $test
+     * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Test $test)
     {
@@ -76,8 +75,8 @@ class TestController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param Test $test
-     * @return Response
+     * @param  \App\Test  $test
+     * @return \Illuminate\Http\Response
      */
     public function destroy(Test $test)
     {

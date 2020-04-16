@@ -1,14 +1,16 @@
 <template>
-    <el-avatar :size="40" v-if="user">
-        <v-gravatar :email="user.email" :size="45" default-img="404"
-                    style="position: relative; z-index: 1; margin-right: -15px;"></v-gravatar>
-        <span class="font-weight-500">{{ this.getInitials() }}</span>
+    <el-avatar :size="35" v-if="user">
+        <v-gravatar :email="user.email" :size="35" default-img="404"  crossorigin></v-gravatar>
+        <span class="font-weight-500">{{ getInitials() }}</span>
     </el-avatar>
 </template>
 
 <script>
     export default {
-        name: 'AvatarInitials',
+        name: 'Avatar',
+        components: {
+            VGravatar: (resolve) => import(  /* webpackChunkName: "app-gravatar" */  'vue-gravatar')
+        },
         computed: {
             user() {
                 return this.$store.state.user;

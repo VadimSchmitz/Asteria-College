@@ -1,17 +1,18 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
-use App\Students;
+use App\Activities;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-class StudentsController extends Controller
+class ActivitiesController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return Response
+     * @return void
      */
     public function index()
     {
@@ -32,6 +33,7 @@ class StudentsController extends Controller
      * Store a newly created resource in storage.
      *
      * @param Request $request
+     *
      * @return Response
      */
     public function store(Request $request)
@@ -42,10 +44,11 @@ class StudentsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param Students $students
+     * @param Activities $activities
+     *
      * @return Response
      */
-    public function show(Students $students)
+    public function show(Activities $activities)
     {
         //
     }
@@ -53,10 +56,11 @@ class StudentsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param Students $students
+     * @param Activities $activities
+     *
      * @return Response
      */
-    public function edit(Students $students)
+    public function edit(Activities $activities)
     {
         //
     }
@@ -64,11 +68,12 @@ class StudentsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
-     * @param Students $students
+     * @param Request    $request
+     * @param Activities $activities
+     *
      * @return Response
      */
-    public function update(Request $request, Students $students)
+    public function update(Request $request, Activities $activities)
     {
         //
     }
@@ -76,10 +81,11 @@ class StudentsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param Students $students
+     * @param Activities $activities
+     *
      * @return Response
      */
-    public function destroy(Students $students)
+    public function destroy(Activities $activities)
     {
         //
     }

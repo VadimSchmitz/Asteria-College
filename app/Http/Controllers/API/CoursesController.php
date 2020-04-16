@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
-use App\Reports;
+use App\Courses;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-class ReportsController extends Controller
+class CoursesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -32,6 +33,7 @@ class ReportsController extends Controller
      * Store a newly created resource in storage.
      *
      * @param Request $request
+     *
      * @return Response
      */
     public function store(Request $request)
@@ -42,10 +44,11 @@ class ReportsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param Reports $reports
+     * @param Courses $courses
+     *
      * @return Response
      */
-    public function show(Reports $reports)
+    public function show(Courses $courses)
     {
         //
     }
@@ -53,10 +56,11 @@ class ReportsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param Reports $reports
+     * @param Courses $courses
+     *
      * @return Response
      */
-    public function edit(Reports $reports)
+    public function edit(Courses $courses)
     {
         //
     }
@@ -65,10 +69,11 @@ class ReportsController extends Controller
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @param Reports $reports
+     * @param Courses $courses
+     *
      * @return Response
      */
-    public function update(Request $request, Reports $reports)
+    public function update(Request $request, Courses $courses)
     {
         //
     }
@@ -76,10 +81,11 @@ class ReportsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param Reports $reports
+     * @param Courses $courses
+     *
      * @return Response
      */
-    public function destroy(Reports $reports)
+    public function destroy(Courses $courses)
     {
         //
     }

@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
-use App\Courses;
+use App\Http\Controllers\Controller;
+use App\Students;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-class CoursesController extends Controller
+class StudentsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -32,6 +33,7 @@ class CoursesController extends Controller
      * Store a newly created resource in storage.
      *
      * @param Request $request
+     *
      * @return Response
      */
     public function store(Request $request)
@@ -42,10 +44,11 @@ class CoursesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param Courses $courses
+     * @param Students $students
+     *
      * @return Response
      */
-    public function show(Courses $courses)
+    public function show(Students $students)
     {
         //
     }
@@ -53,10 +56,11 @@ class CoursesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param Courses $courses
+     * @param Students $students
+     *
      * @return Response
      */
-    public function edit(Courses $courses)
+    public function edit(Students $students)
     {
         //
     }
@@ -64,11 +68,12 @@ class CoursesController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
-     * @param Courses $courses
+     * @param Request  $request
+     * @param Students $students
+     *
      * @return Response
      */
-    public function update(Request $request, Courses $courses)
+    public function update(Request $request, Students $students)
     {
         //
     }
@@ -76,10 +81,11 @@ class CoursesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param Courses $courses
+     * @param Students $students
+     *
      * @return Response
      */
-    public function destroy(Courses $courses)
+    public function destroy(Students $students)
     {
         //
     }

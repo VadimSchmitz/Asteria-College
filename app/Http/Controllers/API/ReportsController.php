@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
-use App\Activities;
+use App\Http\Controllers\Controller;
+use App\Reports;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-class ActivitiesController extends Controller
+class ReportsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -32,6 +33,7 @@ class ActivitiesController extends Controller
      * Store a newly created resource in storage.
      *
      * @param Request $request
+     *
      * @return Response
      */
     public function store(Request $request)
@@ -42,10 +44,11 @@ class ActivitiesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param Activities $activities
+     * @param Reports $reports
+     *
      * @return Response
      */
-    public function show(Activities $activities)
+    public function show(Reports $reports)
     {
         //
     }
@@ -53,10 +56,11 @@ class ActivitiesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param Activities $activities
+     * @param Reports $reports
+     *
      * @return Response
      */
-    public function edit(Activities $activities)
+    public function edit(Reports $reports)
     {
         //
     }
@@ -65,10 +69,11 @@ class ActivitiesController extends Controller
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @param Activities $activities
+     * @param Reports $reports
+     *
      * @return Response
      */
-    public function update(Request $request, Activities $activities)
+    public function update(Request $request, Reports $reports)
     {
         //
     }
@@ -76,10 +81,11 @@ class ActivitiesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param Activities $activities
+     * @param Reports $reports
+     *
      * @return Response
      */
-    public function destroy(Activities $activities)
+    public function destroy(Reports $reports)
     {
         //
     }

@@ -1,11 +1,10 @@
 export class User {
-    constructor({id = 0, name = ``, firstName = ``, lastName = ``, email = ``, createdAt = new Date()} = {}) {
+    constructor({id = 0, name = '', email = '', first_name = '', last_name = ''} = {})  {
         this.id = id;
         this.name = name;
-        this.firstName = firstName;
-        this.lastName = lastName;
         this.email = email;
-        this.createdAt = createdAt;
+        this.firstName = first_name;
+        this.lastName = last_name;
     }
 }
 

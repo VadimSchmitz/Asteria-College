@@ -1,6 +1,5 @@
 <?php
 
-use App\Courses;
 use Illuminate\Database\Seeder;
 
 class CoursesSeeder extends Seeder
@@ -12,6 +11,6 @@ class CoursesSeeder extends Seeder
      */
     public function run()
     {
-        factory(Courses::class, 10)->create();
+        factory(\App\Courses::class,10)->create();
     }
 }

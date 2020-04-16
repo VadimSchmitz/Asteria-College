@@ -57,6 +57,11 @@ class AuthController extends Controller
         ], 200);
     }
 
+    private function guard()
+    {
+        return Auth::guard();
+    }
+
     public function user(Request $request)
     {
         $user = User::find(Auth::user()->id);
@@ -70,10 +75,5 @@ class AuthController extends Controller
     public function refresh()
     {
         return response(['status' => 'success']);
-    }
-
-    private function guard()
-    {
-        return Auth::guard();
     }
 }

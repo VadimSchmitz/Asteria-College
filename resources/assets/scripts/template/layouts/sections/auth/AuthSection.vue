@@ -1,6 +1,6 @@
 <template>
     <section class="lockscreen lockscreen-wrapper">
-        <router-view></router-view>
+          <router-view></router-view>
     </section>
 </template>
 
