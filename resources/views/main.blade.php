@@ -18,7 +18,6 @@
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed lockscreen">
-
     <div class="wrapper">
         <div id="app">
             <div id="vue-loading">{{ __('Loading') }}...</div>
@@ -30,7 +29,5 @@
     <script src="{{ mix('assets/plugins/AdminLTE.js')}}"></script>
     <script src="{{ mix('assets/plugins/fontawesome-all.min.js')}}"></script>
 </body>
-
-
 </html>
 

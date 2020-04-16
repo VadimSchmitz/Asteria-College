@@ -120,7 +120,7 @@
         methods: {
             logout() {
                 this.$auth.logout({
-                    redirect: 'login',
+                    redirect: '/login',
                     makeRequest: true,
                     success() {
                         // TODO: add message signout succeeed

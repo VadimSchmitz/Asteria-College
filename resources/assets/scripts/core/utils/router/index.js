@@ -1,5 +1,10 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import VueAxios from "vue-axios";
+import authorize from '../authorize';
+
+Vue.use(VueRouter);
+Vue.use(VueAxios, axios);
 
 export const routes = [
     {
@@ -73,6 +78,13 @@ const router = new VueRouter({
 });
 
 Vue.router = router;
+
+Vue.use(require('@websanova/vue-auth'), {
+    auth: require('@websanova/vue-auth/drivers/auth/bearer.js'),
+    http: require('@websanova/vue-auth/drivers/http/axios.1.x.js'),
+    router: require('@websanova/vue-auth/drivers/router/vue-router.2.x.js'),
+    authorize
+});
 
 export default router;
 
