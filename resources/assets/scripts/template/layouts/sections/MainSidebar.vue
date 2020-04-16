@@ -52,11 +52,12 @@
 
 <script>
     import router, {routes} from "../../../core/utils/router";
-    import AvatarInitials from "../components/AvatarInitials";
 
     export default {
         name: 'MainSidebar',
-        components: {AvatarInitials},
+        components: {
+            AvatarInitials: () => import(  /* webpackChunkName: "avatar-initials" */  '../components/AvatarInitials')
+        },
         data() {
             return {
                 navRoutes: [],

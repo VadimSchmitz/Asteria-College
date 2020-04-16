@@ -1,8 +1,10 @@
 <template class="app">
     <section id="app">
-        <authenticate v-if="!this.$auth.check()"></authenticate>
+        <transition name="fade" type="in-out" appear>
+            <authenticate v-if="!this.$auth.check()"></authenticate>
 
-        <authorized v-else-if="this.$auth.check()"></authorized>
+            <authorized v-else-if="this.$auth.check()"></authorized>
+        </transition>
     </section>
 </template>
 
@@ -10,8 +12,17 @@
     export default {
         name: 'App',
         components: {
-            Authorized: () => import('./template/layouts/Authorized'),
-            Authenticate: () => import('./template/layouts/Authenticate')
+            Authorized: () => import(  /* webpackChunkName: "layout-authorized" */   './template/layouts/Authorized'),
+            Authenticate: () => import(  /* webpackChunkName: "layout-authenticate" */   './template/layouts/Authenticate')
         },
+        beforeMount() {
+            return this.authorized = this.$auth.check();
+        },
+        data() {
+            return {
+                authorized: false
+            }
+        },
+
     }
 </script>

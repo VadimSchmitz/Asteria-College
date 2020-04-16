@@ -22,12 +22,11 @@
                     <i class="far fa-comments"></i>
                     <span class="badge badge-danger navbar-badge">3</span>
                 </a>
-                <div aria-expanded="true" class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                <div aria-expanded="true" class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="min-width: 300px">
                     <a class="dropdown-item" href="#">
                         <!-- Message Start -->
                         <div class="media">
-                            <img alt="User Avatar" class="img-size-50 mr-3 img-circle"
-                                 src="assets/img/user1-128x128.jpg">
+                            <avatar-initials class="mr-3"></avatar-initials>
                             <div class="media-body">
                                 <h3 class="dropdown-item-title">
                                     Brad Diesel
@@ -43,25 +42,7 @@
                     <a class="dropdown-item" href="#">
                         <!-- Message Start -->
                         <div class="media">
-                            <img alt="User Avatar" class="img-size-50 img-circle mr-3"
-                                 src="assets/img/user8-128x128.jpg">
-                            <div class="media-body">
-                                <h3 class="dropdown-item-title">
-                                    John Pierce
-                                    <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
-                                </h3>
-                                <p class="text-sm">I got your message bro</p>
-                                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-                            </div>
-                        </div>
-                        <!-- Message End -->
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">
-                        <!-- Message Start -->
-                        <div class="media">
-                            <img alt="User Avatar" class="img-size-50 img-circle mr-3"
-                                 src="assets/img/user3-128x128.jpg">
+                            <avatar-initials class="mr-3"></avatar-initials>
                             <div class="media-body">
                                 <h3 class="dropdown-item-title">
                                     Nora Silvester
@@ -117,6 +98,10 @@
 <script>
     export default {
         name: 'HeaderNavigation',
+        components: {
+            AvatarInitials: () => import(  /* webpackChunkName: "avatar-initials" */  '../components/AvatarInitials'),
+            SearchBar: () => import( /* webpackChunkName: "header-search-bar" */  '../components/SearchBar')
+        },
         methods: {
             logout() {
                 this.$auth.logout({

@@ -12,22 +12,23 @@
 
     <title>{{ config('app.name', 'App name') }}</title>
     <!-- Styles -->
-    <link rel="stylesheet" href="{{ mix('assets/css/app.css') }} "/>
-    <link rel="stylesheet" href="{{ mix('assets/css/element.css') }} "/>
+    <link rel="stylesheet" href="assets/css/web.css"/>
+    <link rel="stylesheet" href="assets/css/element.css"/>
     <base href="{{ url('/') }}">
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed lockscreen">
-    <div class="wrapper">
-        <div id="app">
-            <div id="vue-loading">{{ __('Loading') }}...</div>
-        </div>
+<div class="wrapper">
+    <div id="app">
+        <div id="vue-loading">{{ __('Loading') }}..</div>
     </div>
+</div>
 
-    <!-- Scripts -->
-    <script src="{{ mix('assets/scripts/app.js') }}"></script>
-    <script src="{{ mix('assets/plugins/AdminLTE.js')}}"></script>
-    <script src="{{ mix('assets/plugins/fontawesome-all.min.js')}}"></script>
+<!-- Scripts -->
+<script src="{{ url('assets/scripts') }}{{mix('/AdminLTE.js') }}"></script>
+<script src="{{ url('assets/scripts') }}{{mix('/app.js') }}"></script>
+
+<script src="{{ mix('assets/scripts/fontawesome-all.min.js')}}"></script>
 </body>
 </html>
 

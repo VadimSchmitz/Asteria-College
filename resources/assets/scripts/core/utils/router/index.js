@@ -10,7 +10,7 @@ export const routes = [
     {
         path: '/login',
         name: 'Authenticate',
-        component: () => import('../../../template/pages/auth/Login'),
+        component: () => import( /* webpackChunkName: "page-login" */ '../../../template/pages/auth/Login'),
         hidden: true,
         meta: {
             auth: false,
@@ -20,7 +20,7 @@ export const routes = [
     {
         path: '/dashboard',
         name: 'Dashboard',
-        component: () => import('../../../template/pages/Dashboard'),
+        component: () => import( /* webpackChunkName: "page-dashboard" */  '../../../template/pages/Dashboard'),
         hidden:false,
         meta: {
             auth: true,
@@ -30,7 +30,7 @@ export const routes = [
     {
         path: '/widgets',
         name: 'Widgets',
-        component: () => import('../../../template/pages/Widgets'),
+        component: () => import( /* webpackChunkName: "page-widgets" */  '../../../template/pages/Widgets'),
         hidden: false,
         meta: {
             auth: true,
@@ -40,7 +40,7 @@ export const routes = [
             {
                 path: '/widgets/hejfnee',
                 name: 'Voorbeeld 1',
-                component: () => import('../../../template/pages/Dashboard'),
+                component: () => import( /* webpackChunkName: "page-dashboard" */ '../../../template/pages/Dashboard'),
                 hidden: false,
                 meta: {
                     auth: true,
@@ -50,7 +50,7 @@ export const routes = [
             {
                 path: '/widgets/ererereer',
                 name: 'voorbeeld 2',
-                component: () => import('../../../template/pages/Widgets'),
+                component: () => import( /* webpackChunkName: "page-widgets" */  '../../../template/pages/Widgets'),
                 hidden: false,
                 meta: {
                     auth: true,
