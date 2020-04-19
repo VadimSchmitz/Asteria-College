@@ -9,6 +9,7 @@ use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Middleware\TrimStrings;
 use App\Http\Middleware\TrustProxies;
 use App\Http\Middleware\VerifyCsrfToken;
+use Fruitcake\Cors\HandleCors;
 use Illuminate\Auth\Middleware\AuthenticateWithBasicAuth;
 use Illuminate\Auth\Middleware\Authorize;
 use Illuminate\Auth\Middleware\EnsureEmailIsVerified;
@@ -21,7 +22,6 @@ use Illuminate\Http\Middleware\SetCacheHeaders;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Routing\Middleware\ThrottleRequests;
 use Illuminate\Routing\Middleware\ValidateSignature;
-use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Tymon\JWTAuth\Http\Middleware\Authenticate as JWTAuth;
@@ -38,6 +38,7 @@ class Kernel extends HttpKernel
      */
     protected $middleware = [
         TrustProxies::class,
+        HandleCors::class,
         CheckForMaintenanceMode::class,
         ValidatePostSize::class,
         TrimStrings::class,
@@ -86,22 +87,5 @@ class Kernel extends HttpKernel
         'verified' => EnsureEmailIsVerified::class,
         'jwt.auth' => JWTAuth::class,
         'jwt.refresh' => AuthenticateAndRenew::class,
-    ];
-
-    /**
-     * The priority-sorted list of middleware.
-     *
-     * This forces non-global middleware to always be in the given order.
-     *
-     * @var array
-     */
-    protected $middlewarePriority = [
-        StartSession::class,
-        ShareErrorsFromSession::class,
-        Authenticate::class,
-        ThrottleRequests::class,
-        AuthenticateSession::class,
-        SubstituteBindings::class,
-        Authorize::class,
     ];
 }

@@ -17,32 +17,25 @@
 
     export default {
         name: 'Authorized',
+        components: {
+            HeaderNavigation: () => import(  /* webpackChunkName: "app-header" */  './sections/HeaderNavigation'),
+            MainSidebar: () => import(  /* webpackChunkName: "app-sidebar" */  './sections/MainSidebar'),
+            ContentSidebar: () => import(  /* webpackChunkName: "app-content-sidebar" */  './sections/ContentSidebar'),
+            ContentSection: () => import(  /* webpackChunkName: "app-content" */  './sections/ContentSection'),
+            MainFooter: () => import(  /* webpackChunkName: "app-footer" */  './sections/MainFooter'),
+        },
         computed: {
             user() {
                 return this.$store.state.user;
             }
         },
-        created() {
+        mounted() {
             this.fetchUser()
         },
         methods: {
             fetchUser() {
                 const data = this.$auth.watch.data;
-                let user = new User({
-                    id: data.id,
-                    name: data.name,
-                    firstName: data.first_name,
-                    lastName: data.last_name,
-                    email: data.email
-                });
-                this.$store.commit('updateUser', new User({
-                    id: data.id,
-                    name: data.name,
-                    firstName: data.first_name,
-                    lastName: data.last_name,
-                    email: data.email,
-                    createdAt: data.createdAt
-                }));
+                this.$store.commit('updateUser', new User(data));
             },
         }
     }

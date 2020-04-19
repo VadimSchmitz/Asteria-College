@@ -17,7 +17,7 @@ export let login = (credentials, loading, error) => {
 
     }).catch((error) => {
         setTimeout(() => {
-            loading = aflse;
+            loading = false;
             error = 'De gegevens die je hebt ingevuld kloppen niet';
             return false
         }, 1000);

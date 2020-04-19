@@ -6,6 +6,9 @@
 
 <script>
     export default {
-        name: 'Authenticate'
+        name: 'Authenticate',
+        components: {
+            AuthSection: () => import(  /* webpackChunkName: "auth-section" */  './sections/auth/AuthSection'),
+        }
     }
 </script>

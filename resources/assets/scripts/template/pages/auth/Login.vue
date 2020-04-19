@@ -4,7 +4,6 @@
             <a href=""><b>Asteria</b>College</a>
         </div>
 
-
         <div class="lockscreen-name mb-2">
             <el-avatar :size=100 icon="fal fa-user fa-2x"></el-avatar>
         </div>
@@ -19,8 +18,8 @@
         </div>
 
         <el-form :model="credentials" :rules="rules" name='login' ref="login">
-            <el-form-item prop="email" v-bind:class="error ? 'is-error' : ' '">
-                <el-input autofocus="true" clearable placeholder="E-mailadres"
+            <el-form-item prop="email" :class="error ? 'is-error' : ' '">
+                <el-input clearable placeholder="E-mailadres"
                           tabindex="1" type="email" v-model="credentials.email">
                     <template slot="prepend">
                         <i class="fas fa-user"></i>
@@ -28,20 +27,20 @@
                 </el-input>
             </el-form-item>
 
-            <el-form-item prop="password" v-bind:class="error ? 'is-error' : ''">
+            <el-form-item prop="password" :class="error ? 'is-error' : ''">
                 <el-input placeholder="Wachtwoord" show-password tabindex="2"
                           type="password" v-model="credentials.password">
                     <template slot="prepend"><i class="fas fa-lock"></i></template>
                 </el-input>
             </el-form-item>
 
-            <el-form-item prop="rememberMe">
+            <el-form-item prop="remember">
                 <el-checkbox border label="Ingelogd blijven" style="width: 100%"
-                             v-model="credentials.rememberMe"></el-checkbox>
+                             v-model="credentials.remember"></el-checkbox>
             </el-form-item>
 
             <el-form-item>
-                <el-button :loading="loading" @click="submit('login')"
+                <el-button :loading="loading" @click="submit"
                            class="btn-block btn-outline-primary" tabindex="3" type="primary">
                     Inloggen
                 </el-button>
@@ -71,7 +70,7 @@
                 credentials: {
                     email: '',
                     password: '',
-                    rememberMe: false
+                    remember: false
                 },
                 rules: {
                     email: [{validator: validateEmail, trigger: 'blur'}],
@@ -80,31 +79,30 @@
             }
         },
         methods: {
-            submit(name) {
+            submit() {
                 this.loading = true;
                 this.error = null;
 
-                this.$refs[name].validate((valid) => {
+                this.$refs['login'].validate((valid) => {
                     if (valid)
                         this.$auth.login({
                             body: this.credentials, // Vue-resource
                             data: this.credentials, // Axios
+                            rememberMe: this.credentials.remember,
                             refresh: true,
                             fetchUser: true
-                        }).then((response) => {
-                            // TODO: Add welcome
+                        }).then(response =>
                             setTimeout(() => {
                                 this.loading = false;
                                 return true;
-                            }, 1000);
-
-                        }).catch((error) => {
+                            }, 1000)
+                        ).catch(e =>
                             setTimeout(() => {
                                 this.loading = false;
                                 this.error = 'De gegevens die je hebt ingevuld kloppen niet';
                                 return false
-                            }, 1000);
-                        });
+                            }, 1000)
+                        );
 
                     else {
                         this.loading = false;

@@ -1,4 +1,4 @@
-# Asteria College <img style="align: right; float: right" src="https://img.shields.io/badge/php-%5E7.2.3-purple" alt="PHP Version">
+# Asteria College <img style="align: right; float: right" src="https://img.shields.io/badge/php-%5E7.2.5-purple" alt="PHP Version">
 
 #### First set-up
 Follow the instructions to run the project yourself for development.

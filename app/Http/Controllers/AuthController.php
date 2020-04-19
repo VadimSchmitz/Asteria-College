@@ -6,8 +6,6 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-use PhpParser\Node\Scalar\DNumber;
-use Tymon\JWTAuth\JWTAuth;
 
 class AuthController extends Controller
 {
