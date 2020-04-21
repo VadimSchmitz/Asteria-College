@@ -13,6 +13,7 @@
                 <i class="fas fa-2x fa-sync-alt fa-spin"></i>
             </div>
 
+
             <div class="p-0">
                 <table class="table table-striped">
                     <thead>

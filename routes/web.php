@@ -16,3 +16,5 @@ Route::get('/', function () {
 });
 
 Route::post('/login', 'Auth\LoginController@login');
+
+
