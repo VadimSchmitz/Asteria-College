@@ -20,11 +20,13 @@ class DatabaseSeeder extends Seeder
         $this->call(StudentsSeeder::class);
         $this->call(TestSeeder::class);
 
+
+
         User::create([
-            'name' => 'Levi',
-            'first_name' => "Levi",
-            "last_name" => "Deurloo",
-            'email' => 'levimbg@gmail.com',
+            'name' => 'Vadim',
+            'first_name' => "Vadim",
+            "last_name" => "Schmitz",
+            'email' => 'di3mpi3@gmail.com',
             'email_verified_at' => now(),
             'password' => Hash::make("admin"),
         ]);
