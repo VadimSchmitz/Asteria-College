@@ -2,14 +2,11 @@
     <section class="col-12">
         <div class="callout callout-info">
             <p>Asteria College</p>
-            <button @click="get()" class="btn btn-outline-info btn-block" v-bind:disabled="studentsLoading || students">
-                <i class="fas fa-sync-alt"></i>
-                Studenten ophalen
-            </button>
+         
         </div>
 
         <div class="card card-outline card-info mt-3">
-            <div class="overlay" v-show="usersLoading && users == null">
+            <div class="overlay" v-show="studentsLoading && students == null">
                 <i class="fas fa-2x fa-sync-alt fa-spin"></i>
             </div>
 
@@ -27,7 +24,7 @@
                                 <button class="btn btn-tool" data-card-widget="collapse" type="button">
                                     <i class="fas fa-minus"></i>
                                 </button>
-                                <button @click="students= null" class="btn btn-tool" type="button">
+                                <button @click="students = null" class="btn btn-tool" type="button">
                                     <i class="fas fa-times"></i>
                                 </button>
                             </div>
@@ -38,7 +35,8 @@
                     <tr :key="students.id" v-for="student in students">
                         <th scope="row">{{ student.id }}</th>
                         <td>{{student.name }}</td>
-                        <td>{{ student.email }}</td>
+                        <td>{{student.present}}</td>
+
                     </tr>
                     </tbody>
                 </table>
@@ -51,15 +49,18 @@
 
 <script>
     export default {
-        name: 'Presentielijst',
+        name: 'Attendancesheet',
         data() {
             return {
                 students: null,
                 studentsLoading: false
             }
         },
+        mounted(){
+            this.getStudents()
+        },
         methods: {
-            get() {
+            getStudents() {
                 this.studentsLoading = true;
 
                 axios.get(`/students`)
