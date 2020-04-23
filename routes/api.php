@@ -32,6 +32,10 @@ Route::group(['middleware' => 'jwt.refresh'], function(){
 
 Route::namespace('API')->group(function () {
     Route::resources([
-        'users' => 'UserController'
+        'users' => 'UserController',
+        'students'=>'StudentsController'
     ]);
+
 });
+
+

@@ -28,6 +28,16 @@ export const routes = [
         },
     },
     {
+        path: '/presentielijst',
+        name: 'presentielijst',
+        component: () => import( /* webpackChunkName: "page-attendancesheet" */  '../../../template/pages/Attendancesheet'),
+
+        meta: {
+            auth: true,
+            icon: 'user'
+        },
+    },
+    {
         path: '/widgets',
         name: 'Widgets',
         component: () => import( /* webpackChunkName: "page-widgets" */  '../../../template/pages/Widgets'),
