@@ -16,5 +16,5 @@ Route::get('/', function () {
 });
 
 Route::post('/login', 'Auth\LoginController@login');
-
+Route::get('/presentielijst', 'StudentsController@index');
 
