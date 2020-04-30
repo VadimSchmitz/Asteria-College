@@ -64,5 +64,6 @@ mix.webpackConfig(webpack => {// Override webpack.config.js, without editing the
 }).copy('resources/assets/img/*', 'public/assets/img')
     .copy('resources/assets/plugins/fontawesome-all.min.js', 'public/assets/scripts')
     .sourceMaps(false)
-    .browserSync('http://127.0.0.1:8000')
-    .disableNotifications();
+    .browserSync({
+        proxy: process.env.APP_URL
+    }).disableNotifications();

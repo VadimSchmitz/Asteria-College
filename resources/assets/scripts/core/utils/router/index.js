@@ -63,16 +63,17 @@ export const routes = [
         path: '/',
         redirect: 'dashboard',
         hidden: true
-    }
+    },
     // TODO: 404 handler
-    // {
-    //     path: '404',
-    //     redirect: '/error/404'
-    // }
+    {
+        path: '404',
+        redirect: '/error/404'
+    }
 ];
 
 const router = new VueRouter({
-    mode: "hash",
+    mode: "history",
+    base: __dirname,
     linkActiveClass: "active",
     routes: routes,
 });

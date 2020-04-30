@@ -11,8 +11,14 @@
 |
 */
 
+use Illuminate\Support\Facades\Route;
+
 Route::get('/', function () {
     return view('main');
+});
+
+Route::get('/other', function () {
+    return view('other');
 });
 
 Route::post('/login', 'Auth\LoginController@login');
