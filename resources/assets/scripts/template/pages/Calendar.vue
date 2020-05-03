@@ -25,11 +25,20 @@
                                 <input type="date" id="end_date" class="form-control" v-model="newEvent.end_date">
                             </div>
                         </div>
-                        <div class="col-md-6 mb-4" v-if="addingMode">
+
+                        <div class="col-md-6">
+                            <div class='form-group'>
+                                <label for="event_time">Time</label>
+                                <input type="time"  class="form-control" v-model="newEvent.event_time">
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-7 mb-4" v-if="addingMode">
                             <button class="btn btn-sm btn-primary" @click="addNewEvent">Save Event</button>
                         </div>
                         <template v-else>
-                            <div class="col-md-6 mb-4">
+                            <div class="col-md-7 mb-4">
                                 <button class="btn btn-sm btn-success" @click="updateEvent">Update</button>
                                 <button class="btn btn-sm btn-danger" @click="deleteEvent">Delete</button>
                                 <button class="btn btn-sm btn-secondary" @click="addingMode = !addingMode">Cancel</button>
@@ -39,7 +48,16 @@
                 </form>
             </div>
             <div class="col-md-8">
-                <Fullcalendar @eventClick="showEvent" :plugins="calendarPlugins" :events="events"/>
+                <Fullcalendar @eventClick="showEvent"
+                              :plugins="calendarPlugins"
+                              :events="events"
+                              :header="{
+                                  left: '',
+                                  center: '',
+                                  right: 'dayGridMonth, timeGridWeek, timeGridDay, listWeek',
+                              }"
+                />
+
             </div>
         </div>
     </div>
@@ -48,20 +66,26 @@
 <script>
     import Fullcalendar from "@fullcalendar/vue";
     import dayGridPlugin from "@fullcalendar/daygrid";
-    import interactionPlugin from "@fullcalendar/interaction";
+    import TimeGridPlugin from "@fullcalendar/timegrid";
+    import InteractionPlugin from "@fullcalendar/interaction";
+    import ListPlugin from "@fullcalendar/list";
     import axios from "axios";
+
     export default {
+
         components: {
             Fullcalendar
         },
+
         data() {
             return {
-                calendarPlugins: [dayGridPlugin, interactionPlugin],
+                calendarPlugins: [dayGridPlugin, InteractionPlugin, TimeGridPlugin, ListPlugin],
                 events: "",
                 newEvent: {
                     event_name: "",
                     start_date: "",
-                    end_date: ""
+                    end_date: "",
+                    event_time: ""
                 },
                 addingMode: true,
                 indexToUpdate: ""
@@ -78,7 +102,7 @@
                     })
                     .then(data => {
                         this.getEvents(); // update our list of events
-                        this.resetForm(); // clear newEvent properties (e.g. title, start_date and end_date)
+                        this.resetForm(); // clear newEvent properties (e.g. title, start_date, end_date and event_time)
                     })
                     .catch(err =>
                         console.log("Unable to add new event!", err.response.data)
@@ -86,14 +110,15 @@
             },
             showEvent(arg) {
                 this.addingMode = false;
-                const { id, title, start, end } = this.events.find(
+                const { id, title, start, end, date} = this.events.find(
                     event => event.id === +arg.event.id
                 );
                 this.indexToUpdate = id;
                 this.newEvent = {
                     event_name: title,
                     start_date: start,
-                    end_date: end
+                    end_date: end,
+                    event_date: date,
                 };
             },
             updateEvent() {
@@ -145,6 +170,7 @@
 <style lang="css">
     @import "~@fullcalendar/core/main.css";
     @import "~@fullcalendar/daygrid/main.css";
+    @import "~@fullcalendar/timegrid/main.css";
     .fc-title {
         color: #fff;
     }
