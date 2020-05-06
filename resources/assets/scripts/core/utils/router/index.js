@@ -30,7 +30,7 @@ export const routes = [
     {
         path: '/presentielijst',
         name: 'presentielijst',
-        component: () => import( /* webpackChunkName: "page-attendancesheet" */  '../../../template/pages/Attendancesheet'),
+        component: () => import( /* webpackChunkName: "page-Attendancesheet" */  '../../../template/pages/Attendancesheet'),
 
         meta: {
             auth: true,
@@ -38,9 +38,9 @@ export const routes = [
         },
     },
     {
-        path: '/widgets',
-        name: 'Widgets',
-        component: () => import( /* webpackChunkName: "page-widgets" */  '../../../template/pages/Widgets'),
+        path: '/calendar',
+        name: 'Calendar',
+        component: () => import( /* webpackChunkName: "page-Calender" */  '../../../template/pages/Calendar'),
         hidden: false,
         meta: {
             auth: true,
@@ -48,9 +48,9 @@ export const routes = [
         },
         children: [
             {
-                path: '/widgets/hejfnee',
-                name: 'Voorbeeld 1',
-                component: () => import( /* webpackChunkName: "page-dashboard" */ '../../../template/pages/Dashboard'),
+                path: '/calendar/week-1',
+                name: 'Week 1',
+                component: () => import( /* webpackChunkName: "page-Week-1" */ '../../../template/pages/Week-1'),
                 hidden: false,
                 meta: {
                     auth: true,
@@ -58,9 +58,9 @@ export const routes = [
                 }
             },
             {
-                path: '/widgets/ererereer',
-                name: 'voorbeeld 2',
-                component: () => import( /* webpackChunkName: "page-widgets" */  '../../../template/pages/Widgets'),
+                path: '/calendar/week-2',
+                name: 'Week 2',
+                component: () => import( /* webpackChunkName: "page-Week-2" */  '../../../template/pages/Week-2'),
                 hidden: false,
                 meta: {
                     auth: true,
