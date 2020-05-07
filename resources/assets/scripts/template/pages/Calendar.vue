@@ -1,63 +1,34 @@
 <template>
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
-                <form @submit.prevent>
-                    <div class="form-group">
-                        <label for="event_name">Event Name</label>
-                        <input type="text" id="event_name" class="form-control" v-model="newEvent.event_name">
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="start_date">Start Date</label>
-                                <input
-                                        type="date"
-                                        id="start_date"
-                                        class="form-control"
-                                        v-model="newEvent.start_date"
-                                >
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="end_date">End Date</label>
-                                <input type="date" id="end_date" class="form-control" v-model="newEvent.end_date">
-                            </div>
-                        </div>
 
-                        <div class="col-md-6">
-                            <div class='form-group'>
-                                <label for="event_time">Time</label>
-                                <input type="time"  class="form-control" v-model="newEvent.event_time">
-                            </div>
-                        </div>
-
-
-                        <div class="col-md-7 mb-4" v-if="addingMode">
-                            <button class="btn btn-sm btn-primary" @click="addNewEvent">Save Event</button>
-                        </div>
-                        <template v-else>
-                            <div class="col-md-7 mb-4">
-                                <button class="btn btn-sm btn-success" @click="updateEvent">Update</button>
-                                <button class="btn btn-sm btn-danger" @click="deleteEvent">Delete</button>
-                                <button class="btn btn-sm btn-secondary" @click="addingMode = !addingMode">Cancel</button>
-                            </div>
-                        </template>
-                    </div>
-                </form>
+            <div>
+                <b-modal id="newEventModal" title="placeholder" @ok="newEventOk" @cancel="newEventCancel" @close="newEventCancel">
+                    <p class="my-4">fill in yo</p>
+                    <input type="text" id="end_date" class="form-control" v-model="newEvent.event_name">
+                    <VueCtkDateTimePicker v-model="newEvent.start_date"  format="YYYY-MM-DDTHH:mm:ssZ"/>
+                    <VueCtkDateTimePicker v-model="newEvent.end_date"  format="YYYY-MM-DDTHH:mm:ssZ"/>
+                </b-modal>
             </div>
+
             <div class="col-md-8">
                 <Fullcalendar @eventClick="showEvent"
+                              @dateClick="dateClick"
+                              @select="dateSelect"
+                              locale="nl"
+                              theme-system="lux"
+
+                              selectable="true"
+                              :select-mirror="true"
                               :plugins="calendarPlugins"
                               :events="events"
                               :header="{
-                                  left: '',
-                                  center: '',
                                   right: 'dayGridMonth, timeGridWeek, timeGridDay, listWeek',
+                                  center: 'title',
+                                  left: 'prev next today',
                               }"
-                />
 
+                />
             </div>
         </div>
     </div>
@@ -85,20 +56,43 @@
                     event_name: "",
                     start_date: "",
                     end_date: "",
-                    event_time: ""
                 },
                 addingMode: true,
                 indexToUpdate: ""
             };
         },
+
         created() {
             this.getEvents();
         },
         methods: {
+
+            newEventOk(){
+                this.addNewEvent()
+            },
+
+            newEventCancel(){
+                this.resetForm();
+            },
+
+            dateSelect(info){
+                    console.log('selected ' + info.startStr + ' to ' + info.endStr);
+                    this.newEvent.start_date = info.startStr
+                    this.newEvent.end_date = info.endStr
+                    this.$bvModal.show('newEventModal')
+
+            },
+
+            dateClick(info){
+                if (info.dateStr){
+                    console.log('Date: ' + info.dateStr);
+                }
+            },
+
             addNewEvent() {
                 axios
                     .post("/api/calendar", {
-                        ...this.newEvent
+                        ...this.newEvent,
                     })
                     .then(data => {
                         this.getEvents(); // update our list of events
@@ -110,17 +104,17 @@
             },
             showEvent(arg) {
                 this.addingMode = false;
-                const { id, title, start, end, date} = this.events.find(
+                const { id, title, start_date, end_date} = this.events.find(
                     event => event.id === +arg.event.id
                 );
                 this.indexToUpdate = id;
                 this.newEvent = {
                     event_name: title,
-                    start_date: start,
-                    end_date: end,
-                    event_date: date,
+                    start_date: start_date,
+                    end_date: end_date,
                 };
             },
+
             updateEvent() {
                 axios
                     .put("/api/calendar/" + this.indexToUpdate, {

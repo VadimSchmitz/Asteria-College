@@ -40,7 +40,7 @@ export const routes = [
     {
         path: '/calendar',
         name: 'Calendar',
-        component: () => import( /* webpackChunkName: "page-Calender" */  '../../../template/pages/Calendar'),
+        component: () => import( /* webpackChunkName: "page-Calendar" */  '../../../template/pages/Calendar'),
         hidden: false,
         meta: {
             auth: true,

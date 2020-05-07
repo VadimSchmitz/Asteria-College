@@ -14,8 +14,11 @@ class CalendarController extends Controller
      *
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public function index()
+    public function index(Request $request)
     {
+        $from = $request -> input('from');
+        $to = $request -> input('to');
+
         return CalendarResource::collection(Calendar::all());
     }
 
