@@ -1,14 +1,13 @@
 <template>
     <div class="container">
         <div class="row justify-content-center">
-
             <div>
-                <b-modal id="newEventModal" :title="addingMode ? 'create a new event' : 'edit an event'" @ok="newEventOk" @cancel="newEventCancel" @close="newEventCancel">
+                <b-modal id="newEventModal" :title="addingMode ? 'create a new event' : 'edit an event'"
+                         @ok="newEventOk" @cancel="newEventCancel" @close="newEventCancel">
 
                     <input type="text" id="title" class="form-control" v-model="newEvent.event_name">
-                    <VueCtkDateTimePicker id="start_date" v-model="newEvent.start_date"  format="YYYY-MM-DDTHH:mm:ssZ"/>
-                    <VueCtkDateTimePicker id="end_date" v-model="newEvent.end_date"  format="YYYY-MM-DDTHH:mm:ssZ"/>
-
+                    <VueCtkDateTimePicker id="start_date" v-model="newEvent.start_date" format="YYYY-MM-DDTHH:mm:ssZ"/>
+                    <VueCtkDateTimePicker id="end_date" v-model="newEvent.end_date" format="YYYY-MM-DDTHH:mm:ssZ"/>
                     <template v-slot:modal-footer="{ ok, cancel}">
                         <b-button size="m" variant="danger" @click="removeEvent" v-if="!addingMode">
                             Delete
@@ -22,18 +21,15 @@
                     </template>
                 </b-modal>
             </div>
-
             <div class="col-md-8">
                 <Fullcalendar ref="fullCalendar"
                               @eventClick="showEvent"
                               @select="dateSelect"
                               @eventDrop="eventManipulation"
                               @eventResize="eventManipulation"
-
                               draggable="true"
                               :editable="!isLoading"
                               selectable="true"
-
                               locale="nl"
                               :select-mirror="true"
                               :plugins="calendarPlugins"
@@ -59,7 +55,6 @@
     import moment from "moment";
 
     export default {
-
         components: {
             Fullcalendar
         },
@@ -84,7 +79,7 @@
         },
         methods: {
 
-            eventManipulation (info) {
+            eventManipulation(info) {
                 let event = {
                     id: info.event.id,
                     start_date: moment(info.event.start).format(),
@@ -107,24 +102,24 @@
                     );
             },
 
-            newEventOk(){
-                if(this.addingMode){
+            newEventOk() {
+                if (this.addingMode) {
                     this.addNewEvent()
                 } else {
                     this.updateEvent(this.newEvent)
                 }
             },
 
-            newEventCancel(){
+            newEventCancel() {
                 this.resetForm();
             },
 
-            dateSelect(info){
-                    this.addingMode=true
-                    console.log('selected ' + info.startStr + ' to ' + info.endStr);
-                    this.newEvent.start_date = info.startStr
-                    this.newEvent.end_date = info.endStr
-                    this.$bvModal.show('newEventModal')
+            dateSelect(info) {
+                this.addingMode = true
+                console.log('selected ' + info.startStr + ' to ' + info.endStr);
+                this.newEvent.start_date = info.startStr
+                this.newEvent.end_date = info.endStr
+                this.$bvModal.show('newEventModal')
             },
 
             addNewEvent() {
@@ -146,10 +141,9 @@
 
             showEvent(arg) {
                 this.addingMode = false;
-                const { id, title, start, end} = this.events.find(
+                const {id, title, start, end} = this.events.find(
                     event => event.id === +arg.event.id
                 );
-
                 this.newEvent = {
                     id: id,
                     event_name: title,
@@ -202,9 +196,11 @@
     @import "~@fullcalendar/core/main.css";
     @import "~@fullcalendar/daygrid/main.css";
     @import "~@fullcalendar/timegrid/main.css";
+
     .fc-title {
         color: #fff;
     }
+
     .fc-title:hover {
         cursor: pointer;
     }
