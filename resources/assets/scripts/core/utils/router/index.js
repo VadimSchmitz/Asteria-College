@@ -29,9 +29,19 @@ export const routes = [
     },
     {
         path: '/presentielijst',
-        name: 'presentielijst',
-        component: () => import( /* webpackChunkName: "page-attendancesheet" */  '../../../template/pages/Attendancesheet'),
+        name: 'Presentielijst',
+        component: () => import( /* webpackChunkName: "page-presentielijst" */  '../../../template/pages/studentenlijst'),
 
+        meta: {
+            auth: true,
+            icon: 'user'
+        },
+    },
+    {
+        path: '/presentielijst/edit',
+        name: 'Presentielijst wijzigen',
+        component: () => import( /* webpackChunkName: "page-presentielijst-edit" */  '../../../template/pages/studentenlijst/edit'),
+        hidden:true,
         meta: {
             auth: true,
             icon: 'user'

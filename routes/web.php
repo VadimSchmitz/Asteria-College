@@ -18,3 +18,5 @@ Route::get('/', function () {
 Route::post('/login', 'Auth\LoginController@login');
 
 Route::get('/presentielijst', 'StudentsController@index');
+Route::post('presentielijst','StudentsController@store')->name('students.store');
+Route::put('/presentielijst/{student}','StudentsController@update');
