@@ -36,10 +36,17 @@ class StudentsController extends Controller
      *
      * @return Response
      */
-    public function store(Request $request)
+    public function store(Students $students)
+
     {
-        //
+//
+        Students::create($this->validateStudent());
+
+        return response()->json(['Student succesvol opgeslagen.'], 200);
+
+
     }
+
 
     /**
      * Display the specified resource.
@@ -49,8 +56,16 @@ class StudentsController extends Controller
      * @return Response
      */
     public function show(Students $students)
+
     {
-        //
+
+
+        Students::where('id', 1)->first();
+
+        return view('studentenlijst.show', [
+            'student' => @$students
+        ]);
+
     }
 
     /**
@@ -73,9 +88,10 @@ class StudentsController extends Controller
      *
      * @return Response
      */
-    public function update(Request $request, Students $students)
+    public function update(Students $students)
     {
-        //
+        $students->update($this->validateStudent());
+        return response()->json(['Student succesvol opgeslagen.'], 200);
     }
 
     /**
@@ -88,5 +104,15 @@ class StudentsController extends Controller
     public function destroy(Students $students)
     {
         //
+    }
+    protected function validateStudent()
+    {
+
+        return request()->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'present' => 'required',
+            'class' => 'required'
+        ]);
     }
 }
