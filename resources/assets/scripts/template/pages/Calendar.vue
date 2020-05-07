@@ -15,10 +15,12 @@
                 <Fullcalendar @eventClick="showEvent"
                               @dateClick="dateClick"
                               @select="dateSelect"
-                              locale="nl"
-                              theme-system="lux"
-
+                              @eventDrop="eventDrop"
+                              draggable="true"
+                              editable="true"
                               selectable="true"
+
+                              locale="nl"
                               :select-mirror="true"
                               :plugins="calendarPlugins"
                               :events="events"
@@ -27,7 +29,6 @@
                                   center: 'title',
                                   left: 'prev next today',
                               }"
-
                 />
             </div>
         </div>
@@ -41,6 +42,7 @@
     import InteractionPlugin from "@fullcalendar/interaction";
     import ListPlugin from "@fullcalendar/list";
     import axios from "axios";
+    import moment from "moment";
 
     export default {
 
@@ -66,6 +68,31 @@
             this.getEvents();
         },
         methods: {
+
+            eventDrop (info) {
+                let event = {
+                    id: info.event.id,
+                    start_date: moment(info.event.start).format(),
+                    end_date: moment(info.event.end).format(),
+                    event_name: info.event.title,
+                };
+                console.log(event);
+                this.updateEvent(event)
+            },
+
+            updateEvent(event) {
+                axios
+                    .put("/api/calendar/" + event.id, {
+                        ...event
+                    })
+                    .then(resp => {
+                        this.getEvents();
+
+                    })
+                    .catch(err =>
+                        console.log("Unable to update event!", err.response.data)
+                    );
+            },
 
             newEventOk(){
                 this.addNewEvent()
@@ -93,6 +120,8 @@
                 axios
                     .post("/api/calendar", {
                         ...this.newEvent,
+                        start_date: moment(this.newEvent.start_date).format(),
+                        end_date: moment(this.newEvent.end_date).format(),
                     })
                     .then(data => {
                         this.getEvents(); // update our list of events
@@ -102,6 +131,7 @@
                         console.log("Unable to add new event!", err.response.data)
                     );
             },
+
             showEvent(arg) {
                 this.addingMode = false;
                 const { id, title, start_date, end_date} = this.events.find(
@@ -113,21 +143,6 @@
                     start_date: start_date,
                     end_date: end_date,
                 };
-            },
-
-            updateEvent() {
-                axios
-                    .put("/api/calendar/" + this.indexToUpdate, {
-                        ...this.newEvent
-                    })
-                    .then(resp => {
-                        this.resetForm();
-                        this.getEvents();
-                        this.addingMode = !this.addingMode;
-                    })
-                    .catch(err =>
-                        console.log("Unable to update event!", err.response.data)
-                    );
             },
             deleteEvent() {
                 axios
