@@ -3,21 +3,35 @@
         <div class="row justify-content-center">
 
             <div>
-                <b-modal id="newEventModal" title="placeholder" @ok="newEventOk" @cancel="newEventCancel" @close="newEventCancel">
-                    <p class="my-4">fill in yo</p>
-                    <input type="text" id="end_date" class="form-control" v-model="newEvent.event_name">
-                    <VueCtkDateTimePicker v-model="newEvent.start_date"  format="YYYY-MM-DDTHH:mm:ssZ"/>
-                    <VueCtkDateTimePicker v-model="newEvent.end_date"  format="YYYY-MM-DDTHH:mm:ssZ"/>
+                <b-modal id="newEventModal" :title="addingMode ? 'create a new event' : 'edit an event'" @ok="newEventOk" @cancel="newEventCancel" @close="newEventCancel">
+
+                    <input type="text" id="title" class="form-control" v-model="newEvent.event_name">
+                    <VueCtkDateTimePicker id="start_date" v-model="newEvent.start_date"  format="YYYY-MM-DDTHH:mm:ssZ"/>
+                    <VueCtkDateTimePicker id="end_date" v-model="newEvent.end_date"  format="YYYY-MM-DDTHH:mm:ssZ"/>
+
+                    <template v-slot:modal-footer="{ ok, cancel}">
+                        <b-button size="m" variant="danger" @click="removeEvent" v-if="!addingMode">
+                            Delete
+                        </b-button>
+                        <b-button size="m" variant="secondary" @click="cancel()">
+                            Cancel
+                        </b-button>
+                        <b-button size="m" variant="success" @click="ok()">
+                            Save
+                        </b-button>
+                    </template>
                 </b-modal>
             </div>
 
             <div class="col-md-8">
-                <Fullcalendar @eventClick="showEvent"
-                              @dateClick="dateClick"
+                <Fullcalendar ref="fullCalendar"
+                              @eventClick="showEvent"
                               @select="dateSelect"
-                              @eventDrop="eventDrop"
+                              @eventDrop="eventManipulation"
+                              @eventResize="eventManipulation"
+
                               draggable="true"
-                              editable="true"
+                              :editable="!isLoading"
                               selectable="true"
 
                               locale="nl"
@@ -59,6 +73,7 @@
                     start_date: "",
                     end_date: "",
                 },
+                isLoading: false,
                 addingMode: true,
                 indexToUpdate: ""
             };
@@ -69,14 +84,13 @@
         },
         methods: {
 
-            eventDrop (info) {
+            eventManipulation (info) {
                 let event = {
                     id: info.event.id,
                     start_date: moment(info.event.start).format(),
                     end_date: moment(info.event.end).format(),
                     event_name: info.event.title,
                 };
-                console.log(event);
                 this.updateEvent(event)
             },
 
@@ -86,8 +100,7 @@
                         ...event
                     })
                     .then(resp => {
-                        this.getEvents();
-
+                        this.getEvents()
                     })
                     .catch(err =>
                         console.log("Unable to update event!", err.response.data)
@@ -95,7 +108,11 @@
             },
 
             newEventOk(){
-                this.addNewEvent()
+                if(this.addingMode){
+                    this.addNewEvent()
+                } else {
+                    this.updateEvent(this.newEvent)
+                }
             },
 
             newEventCancel(){
@@ -103,23 +120,18 @@
             },
 
             dateSelect(info){
+                    this.addingMode=true
                     console.log('selected ' + info.startStr + ' to ' + info.endStr);
                     this.newEvent.start_date = info.startStr
                     this.newEvent.end_date = info.endStr
                     this.$bvModal.show('newEventModal')
-
-            },
-
-            dateClick(info){
-                if (info.dateStr){
-                    console.log('Date: ' + info.dateStr);
-                }
             },
 
             addNewEvent() {
                 axios
                     .post("/api/calendar", {
                         ...this.newEvent,
+                        id: undefined,
                         start_date: moment(this.newEvent.start_date).format(),
                         end_date: moment(this.newEvent.end_date).format(),
                     })
@@ -134,34 +146,44 @@
 
             showEvent(arg) {
                 this.addingMode = false;
-                const { id, title, start_date, end_date} = this.events.find(
+                const { id, title, start, end} = this.events.find(
                     event => event.id === +arg.event.id
                 );
-                this.indexToUpdate = id;
+
                 this.newEvent = {
+                    id: id,
                     event_name: title,
-                    start_date: start_date,
-                    end_date: end_date,
+                    start_date: start,
+                    end_date: end,
                 };
+                this.$bvModal.show('newEventModal')
             },
-            deleteEvent() {
+
+            removeEvent() {
                 axios
-                    .delete("/api/calendar/" + this.indexToUpdate)
+                    .delete("/api/calendar/" + this.newEvent.id)
                     .then(resp => {
                         this.resetForm();
                         this.getEvents();
                         this.addingMode = !this.addingMode;
+                        this.$bvModal.hide('newEventModal')
                     })
                     .catch(err =>
                         console.log("Unable to delete event!", err.response.data)
                     );
             },
+
             getEvents() {
+                this.isLoading = true;
                 axios
                     .get("/api/calendar")
-                    .then(resp => (this.events = resp.data.data))
+                    .then(resp => {
+                        this.events = resp.data.data;
+                        this.isLoading = false;
+                    })
                     .catch(err => console.log(err.response.data));
             },
+
             resetForm() {
                 Object.keys(this.newEvent).forEach(key => {
                     return (this.newEvent[key] = "");
