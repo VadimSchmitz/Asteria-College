@@ -39,3 +39,6 @@ Route::namespace('API')->group(function () {
 });
 
 
+Route::apiResource('api/calendar', 'CalendarController');
+
+
