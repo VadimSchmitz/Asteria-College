@@ -4,11 +4,13 @@
             <div>
                 <b-modal id="newEventModal" :title="addingMode ? 'create a new event' : 'edit an event'"
                          @ok="newEventOk" @cancel="newEventCancel" @close="newEventCancel">
+
                     <input type="text" id="title" class="form-control" v-model="newEvent.event_name" placeholder="title">
                     <input type="text" id="assignment" class="form-control" v-model="newEvent.assignment" placeholder="assignment">
+
                     <VueCtkDateTimePicker id="start_date" v-model="newEvent.start_date" format="YYYY-MM-DDTHH:mm:ssZ"/>
                     <VueCtkDateTimePicker id="end_date" v-model="newEvent.end_date" format="YYYY-MM-DDTHH:mm:ssZ"/>
-                    <template v-slot:modal-footer="{ ok, cancel}">
+                    <template v-slot:modal-footer="{ok, cancel}">
                         <b-button size="m" variant="danger" @click="removeEvent" v-if="!addingMode">
                             Delete
                         </b-button>
@@ -192,11 +194,12 @@
 
             showEvent(arg) {
                 this.addingMode = false;
-                const {id, title, start, end} = this.events.find(
+                const {id, title, assignment, start, end} = this.events.find(
                     event => event.id === +arg.event.id
                 );
                 this.newEvent = {
                     id: id,
+                    assignment: assignment,
                     event_name: title,
                     start_date: start,
                     end_date: end,
