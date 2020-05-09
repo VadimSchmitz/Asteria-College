@@ -30,8 +30,8 @@
                     .then(response => {
                         this.user = new User(response.data);
                     }).catch(e => {
-                        alert(e)
-                    });
+                    alert(e)
+                });
             },
             put() {
                 axios

@@ -1,4 +1,3 @@
-export * from './user';
 export * from './validators';
 
 const functions = this;

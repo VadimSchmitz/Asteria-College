@@ -1,21 +1,22 @@
 <template>
-    <section class="col-12">
-        <div class="callout callout-info">
-            <p>Asteria College</p>
-            <button @click="get()" class="btn btn-outline-info btn-block" v-bind:disabled="usersLoading || users">
-                <i class="fas fa-sync-alt"></i>
-                Gebruikers ophalen
-            </button>
-        </div>
-
-        <div class="card card-outline card-info mt-3">
-            <div class="overlay" v-show="usersLoading && users == null">
-                <i class="fas fa-2x fa-sync-alt fa-spin"></i>
+    <b-row>
+        <b-col cols="12">
+            <div class="callout callout-info">
+                <p>Asteria College</p>
+                <button @click="get()" class="btn btn-outline-info btn-block" v-bind:disabled="usersLoading || users">
+                    <i class="fas fa-sync-alt"></i>
+                    Gebruikers ophalen
+                </button>
             </div>
 
-            <div class="p-0">
-                <table class="table table-striped">
-                    <thead>
+            <div class="card card-outline card-info mt-3">
+                <div class="overlay" v-show="usersLoading && users == null">
+                    <i class="fas fa-2x fa-sync-alt fa-spin"></i>
+                </div>
+
+                <div class="p-0">
+                    <table class="table table-striped">
+                        <thead>
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Naam</th>
@@ -33,20 +34,20 @@
                                 </div>
                             </th>
                         </tr>
-                    </thead>
-                    <tbody v-if="users">
+                        </thead>
+                        <tbody v-if="users">
                         <tr :key="user.id" v-for="user in users">
                             <th scope="row">{{ user.id }}</th>
                             <td>{{ user.name }}</td>
                             <td>{{ user.email }}</td>
                         </tr>
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </div>
+
             </div>
-
-        </div>
-    </section>
-
+        </b-col>
+    </b-row>
 </template>
 
 <script>

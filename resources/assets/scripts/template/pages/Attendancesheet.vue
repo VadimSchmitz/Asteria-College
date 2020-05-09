@@ -2,7 +2,7 @@
     <section class="col-12">
         <div class="callout callout-info">
             <p>Asteria College</p>
-         
+
         </div>
 
         <div class="card card-outline card-info mt-3">
@@ -56,7 +56,7 @@
                 studentsLoading: false
             }
         },
-        mounted(){
+        mounted() {
             this.getStudents()
         },
         methods: {
