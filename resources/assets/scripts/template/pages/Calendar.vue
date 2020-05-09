@@ -4,8 +4,8 @@
             <div>
                 <b-modal id="newEventModal" :title="addingMode ? 'create a new event' : 'edit an event'"
                          @ok="newEventOk" @cancel="newEventCancel" @close="newEventCancel">
-
-                    <input type="text" id="title" class="form-control" v-model="newEvent.event_name">
+                    <input type="text" id="title" class="form-control" v-model="newEvent.event_name" placeholder="title">
+                    <input type="text" id="assignment" class="form-control" v-model="newEvent.assignment" placeholder="assignment">
                     <VueCtkDateTimePicker id="start_date" v-model="newEvent.start_date" format="YYYY-MM-DDTHH:mm:ssZ"/>
                     <VueCtkDateTimePicker id="end_date" v-model="newEvent.end_date" format="YYYY-MM-DDTHH:mm:ssZ"/>
                     <template v-slot:modal-footer="{ ok, cancel}">
@@ -27,10 +27,13 @@
                               @select="dateSelect"
                               @eventDrop="eventManipulation"
                               @eventResize="eventManipulation"
+                              @eventRender="eventRender"
+                              @eventDestroy="eventDestroy"
+                              weekends="false"
                               draggable="true"
                               :editable="!isLoading"
                               selectable="true"
-                              locale="nl"
+                              locale="gb"
                               :select-mirror="true"
                               :plugins="calendarPlugins"
                               :events="events"
@@ -39,6 +42,7 @@
                                   center: 'title',
                                   left: 'prev next today',
                               }"
+
                 />
             </div>
         </div>
@@ -46,6 +50,7 @@
 </template>
 
 <script>
+    import Vue from "vue";
     import Fullcalendar from "@fullcalendar/vue";
     import dayGridPlugin from "@fullcalendar/daygrid";
     import TimeGridPlugin from "@fullcalendar/timegrid";
@@ -53,6 +58,9 @@
     import ListPlugin from "@fullcalendar/list";
     import axios from "axios";
     import moment from "moment";
+    import CalendarEvent from "../layouts/components/CalendarEvent"
+
+    const CalendarEventClass = Vue.extend(CalendarEvent)
 
     export default {
         components: {
@@ -67,10 +75,12 @@
                     event_name: "",
                     start_date: "",
                     end_date: "",
+                    assignment: "",
                 },
                 isLoading: false,
                 addingMode: true,
-                indexToUpdate: ""
+                indexToUpdate: "",
+                eventsObj: {},
             };
         },
 
@@ -79,15 +89,51 @@
         },
         methods: {
 
+
+            //FullCalendar Render event
+            eventRender(info) {
+                //create our component instance
+                const event = new CalendarEventClass({
+                    propsData: {
+                        event: info.event
+                    }
+                })
+                event.$mount();
+                //assign created component to our eventObj with uuid as key (to destroy in future)
+                this.eventsObj[event._uid] = event;
+
+                //set data-vue="{id}"
+                //append our compiled component to .fc-event
+                info.el.setAttribute('data-vue-id', event._uid);
+                info.el.appendChild(event.$el)
+
+            }
+            ,
+
+
+            //we need to destroy out component when element is removed from calendar
+            eventDestroy(info) {
+                //get uuid
+                let id = parseInt(info.el.getAttribute('data-vue-id'));
+
+                if (this.eventsObj[id]) {
+                    //if exist destroy
+                    this.eventsObj[id].$destroy(true);
+                }
+            }
+            ,
+
             eventManipulation(info) {
                 let event = {
                     id: info.event.id,
                     start_date: moment(info.event.start).format(),
                     end_date: moment(info.event.end).format(),
                     event_name: info.event.title,
+                    assignment: info.event.assignment,
                 };
                 this.updateEvent(event)
-            },
+            }
+            ,
 
             updateEvent(event) {
                 axios
@@ -100,7 +146,8 @@
                     .catch(err =>
                         console.log("Unable to update event!", err.response.data)
                     );
-            },
+            }
+            ,
 
             newEventOk() {
                 if (this.addingMode) {
@@ -108,11 +155,13 @@
                 } else {
                     this.updateEvent(this.newEvent)
                 }
-            },
+            }
+            ,
 
             newEventCancel() {
                 this.resetForm();
-            },
+            }
+            ,
 
             dateSelect(info) {
                 this.addingMode = true
@@ -120,7 +169,8 @@
                 this.newEvent.start_date = info.startStr
                 this.newEvent.end_date = info.endStr
                 this.$bvModal.show('newEventModal')
-            },
+            }
+            ,
 
             addNewEvent() {
                 axios
@@ -137,7 +187,8 @@
                     .catch(err =>
                         console.log("Unable to add new event!", err.response.data)
                     );
-            },
+            }
+            ,
 
             showEvent(arg) {
                 this.addingMode = false;
@@ -151,7 +202,8 @@
                     end_date: end,
                 };
                 this.$bvModal.show('newEventModal')
-            },
+            }
+            ,
 
             removeEvent() {
                 axios
@@ -165,7 +217,8 @@
                     .catch(err =>
                         console.log("Unable to delete event!", err.response.data)
                     );
-            },
+            }
+            ,
 
             getEvents() {
                 this.isLoading = true;
@@ -176,20 +229,23 @@
                         this.isLoading = false;
                     })
                     .catch(err => console.log(err.response.data));
-            },
+            }
+            ,
 
             resetForm() {
                 Object.keys(this.newEvent).forEach(key => {
                     return (this.newEvent[key] = "");
                 });
             }
-        },
+        }
+        ,
         watch: {
             indexToUpdate() {
                 return this.indexToUpdate;
             }
         }
-    };
+    }
+    ;
 </script>
 
 <style lang="css">
