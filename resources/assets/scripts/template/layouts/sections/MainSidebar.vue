@@ -13,11 +13,11 @@
             <!-- Sidebar user panel (optional) -->
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                 <div class="image mt-2">
-                    <avatar  :email="user.email"/>
+                    <avatar :email="user.email"/>
                 </div>
 
                 <div class="info">
-                    <a class="text-bold mb-0" href="#">{{user.firstName + ' ' + user.lastName}}</a><br />
+                    <a class="text-bold mb-0" href="#">{{user.firstName + ' ' + user.lastName}}</a><br/>
                     <i>Administrator</i>
                 </div>
             </div>
@@ -36,8 +36,9 @@
 
                         <ul class='nav has-treeview' v-if="route.children">
                             <li class="nav-item" v-for="childRoute in route.children">
-                                <router-link :class="(childRoute.path === currentRoute.path) ? 'nav-link active' : 'nav-link'"
-                                             :to="childRoute.path">
+                                <router-link
+                                        :class="(childRoute.path === currentRoute.path) ? 'nav-link active' : 'nav-link'"
+                                        :to="childRoute.path">
                                     <i :class="'fa-' + childRoute.meta.icon" class="nav-icon fal "></i>
                                     <p>{{ childRoute.name }}</p>
                                 </router-link>

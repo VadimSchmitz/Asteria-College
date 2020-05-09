@@ -1,7 +1,8 @@
 <template>
-    <el-avatar :size='size' style="box-shadow: 0 3px 6px rgba(0,0,0,.20),0 3px 6px rgba(0,0,0,.32)">
+    <el-avatar :size='size'
+               style="box-shadow: 0 3px 6px rgba(0,0,0,.20),0 3px 6px rgba(0,0,0,.32); background-color: rgba(17,122,139,0.74)">
         <!--    Include de Gravatar    -->
-        <g-image :email="mail" :user='user' :size='size'/>
+        <g-image :email="mail" :size='size' :user='user' style="margin: -2px 0 0 0"/>
     </el-avatar>
 </template>
 
@@ -23,9 +24,9 @@
             },
         },
         data() {
-          return {
-              mail: this.email
-          }
+            return {
+                mail: this.email
+            }
         },
         mounted() {
             if (this.user)

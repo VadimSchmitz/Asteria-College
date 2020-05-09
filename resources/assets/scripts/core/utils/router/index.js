@@ -100,7 +100,7 @@ export const routes = [
 export const router = new VueRouter({
     mode: "history",
     base: __dirname,
-    linkActiveClass: "active",
+    // linkActiveClass: "active",
     routes: routes,
 });
 
