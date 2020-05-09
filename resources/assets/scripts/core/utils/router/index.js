@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import authorize from '../authorize';
 import VueAxios from "vue-axios";
 import axios from 'axios';
+import getComponent from  "../../functions/getComponent";
 
 window.axios = axios;
 axios.defaults.baseURL = '/api/';
@@ -15,7 +16,7 @@ export const routes = [
     {
         path: '/login',
         name: 'Authenticate',
-        component: () => import( /* webpackChunkName: "page-login" */ '../../../template/pages/Auth/Login'),
+        component: getComponent('Auth', 'Login'),
         hidden: true,
         meta: {
             auth: false,
@@ -25,7 +26,7 @@ export const routes = [
     {
         path: '/dashboard',
         name: 'Dashboard',
-        component: () => import( /* webpackChunkName: "page-dashboard" */  '../../../template/pages/Dashboard'),
+        component: getComponent('Dashboard'),
         hidden: false,
         meta: {
             auth: true,
@@ -35,7 +36,7 @@ export const routes = [
     {
         path: '/users',
         name: 'Gebruikers',
-        component: () => import( /* webpackChunkName: "page-users-overview" */  '../../../template/pages/Users'),
+        component: getComponent('Users'),
         hidden: false,
         meta: {
             auth: true,
