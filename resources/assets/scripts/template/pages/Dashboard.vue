@@ -9,14 +9,10 @@
                 </button>
             </div>
 
-            <div class="card card-outline card-info mt-3">
-                <div class="overlay" v-show="usersLoading && users == null">
-                    <i class="fas fa-2x fa-sync-alt fa-spin"></i>
-                </div>
 
-                <div class="p-0">
-                    <table class="table table-striped">
-                        <thead>
+            <div class="p-0">
+                <table class="table table-striped">
+                    <thead>
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Naam</th>
