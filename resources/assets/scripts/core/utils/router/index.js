@@ -56,34 +56,12 @@ export const routes = [
     {
         path: '/calendar',
         name: 'Calendar',
-        component: () => import( /* webpackChunkName: "page-Calendar" */  '../../../template/pages/Calendar'),
+        component: getComponent('Calendar'),
         hidden: false,
         meta: {
             auth: true,
             icon: 'alicorn'
-        },
-        children: [
-            {
-                path: '/calendar/week-1',
-                name: 'Week 1',
-                component: () => import( /* webpackChunkName: "page-Week-1" */ '../../../template/pages/Week-1'),
-                hidden: false,
-                meta: {
-                    auth: true,
-                    icon: 'search'
-                }
-            },
-            {
-                path: '/calendar/week-2',
-                name: 'Week 2',
-                component: () => import( /* webpackChunkName: "page-Week-2" */  '../../../template/pages/Week-2'),
-                hidden: false,
-                meta: {
-                    auth: true,
-                    icon: 'search'
-                }
-            }
-        ]
+        }
     },
     {
         path: '/',
