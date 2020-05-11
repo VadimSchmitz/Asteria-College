@@ -29,7 +29,7 @@
                 if (to.meta.auth && !this.authenticated && (this.$auth.check() === true)) {
                     this.$store.commit('auth/SET_AUTHENTICATED', true);
                     this.$store.commit('auth/SET_USER', new User(this.$auth.user()));
-                    this.$router.push({name: 'Dashboard'})
+                    // this.$router.push({name: 'Dashboard'})
                 }
             },
         }

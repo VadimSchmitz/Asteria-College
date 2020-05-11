@@ -1,36 +1,36 @@
 <template>
-        <b-row>
-            <b-col cols="12">
-                <div class="callout callout-info">
-                    <p>Gebruikers overzicht</p>
-                </div>
-            </b-col>
+    <b-row>
+        <b-col cols="12" lg="6" xl="8">
+            <el-collapse-transition>
+                <create v-show="create"/>
+            </el-collapse-transition>
 
-            <overview />
+            <overview/>
+        </b-col>
 
-            <b-col cols="12" lg="6" xl="4">
-                <div class="card card-outline card-cyan">
-                    <div class="card-header">
-                        <h3 class="card-title">Opties</h3>
-
-                        <div class="card-tools">
-                            <a class="btn btn-tool" data-toggle="tooltip" href="#" title="Previous"><i
-                                    class="fas fa-chevron-left"></i></a>
-                            <a class="btn btn-tool" data-toggle="tooltip" href="#" title="Next"><i
-                                    class="fas fa-chevron-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </b-col>
-        </b-row>
+        <b-col cols="12" lg="6" xl="4">
+         <options/>
+        </b-col>
+    </b-row>
 </template>
 
 <script>
     export default {
         name: 'Users',
         components: {
-            Avatar: () => import(  /* webpackChunkName: "avatar-component" */  '../../layouts/components/Avatar'),
             Overview: () => import(  /* webpackChunkName: "user-overview-component" */  './components/Overview'),
+            Options: () => import(  /* webpackChunkName: "user-options-component" */  './components/Options'),
+            Create: () => import(  /* webpackChunkName: "user-create-component" */  './components/Create'),
         },
+        data() {
+            return {
+                create: false
+            }
+        },
+        methods: {
+            toggleCreate() {
+                return this.create = !this.create;
+            }
+        }
     }
 </script>

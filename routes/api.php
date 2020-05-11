@@ -28,12 +28,12 @@ Route::namespace('API')->group(function() {
 
 Route::middleware('auth')->namespace('API')->group(function() {
     Route::apiResources([
-        'students'=>'StudentsController'
+        'students'=>'StudentsController',
+        'calendar'=>'CalendarController'
     ]);
-
 });
 
 
-Route::apiResource('api/calendar', 'CalendarController');
+//Route::apiResource('api/calendar', 'CalendarController');
 
 

@@ -28,6 +28,8 @@ class AuthController extends Controller
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
         $user->name = $request->name;
+        $user->first_name = $request->firstName;
+        $user->last_name = $request->lastName;
         $user->save();
 
         return response(['status' => 'success', 'data' => $user], 201);
