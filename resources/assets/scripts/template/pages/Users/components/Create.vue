@@ -3,9 +3,10 @@
         <div class="card-body">
             <el-form :model="credentials" :rules="rules" name='create' ref="create">
                 <b-row>
-                    <b-col order-lg='1' cols="12" lg="3" class="text-center mb-2 mb-lg-auto">
-                            <el-avatar :size=100 icon="fal fa-user fa-2x" v-show="!credentials.email"></el-avatar>
-                            <avatar :size='100' :email='credentials.email' :key="credentials.email" v-show="credentials.email"></avatar>
+                    <b-col class="text-center mb-2 mb-lg-auto" cols="12" lg="3" order-lg='1'>
+                        <el-avatar :size=100 icon="fal fa-user fa-2x" v-show="!credentials.email"></el-avatar>
+                        <avatar :email='credentials.email' :key="credentials.email" :size='100'
+                                v-show="credentials.email"></avatar>
                     </b-col>
 
                     <b-col cols="12" lg="9">
@@ -85,7 +86,7 @@
                     email: [{validator: validateEmail, trigger: 'blur'}],
                     username: [{validator: validateUsername, trigger: 'blur'}],
                     firstName: [{validator: validateName, trigger: 'blur'}],
-                    lastName:  [{validator: validateName, trigger: 'blur'}],
+                    lastName: [{validator: validateName, trigger: 'blur'}],
                     password: [{validator: validatePassword, trigger: 'blur'}]
                 },
                 credentials: {
@@ -106,12 +107,12 @@
                     if (valid) {
                         axios.post('auth/register', this.credentials)
                             .then(response => {
-                            // TODO: Add welcome
-                            setTimeout(() => {
-                                this.loading = false;
-                                return true;
-                            }, 1000);
-                        }).catch(e => {
+                                // TODO: Add welcome
+                                setTimeout(() => {
+                                    this.loading = false;
+                                    return true;
+                                }, 1000);
+                            }).catch(e => {
                             setTimeout(() => {
                                 this.loading = false;
                                 this.error = 'De gegevens die je hebt ingevuld kloppen niet ' + e;

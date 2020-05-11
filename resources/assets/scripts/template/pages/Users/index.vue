@@ -9,7 +9,7 @@
         </b-col>
 
         <b-col cols="12" lg="6" xl="4">
-         <options/>
+            <options/>
         </b-col>
     </b-row>
 </template>

@@ -2,43 +2,43 @@
     <div class="container">
         <div class="row justify-content-center">
             <div>
-                <b-modal id="newEventModal" :title="addingMode ? 'create a new event' : 'edit an event'"
-                         @ok="newEventOk" @cancel="newEventCancel" @close="newEventCancel">
+                <b-modal :title="addingMode ? 'create a new event' : 'edit an event'" @cancel="newEventCancel"
+                         @close="newEventCancel" @ok="newEventOk" id="newEventModal">
 
-                    <input type="text" id="title" class="form-control" v-model="newEvent.event_name">
-                    <VueCtkDateTimePicker id="start_date" v-model="newEvent.start_date" format="YYYY-MM-DDTHH:mm:ssZ"/>
-                    <VueCtkDateTimePicker id="end_date" v-model="newEvent.end_date" format="YYYY-MM-DDTHH:mm:ssZ"/>
+                    <input class="form-control" id="title" type="text" v-model="newEvent.event_name">
+                    <VueCtkDateTimePicker format="YYYY-MM-DDTHH:mm:ssZ" id="start_date" v-model="newEvent.start_date"/>
+                    <VueCtkDateTimePicker format="YYYY-MM-DDTHH:mm:ssZ" id="end_date" v-model="newEvent.end_date"/>
                     <template v-slot:modal-footer="{ ok, cancel}">
-                        <b-button size="m" variant="danger" @click="removeEvent" v-if="!addingMode">
+                        <b-button @click="removeEvent" size="m" v-if="!addingMode" variant="danger">
                             Delete
                         </b-button>
-                        <b-button size="m" variant="secondary" @click="cancel()">
+                        <b-button @click="cancel()" size="m" variant="secondary">
                             Cancel
                         </b-button>
-                        <b-button size="m" variant="success" @click="ok()">
+                        <b-button @click="ok()" size="m" variant="success">
                             Save
                         </b-button>
                     </template>
                 </b-modal>
             </div>
             <div class="col-md-8">
-                <Fullcalendar ref="fullCalendar"
-                              @eventClick="showEvent"
-                              @select="dateSelect"
-                              @eventDrop="eventManipulation"
-                              @eventResize="eventManipulation"
-                              draggable="true"
-                              :editable="!isLoading"
-                              selectable="true"
-                              locale="nl"
-                              :select-mirror="true"
-                              :plugins="calendarPlugins"
+                <Fullcalendar :editable="!isLoading"
                               :events="events"
                               :header="{
                                   right: 'dayGridMonth, timeGridWeek, timeGridDay, listWeek',
                                   center: 'title',
                                   left: 'prev next today',
                               }"
+                              :plugins="calendarPlugins"
+                              :select-mirror="true"
+                              @eventClick="showEvent"
+                              @eventDrop="eventManipulation"
+                              @eventResize="eventManipulation"
+                              @select="dateSelect"
+                              draggable="true"
+                              locale="nl"
+                              ref="fullCalendar"
+                              selectable="true"
                 />
             </div>
         </div>

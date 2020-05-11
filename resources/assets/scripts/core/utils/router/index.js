@@ -3,7 +3,7 @@ import VueRouter from "vue-router";
 import authorize from '../authorize';
 import VueAxios from "vue-axios";
 import axios from 'axios';
-import getComponent from  "../../functions/getComponent";
+import getComponent from "../../functions/getComponent";
 
 window.axios = axios;
 axios.defaults.baseURL = '/api/';

@@ -1,6 +1,6 @@
 <template class="app">
     <section id="app">
-        <transition name="fade" type="in-out" appear>
+        <transition appear name="fade" type="in-out">
             <authenticate v-if="!this.$auth.check()"></authenticate>
 
             <authorized :key="authenticated" v-else></authorized>
