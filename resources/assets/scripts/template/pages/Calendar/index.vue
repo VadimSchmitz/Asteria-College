@@ -82,7 +82,7 @@ import InteractionPlugin from "@fullcalendar/interaction";
 import ListPlugin from "@fullcalendar/list";
 import axios from "axios";
 import moment from "moment";
-import CalendarEvent from "../layouts/components/CalendarEvent";
+import CalendarEvent from "../../layouts/components/CalendarEvent";
 
 const CalendarEventClass = Vue.extend(CalendarEvent);
 
@@ -156,7 +156,7 @@ export default {
     },
     updateEvent(event) {
       axios
-        .put("/api/calendar/" + event.id, {
+        .put("/calendar/" + event.id, {
           ...event
         })
         .then(resp => {
@@ -185,7 +185,7 @@ export default {
     },
     addNewEvent() {
       axios
-        .post("/api/calendar", {
+        .post("/calendar", {
           ...this.newEvent,
           id: undefined,
           start_date: moment(this.newEvent.start_date).format(),
@@ -215,7 +215,7 @@ export default {
     },
     removeEvent() {
       axios
-        .delete("/api/calendar/" + this.newEvent.id)
+        .delete("/calendar/" + this.newEvent.id)
         .then(resp => {
           this.resetForm();
           this.getEvents();
@@ -229,7 +229,7 @@ export default {
     getEvents() {
       this.isLoading = true;
       axios
-        .get("/api/calendar")
+        .get("/calendar")
         .then(resp => {
           this.events = resp.data.data;
           this.isLoading = false;

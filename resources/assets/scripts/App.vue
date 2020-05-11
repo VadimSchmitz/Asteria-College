@@ -1,6 +1,6 @@
 <template class="app">
     <section id="app">
-        <transition name="fade" type="in-out" appear>
+        <transition appear name="fade" type="in-out">
             <authenticate v-if="!this.$auth.check()"></authenticate>
 
             <authorized :key="authenticated" v-else></authorized>
@@ -29,7 +29,7 @@
                 if (to.meta.auth && !this.authenticated && (this.$auth.check() === true)) {
                     this.$store.commit('auth/SET_AUTHENTICATED', true);
                     this.$store.commit('auth/SET_USER', new User(this.$auth.user()));
-                    this.$router.push({name: 'Dashboard'})
+                    // this.$router.push({name: 'Dashboard'})
                 }
             },
         }

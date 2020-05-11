@@ -1,5 +1,5 @@
 import ElementUI from 'element-ui';
-import {BootstrapVue} from "bootstrap-vue";
+import { BootstrapVue } from "bootstrap-vue";
 import VueCtkDateTimePicker from 'vue-ctk-date-time-picker';
 import 'vue-ctk-date-time-picker/dist/vue-ctk-date-time-picker.css';
 
