@@ -1,10 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
 use App\Calendar;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Resources\CalendarResource;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Symfony\Component\HttpFoundation\Response;
 
 class CalendarController extends Controller
@@ -12,28 +15,24 @@ class CalendarController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
-     */
-    public function index()
-    {
-        return CalendarResource::collection(Calendar::all());
-    }
-
-    /**
-     * Show the form for creating a new resource.
+     * @param Request $request
      *
-     * @return \Illuminate\Http\Response
+     * @return AnonymousResourceCollection
      */
-    public function create()
+    public function index(Request $request)
     {
-        //
+        $from = $request -> input('from');
+        $to = $request -> input('to');
+
+        return CalendarResource::collection(Calendar::all());
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\JsonResponse
+     * @param Request $request
+     *
+     * @return JsonResponse
      */
     public function store(Request $request)
     {
@@ -48,7 +47,8 @@ class CalendarController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Calendar  $calendar
+     * @param Calendar $calendar
+     *
      * @return \Illuminate\Http\Response
      */
     public function show(Calendar $calendar)
@@ -57,22 +57,12 @@ class CalendarController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Calendar  $calendar
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Calendar $calendar)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Calendar  $calendar
-     * @return \Illuminate\Http\JsonResponse
+     * @param Request  $request
+     * @param Calendar $calendar
+     *
+     * @return JsonResponse
      */
     public function update(Request $request, Calendar $calendar)
     {
@@ -87,8 +77,9 @@ class CalendarController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Calendar  $calendar
-     * @return \Illuminate\Http\Response
+     * @param  Calendar  $calendar
+     *
+     * @return Response
      */
     public function destroy(Calendar $calendar)
     {

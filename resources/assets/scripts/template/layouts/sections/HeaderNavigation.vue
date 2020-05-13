@@ -8,7 +8,7 @@
             </li>
 
             <li class="nav-item d-none d-sm-inline-block">
-                <span class="nav-link" @click.prevent="logout()">Uitloggen</span>
+                <span @click="logout" class="nav-link">Uitloggen</span>
             </li>
         </ul>
 
@@ -22,11 +22,12 @@
                     <i class="far fa-comments"></i>
                     <span class="badge badge-danger navbar-badge">3</span>
                 </a>
-                <div aria-expanded="true" class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="min-width: 300px">
+                <div aria-expanded="true" class="dropdown-menu dropdown-menu-lg dropdown-menu-right"
+                     style="min-width: 300px">
                     <a class="dropdown-item" href="#">
                         <!-- Message Start -->
                         <div class="media">
-                            <avatar-initials class="mr-3"></avatar-initials>
+                            <avatar class="mr-3"></avatar>
                             <div class="media-body">
                                 <h3 class="dropdown-item-title">
                                     Brad Diesel
@@ -42,7 +43,7 @@
                     <a class="dropdown-item" href="#">
                         <!-- Message Start -->
                         <div class="media">
-                            <avatar-initials class="mr-3"></avatar-initials>
+                            <avatar class="mr-3"></avatar>
                             <div class="media-body">
                                 <h3 class="dropdown-item-title">
                                     Nora Silvester
@@ -96,24 +97,20 @@
 </template>
 
 <script>
+    import { mapActions } from "vuex";
+
     export default {
         name: 'HeaderNavigation',
         components: {
-            AvatarInitials: () => import(  /* webpackChunkName: "avatar-initials" */  '../components/AvatarInitials'),
+            Avatar: () => import(  /* webpackChunkName: "avatar-component" */  '../components/Avatar'),
             SearchBar: () => import( /* webpackChunkName: "header-search-bar" */  '../components/SearchBar')
         },
         methods: {
+            ...mapActions({
+                signOutAction: 'auth/signOut'
+            }),
             logout() {
-                this.$auth.logout({
-                    redirect: '/login',
-                    makeRequest: true,
-                    success() {
-                        // TODO: add message signout succeeed
-                    },
-                    error() {
-                        console.error();
-                    }
-                });
+                return this.signOutAction();
             }
         }
     }
