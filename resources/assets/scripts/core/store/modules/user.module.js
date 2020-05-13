@@ -1,12 +1,8 @@
-import {User} from "../../models/User";
+import { User } from "../../models/User";
 
-export const actions = {
+export const actions = {};
 
-};
-
-export const getters = {
-
-};
+export const getters = {};
 
 export const mutations = {
     update: (state, fetchedUser) => {

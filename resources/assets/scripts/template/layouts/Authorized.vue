@@ -13,7 +13,7 @@
 </template>
 
 <script>
-    import {User} from "./../../core/models/User";
+    import { mapGetters } from "vuex";
 
     export default {
         name: 'Authorized',
@@ -25,18 +25,10 @@
             MainFooter: () => import(  /* webpackChunkName: "app-footer" */  './sections/MainFooter'),
         },
         computed: {
-            user() {
-                return this.$store.state.user;
-            }
+            ...mapGetters({
+                authenticated: 'auth/authenticated',
+                user: 'auth/user'
+            })
         },
-        mounted() {
-            this.fetchUser()
-        },
-        methods: {
-            fetchUser() {
-                const data = this.$auth.watch.data;
-                this.$store.commit('updateUser', new User(data));
-            },
-        }
     }
 </script>
