@@ -13,6 +13,7 @@ new Vue({
     successMsg: false,
     showAddModal: false,
     showEditModal: false,
+    showDeleteModal: false
   },
   router,
   store,
