@@ -1,86 +1,121 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import authorize from '../authorize';
 import VueAxios from "vue-axios";
-import axios from 'axios';
-import getComponent from "../../functions/getComponent";
+import authorize from "../authorize";
 
-window.axios = axios;
-axios.defaults.baseURL = '/api/';
-Vue.prototype.$axios = axios;
-
-Vue.use(VueAxios, axios);
 Vue.use(VueRouter);
+Vue.use(VueAxios, axios);
 
 export const routes = [
-    {
-        path: '/login',
-        name: 'Authenticate',
-        component: getComponent('Auth', 'Login'),
-        hidden: true,
-        meta: {
-            auth: false,
-            icon: 'user'
-        }
+  {
+    path: "/login",
+    name: "Authenticate",
+    component: () =>
+      import(
+        /* webpackChunkName: "page-login" */ "../../../template/pages/auth/Login"
+      ),
+    hidden: true,
+    meta: {
+      auth: false,
+      icon: "user",
     },
-    {
-        path: '/dashboard',
-        name: 'Dashboard',
-        component: getComponent('Dashboard'),
+  },
+  {
+    path: "/dashboard",
+    name: "Dashboard",
+    component: () =>
+      import(
+        /* webpackChunkName: "page-dashboard" */ "../../../template/pages/Dashboard"
+      ),
+    hidden: false,
+    meta: {
+      auth: true,
+      icon: "user",
+    },
+  },
+  {
+    path: "/presentielijst",
+    name: "presentielijst",
+    component: () =>
+      import(
+        /* webpackChunkName: "page-Attendancesheet" */ "../../../template/pages/Attendancesheet"
+      ),
+
+    meta: {
+      auth: true,
+      icon: "user",
+    },
+  },
+  {
+    path: "/studenten",
+    name: "studenten",
+    component: () =>
+      import(
+        /* webpackChunkName: "page-Studenten" */ "../../../template/pages/Students"
+      ),
+
+    meta: {
+      auth: true,
+      icon: "user",
+    },
+  },
+  {
+    path: "/calendar",
+    name: "Calendar",
+    component: () =>
+      import(
+        /* webpackChunkName: "page-Calender" */ "../../../template/pages/Calendar"
+      ),
+    hidden: false,
+    meta: {
+      auth: true,
+      icon: "alicorn",
+    },
+    children: [
+      {
+        path: "/calendar/week-1",
+        name: "Week 1",
+        component: () =>
+          import(
+            /* webpackChunkName: "page-Week-1" */ "../../../template/pages/Week-1"
+          ),
         hidden: false,
-        meta: {
-            auth: true,
-            icon: 'user'
-        },
-    },
-    {
-        path: '/users',
-        name: 'Gebruikers',
-        component: getComponent('Users'),
-        hidden: false,
-        meta: {
-            auth: true,
-            admin: true,
-            icon: 'users'
-        },
-    },
-    {
-        path: '/presentielijst',
-        name: 'presentielijst',
-        component: () => import( /* webpackChunkName: "page-attendancesheet" */  '../../../template/pages/Attendancesheet'),
         meta: {
           auth: true,
           icon: "search",
         },
-    },
-    {
-        path: '/calendar',
-        name: 'Calendar',
-        component: getComponent('Calendar'),
+      },
+      {
+        path: "/calendar/week-2",
+        name: "Week 2",
+        component: () =>
+          import(
+            /* webpackChunkName: "page-Week-2" */ "../../../template/pages/Week-2"
+          ),
         hidden: false,
         meta: {
-            auth: true,
-            icon: 'alicorn'
-        }
-    },
-    {
-        path: '/',
-        redirect: 'dashboard',
-        hidden: true
-    },
-    // TODO: 404 handler
-    {
-        path: '/404',
-        redirect: '/error/404',
-        hidden: true
-    }
+          auth: true,
+          icon: "search",
+        },
+      },
+    ],
+  },
+  {
+    path: "/",
+    redirect: "dashboard",
+    hidden: true,
+  },
+  // TODO: 404 handler
+  // {
+  //     path: '404',
+  //     redirect: '/error/404'
+  // }
 ];
 
-export const router = new VueRouter({
-    mode: "history",
-    base: __dirname,
-    // linkActiveClass: "active",
-    routes: routes,
+const router = new VueRouter({
+  mode: "hash",
+  linkActiveClass: "active",
+  routes: routes,
 });
 
 Vue.router = router;

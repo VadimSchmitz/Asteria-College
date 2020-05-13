@@ -23,13 +23,11 @@
 
         <!-- Main content -->
         <section class="content">
-            <b-container fluid="true">
-                <b-row cols="12">
-                    <b-col cols="12">
-                        <router-view></router-view>
-                    </b-col>
-                </b-row>
-            </b-container>
+            <div class="container-fluid">
+                <div class="row">
+                    <router-view transition="fade"></router-view>
+                </div>
+            </div>
         </section>
 
     </div>

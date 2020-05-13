@@ -4,22 +4,30 @@ namespace App\Http\Controllers\API;
 
 use App\User;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
-use Illuminate\Validation\ValidationException;
 
-class UserController extends \App\Http\Controllers\Controller
+class UserController extends Controller
 {
-    public function __invoke()
-    {
-        $this->middleware('auth');
-    }
-
+    /**
+     * Display a listing of the resource.
+     *
+     * @return User[]|Collection
+     */
     public function index()
     {
-        return User::latest()->get();
+        return User::all();
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return Response
+     */
+    public function create()
+    {
+        return null;
     }
 
     /**
@@ -28,20 +36,10 @@ class UserController extends \App\Http\Controllers\Controller
      * @param Request $request
      *
      * @return Response
-     * @throws ValidationException
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required',
-        ]);
-
-        return User::create([
-            'name' => $request['name'],
-            'email' => $request['email'],
-            'password' => Hash::make($request['password']),
-        ]);
+        //
     }
 
     /**
@@ -53,44 +51,32 @@ class UserController extends \App\Http\Controllers\Controller
      */
     public function show($id)
     {
-        return User::find($id);
+        //
     }
 
     /**
-     * Check the specified resource exists.
+     * Show the form for editing the specified resource.
      *
-     * @param $username
+     * @param int $id
      *
-     * @return JsonResponse
+     * @return Response
      */
-    public function check($username)
+    public function edit($id)
     {
-        if (User::all()->contains('name', $username))
-            return response()->json(['Already used'], 400);
-
-        else return response()->json(['Valid'], 200);
+        //
     }
 
     /**
-     *
      * Update the specified resource in storage.
      *
      * @param Request $request
      * @param int     $id
      *
-     * @return void
-     * @throws ValidationException
+     * @return Response
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required'
-        ]);
-
-        $user = User::findOrFail($id);
-
-        $user->update($request->all());
+        //
     }
 
     /**
@@ -98,15 +84,10 @@ class UserController extends \App\Http\Controllers\Controller
      *
      * @param int $id
      *
-     * @return JsonResponse
+     * @return Response
      */
     public function destroy($id)
     {
-        $user = User::findOrFail($id);
-        $user->delete();
-
-        return response()->json([
-            'message' => 'User deleted successfully'
-        ]);
+        //
     }
 }
