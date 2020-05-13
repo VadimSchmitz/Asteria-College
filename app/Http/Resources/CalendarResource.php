@@ -20,7 +20,7 @@ class CalendarResource extends JsonResource
             'title'=>$this->event_name,
             'start'=>$this->start_date,
             'end'=>$this->end_date,
-            'assignment'=>$this->assignment,
+            'time'=>$this->event_time
         ];
     }
 }

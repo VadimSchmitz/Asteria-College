@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
@@ -14,7 +13,7 @@ class AuthController extends Controller
     {
         $v = Validator::make($request->all(), [
             'email' => 'required|email|unique:users',
-            'password' => 'required|min:5',
+            'password' => 'required|min:3|confirmed',
             'name' => 'required|min:3|unique:users'
         ]);
         if ($v->fails()) {
@@ -24,15 +23,13 @@ class AuthController extends Controller
             ], 422);
         }
 
-        $user = new User();
+        $user = new User;
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
         $user->name = $request->name;
-        $user->first_name = $request->firstName;
-        $user->last_name = $request->lastName;
         $user->save();
 
-        return response(['status' => 'success', 'data' => $user], 201);
+        return response(['status' => 'success', 'data' => $user], 200);
     }
 
     public function login(Request $request)
@@ -47,8 +44,7 @@ class AuthController extends Controller
             ], 400);
         }
 
-        $user = User::find(Auth::user()->id);
-        return response(['status' => 'success', 'user' => $user, 'token' => $token])->header('Authorization', $token);
+        return response(['status' => 'success'])->header('Authorization', $token);
     }
 
     public function logout()
@@ -61,23 +57,23 @@ class AuthController extends Controller
         ], 200);
     }
 
+    private function guard()
+    {
+        return Auth::guard();
+    }
+
     public function user(Request $request)
     {
         $user = User::find(Auth::user()->id);
 
         return response([
             'status' => 'success',
-            'data' => $user,
+            'data' => $user
         ]);
     }
 
     public function refresh()
     {
         return response(['status' => 'success']);
-    }
-
-    private function guard()
-    {
-        return Auth::guard();
     }
 }

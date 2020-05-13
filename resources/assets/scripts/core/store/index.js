@@ -1,11 +1,16 @@
 import Vue from 'vue';
 import Vuex from "vuex";
-import auth from './modules/authorization';
+import {User} from "../models/User";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-    modules: {
-        auth
-    }
+    state: {
+        user: new User()
+    },
+    mutations: {
+        updateUser: (state, fetchedUser) => {
+            state.user = fetchedUser;
+        }
+    },
 });

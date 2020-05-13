@@ -1,5 +1,5 @@
 export class User {
-    constructor({id = 0, name = '', email = '', first_name = '', last_name = ''} = {}) {
+    constructor({id = 0, name = '', email = '', first_name = '', last_name = ''} = {})  {
         this.id = id;
         this.name = name;
         this.email = email;

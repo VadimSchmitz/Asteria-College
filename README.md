@@ -24,6 +24,8 @@ $ `php artisan migrate:refresh —seed`
 $ `composer dump-autoload`
 ***
 #### Run the project
+$ `php artisan serve`
+
 $ `npm run watch`
 *** 
 Now, a window wil open and every time you edit something it wil automaticly compile and reload
