@@ -48,10 +48,10 @@ export const routes = [
   },
   {
     path: "/studenten",
-    name: "Studenten",
+    name: "studenten",
     component: () =>
       import(
-        /* webpackChunkName: "page-Attendancesheet" */ "../../../template/pages/Students"
+        /* webpackChunkName: "page-Studenten" */ "../../../template/pages/Students"
       ),
 
     meta: {
