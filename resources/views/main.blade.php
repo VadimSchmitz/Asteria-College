@@ -8,6 +8,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="application-name" content="{{ config('app.name', 'App name') }}">
     <title>{{ config('app.name', 'App name') }}</title>
+    <link rel="shortcut icon" href="{{ url('favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" href="{{ url('favicon.ico') }}" type="image/x-icon">
     <!-- Styles -->
     <link rel="stylesheet" href="{{ url('assets/css/web.css') }}"/>
     <link rel="stylesheet" href="{{ url('assets/css/element.css') }}"/>
