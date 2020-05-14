@@ -29,12 +29,29 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make("admin"),
         ]);
 
+        User::create([
+            'name' => 'Levi',
+            'first_name' => "Levi",
+            "last_name" => "Deurloo",
+            'email' => 'levimbg@gmail.com',
+            'email_verified_at' => now(),
+            'password' => Hash::make("admin"),
+        ]);
 
         User::create([
             'name' => 'Vadim',
             'first_name' => "Vadim",
             "last_name" => "Schmitz",
             'email' => 'di3mpi3@gmail.com',
+            'email_verified_at' => now(),
+            'password' => Hash::make("admin"),
+        ]);
+
+        User::create([
+            'name' => 'Anissa',
+            'first_name' => "Anissa",
+            "last_name" => "Boufrahi",
+            'email' => 'a.frayhi@gmail.com',
             'email_verified_at' => now(),
             'password' => Hash::make("admin"),
         ]);
