@@ -12,10 +12,13 @@
         <div class="sidebar">
             <!-- Sidebar user panel (optional) -->
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                <avatar-initials></avatar-initials>
+                <div class="image mt-2">
+                    <avatar :email="user.email"/>
+                </div>
 
                 <div class="info">
-                    <a class="d-block" href="#">{{user.firstName + ' ' + user.lastName}}</a>
+                    <a class="text-bold mb-0" href="#">{{user.firstName + ' ' + user.lastName}}</a><br/>
+                    <i>Administrator</i>
                 </div>
             </div>
 
@@ -24,16 +27,19 @@
                 <ul class="nav nav-pills nav-sidebar flex-column" data-accordion="false" data-widget="treeview"
                     role="menu">
 
-                    <li class="nav-item" :class="route.children ? 'has-treeview' : '' " v-for="route in navRoutes">
-                        <router-link :class="(route.path === currentRoute.path) ? 'nav-link active' : 'nav-link'" :to="route.path">
-                            <i class="nav-icon fal " :class="'fa-' + route.meta.icon"></i>
+                    <li :class="route.children ? 'has-treeview' : '' " class="nav-item" v-for="route in navRoutes">
+                        <router-link :class="(route.path === currentRoute.path) ? 'nav-link active' : 'nav-link'"
+                                     :to="route.path">
+                            <i :class="'fa-' + route.meta.icon" class="nav-icon fal "></i>
                             <p>{{ route.name }}</p>
                         </router-link>
 
                         <ul class='nav has-treeview' v-if="route.children">
                             <li class="nav-item" v-for="childRoute in route.children">
-                                <router-link :to="childRoute.path" :class="(childRoute.path === currentRoute.path) ? 'nav-link active' : 'nav-link'" >
-                                    <i class="nav-icon fal " :class="'fa-' + childRoute.meta.icon"></i>
+                                <router-link
+                                        :class="(childRoute.path === currentRoute.path) ? 'nav-link active' : 'nav-link'"
+                                        :to="childRoute.path">
+                                    <i :class="'fa-' + childRoute.meta.icon" class="nav-icon fal "></i>
                                     <p>{{ childRoute.name }}</p>
                                 </router-link>
                             </li>
@@ -51,12 +57,13 @@
 </template>
 
 <script>
-    import router, {routes} from "../../../core/utils/router";
+    import router, { routes } from "../../../core/utils/router";
+    import { mapGetters } from "vuex";
 
     export default {
         name: 'MainSidebar',
         components: {
-            AvatarInitials: () => import(  /* webpackChunkName: "avatar-initials" */  '../components/AvatarInitials')
+            Avatar: () => import(  /* webpackChunkName: "avatar-component" */  '../components/Avatar')
         },
         data() {
             return {
@@ -65,18 +72,19 @@
             }
         },
         computed: {
-            user() {
-                return this.$store.state.user;
-            }
+            ...mapGetters({
+                authenticated: 'auth/authenticated',
+                user: 'auth/user'
+            })
         },
         mounted() {
-           this.getRoutes()
+            this.getRoutes()
         },
         methods: {
             getRoutes() {
                 routes.forEach((route) => {
-                    if(!route.hidden) {
-                        if(!route.children) {
+                    if (!route.hidden) {
+                        if (!route.children) {
                             this.navRoutes.push(route);
                         } else {
                             let pushRoute = {

@@ -1,16 +1,21 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import VueAxios from "vue-axios";
 import authorize from '../authorize';
+import VueAxios from "vue-axios";
+import axios from 'axios';
+import getComponent from "../../functions/getComponent";
 
-Vue.use(VueRouter);
+window.axios = axios;
+axios.defaults.baseURL = '/api/';
+
 Vue.use(VueAxios, axios);
+Vue.use(VueRouter);
 
 export const routes = [
     {
         path: '/login',
         name: 'Authenticate',
-        component: () => import( /* webpackChunkName: "page-login" */ '../../../template/pages/auth/Login'),
+        component: getComponent('Auth', 'Login'),
         hidden: true,
         meta: {
             auth: false,
@@ -18,82 +23,77 @@ export const routes = [
         }
     },
     {
-        path: '/dashboard',
-        name: 'Dashboard',
-        component: () => import( /* webpackChunkName: "page-dashboard" */  '../../../template/pages/Dashboard'),
-        hidden:false,
-        meta: {
-            auth: true,
-            icon: 'user'
-        },
-    },
-    {
-        path: '/presentielijst',
-        name: 'Presentielijst',
-        component: () => import( /* webpackChunkName: "page-presentielijst" */  '../../../template/pages/studentenlijst'),
-
-        meta: {
-            auth: true,
-            icon: 'user'
-        },
-    },
-    {
-        path: '/presentielijst/edit',
-        name: 'Presentielijst wijzigen',
-        component: () => import( /* webpackChunkName: "page-presentielijst-edit" */  '../../../template/pages/studentenlijst/edit'),
-        hidden:true,
-        meta: {
-            auth: true,
-            icon: 'user'
-        },
-    },
-    {
-        path: '/widgets',
-        name: 'Widgets',
-        component: () => import( /* webpackChunkName: "page-widgets" */  '../../../template/pages/Widgets'),
-        hidden: false,
-        meta: {
-            auth: true,
-            icon: 'alicorn'
-        },
-        children: [
-            {
-                path: '/widgets/hejfnee',
-                name: 'Voorbeeld 1',
-                component: () => import( /* webpackChunkName: "page-dashboard" */ '../../../template/pages/Dashboard'),
-                hidden: false,
-                meta: {
-                    auth: true,
-                    icon: 'search'
-                }
-            },
-            {
-                path: '/widgets/ererereer',
-                name: 'voorbeeld 2',
-                component: () => import( /* webpackChunkName: "page-widgets" */  '../../../template/pages/Widgets'),
-                hidden: false,
-                meta: {
-                    auth: true,
-                    icon: 'search'
-                }
-            }
-        ]
-    },
-    {
         path: '/',
         redirect: 'dashboard',
         hidden: true
-    }
+    },
+    {
+        path: '/dashboard',
+        name: 'Dashboard',
+        component: getComponent('Dashboard'),
+        meta: {
+            auth: true,
+            icon: 'browser'
+        },
+    },
+    {
+        path: '/users',
+        name: 'Gebruikers',
+        component: getComponent('Users'),
+        meta: {
+            auth: true,
+            admin: true,
+            icon: 'users'
+        },
+    },
+    {
+        path: '/presencelist',
+        component: getComponent('Presencelist'),
+        name: 'Presentielijst',
+        meta: {
+            auth: true,
+            icon: 'user'
+        },
+    },
+    {
+        path: '/presencelist/edit',
+        component: getComponent('Presencelist', 'Edit'),
+        name: 'Presentielijst wijzigen',
+        hidden: true,
+        meta: {
+            auth: true
+        },
+    },
+    {
+        path: '/calendar',
+        name: 'Calendar',
+        component: getComponent('Calendar'),
+        meta: {
+            auth: true,
+            icon: 'alicorn'
+        }
+    },
+    {
+        path: '/courses/edit',
+        name: 'EditBooks',
+        component: getComponent('Courses', 'Edit'),
+        meta: {
+            auth: true,
+            icon: 'user'
+        }
+    },
     // TODO: 404 handler
-    // {
-    //     path: '404',
-    //     redirect: '/error/404'
-    // }
+    {
+        path: '/404',
+        redirect: '/error/404',
+        hidden: true
+    }
 ];
 
-const router = new VueRouter({
-    mode: "hash",
-    linkActiveClass: "active",
+export const router = new VueRouter({
+    mode: "history",
+    base: __dirname,
+    // linkActiveClass: "active",
     routes: routes,
 });
 

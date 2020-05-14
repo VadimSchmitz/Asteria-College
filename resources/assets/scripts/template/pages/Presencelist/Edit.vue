@@ -1,5 +1,5 @@
 <template>
-    <section class="col-12">
+    <section class ="col-12">
         <div class="callout callout-info">
             <p>Asteria College</p>
 
@@ -21,12 +21,9 @@
 
                         <th>
                             <div class="card-tools d-inline float-right pr-0 mr-0 pb-0">
-                                <b-link to="/presentielijst/edit">
-                                    <button class="btn btn-tool" type="button">
-                                        <i class="fas fa-edit"></i>
-                                    </button>
-                                </b-link>
-
+                                <button class="btn btn-tool"  type="button">
+                                    <i class="far fa-save"></i>
+                                </button>
                                 <button class="btn btn-tool" data-card-widget="maximize" type="button">
                                     <i class="fas fa-expand"></i>
                                 </button>
@@ -48,14 +45,11 @@
                         <th scope="row">{{ student.id }}</th>
                         <td>{{student.first_name }}</td>
                         <td>{{student.last_name}}</td>
-                        <td><span v-if="student.present === 1">
-<i class="far fa-check"></i></span> <span v-else>
+                        <td> <input type="checkbox" id="present" name="present" value="true" ></td>
 
 
-<i class="fas fa-times"></i>
 
-</span></td>
-<td></td>
+                        <td></td>
 
                     </tr>
                     </tbody>
@@ -64,12 +58,11 @@
 
         </div>
     </section>
-
 </template>
 
 <script>
     export default {
-        name: 'Presentielijst',
+        name: 'Edit',
         data() {
             return {
                 students: null,

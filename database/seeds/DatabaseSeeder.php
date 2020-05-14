@@ -20,7 +20,23 @@ class DatabaseSeeder extends Seeder
         $this->call(StudentsSeeder::class);
         $this->call(TestSeeder::class);
 
+        User::create([
+            'name' => 'Evan',
+            'first_name' => "Evan",
+            "last_name" => "Verdoorn",
+            'email' => 'evanverdoorn@gmail.com',
+            'email_verified_at' => now(),
+            'password' => Hash::make("admin"),
+        ]);
 
+        User::create([
+            'name' => 'Levi',
+            'first_name' => "Levi",
+            "last_name" => "Deurloo",
+            'email' => 'levimbg@gmail.com',
+            'email_verified_at' => now(),
+            'password' => Hash::make("admin"),
+        ]);
 
         User::create([
             'name' => 'Vadim',

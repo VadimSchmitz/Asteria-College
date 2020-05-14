@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Students;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -12,21 +13,11 @@ class StudentsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return Response
+     * @return JsonResponse
      */
     public function index()
     {
-       return Students::all();
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create()
-    {
-        //
+        return response()->json(Students::all(), 200);
     }
 
     /**
@@ -36,83 +27,52 @@ class StudentsController extends Controller
      *
      * @return Response
      */
-    public function store(Students $students)
-
+    public function store(Request $request)
     {
-//
-        Students::create($this->validateStudent());
-
-        return response()->json(['Student succesvol opgeslagen.'], 200);
-
-
+        return response()->json(['error' => 'This function is not available yet'], 403);
     }
-
 
     /**
      * Display the specified resource.
      *
-     * @param Students $students
+     * @param Request $request
      *
      * @return Response
      */
-    public function show(Students $students)
-
+    public function show(Request $request)
     {
-
-
-        Students::where('id', 1)->first();
-
-        return view('studentenlijst.show', [
-            'student' => @$students
-        ]);
-
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param Students $students
-     *
-     * @return Response
-     */
-    public function edit(Students $students)
-    {
-        //
+        return response()->json(['error' => 'This function is not available'], 403);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param Request  $request
-     * @param Students $students
      *
      * @return Response
      */
-    public function update(Students $students)
+    public function update(int $id, Request $request)
     {
-        $students->update($this->validateStudent());
-        return response()->json(['Student succesvol opgeslagen.'], 200);
+        if(!$request || !$id)
+            return response()->json(['error' => 'Fill all fields'], 403);
+
+        $student = Students::find($id);
+        $student->fill($request);
+        $student->update();
+
+        return response()->json(['success' => 'Student updated'], 200);
+
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param Students $students
+     * @param Request $request
      *
      * @return Response
      */
-    public function destroy(Students $students)
+    public function destroy(Request $request)
     {
-        //
-    }
-    protected function validateStudent()
-    {
-
-        return request()->validate([
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'present' => 'required',
-            'class' => 'required'
-        ]);
+        return response()->json(['error' => 'This function is not available yet'], 403);
     }
 }
