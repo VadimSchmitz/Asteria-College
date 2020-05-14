@@ -8,6 +8,7 @@ use Faker\Generator as Faker;
 $factory->define(Courses::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
-        'course_level' => $faker->numberBetween(0, 5),
+        'level' => $faker->numberBetween(0, 5),
+        'color' => $faker->hexColor
     ];
 });

@@ -9,8 +9,8 @@
     <meta name="application-name" content="{{ config('app.name', 'App name') }}">
     <title>{{ config('app.name', 'App name') }}</title>
     <!-- Styles -->
-    <link rel="stylesheet" href="{{ url('assets/css') }}{{mix('/web.css') }}"/>
-    <link rel="stylesheet" href="{{ url('assets/css') }}{{mix('/element.css') }}"/>
+    <link rel="stylesheet" href="{{ url('assets/css/web.css') }}"/>
+    <link rel="stylesheet" href="{{ url('assets/css/element.css') }}"/>
     <base href="{{ url('/') }}">
 </head>
 
@@ -22,8 +22,8 @@
     </div>
 </body>
     <!-- Scripts -->
-    <script src="{{ url('assets/scripts') }}{{mix('/app.js') }}"></script>
-    <script src="{{ url('assets/scripts') }}{{mix('/AdminLTE.js') }}"></script>
+    <script src="{{ url('assets/scripts') }}{{ mix('/app.js') }}"></script>
+    <script src="{{ url('assets/scripts') }}{{ mix('/AdminLTE.js') }}"></script>
     <script src="{{ mix('assets/scripts/fontawesome-all.min.js')}}"></script>
     <!-- Scripts END -->
 </html>
