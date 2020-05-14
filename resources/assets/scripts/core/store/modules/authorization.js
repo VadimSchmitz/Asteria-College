@@ -28,7 +28,7 @@ export default {
         async signOut({commit}) {
             await Vue.auth.logout({
                 makeRequest: true,
-            }).then(ressponse => {
+            }).then(response => {
                 commit('SET_USER', null);
                 commit('SET_AUTHENTICATED', false);
             }).catch(e => {

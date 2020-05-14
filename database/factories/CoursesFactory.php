@@ -9,6 +9,6 @@ $factory->define(Courses::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
         'level' => $faker->numberBetween(0, 5),
-        'color' => $faker->rgbColor
+        'color' => $faker->hexColor
     ];
 });

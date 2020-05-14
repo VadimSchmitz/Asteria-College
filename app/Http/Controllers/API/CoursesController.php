@@ -4,29 +4,26 @@ namespace App\Http\Controllers\API;
 
 use App\Courses;
 use App\Http\Controllers\Controller;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Validation\ValidationException;
 
 class CoursesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return Response
-     */
-    public function index()
+    public function __construct()
     {
-        //
+        $this->middleware('auth');
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Display a listing of the resource.
      *
-     * @return Response
+     * @return Courses[]|Collection
      */
-    public function create()
+    public function index()
     {
-        //
+        return Courses::all();
     }
 
     /**
@@ -35,22 +32,24 @@ class CoursesController extends Controller
      * @param Request $request
      *
      * @return Response
+     * @throws ValidationException
      */
     public function store(Request $request)
     {
-        if($this->validateCourse()) {
-            Courses::create([
-                'name' => $request->name,
-                'level' => $request->level,
-                'color' => $request->color,
+        if ($request === null)
+            return $response = response(['Please fill all fields'], 403);
 
+        $this->validate($request, [
+            'name' => 'required|min:3',
+            'level' => 'required',
+            'color' => 'required'
+        ]);
 
-            ]);
-
-
-        }
-
-       return response('/#/dashboard');
+        return Courses::create([
+            'name' => $request['name'],
+            'level' => $request['level'],
+            'color' => $request['color']
+        ]);
     }
 
     /**
@@ -61,18 +60,6 @@ class CoursesController extends Controller
      * @return Response
      */
     public function show(Courses $courses)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param Courses $courses
-     *
-     * @return Response
-     */
-    public function edit(Courses $courses)
     {
         //
     }
@@ -102,9 +89,9 @@ class CoursesController extends Controller
         //
     }
 
-    public function validateCourse()
+    public function validateCourse(Request $request)
     {
-        return request()->validate([
+        return $request->validate([
             'name' => ['required', 'string'],
             'level' => ['required', 'string'],
             'color' => ['required', 'string']

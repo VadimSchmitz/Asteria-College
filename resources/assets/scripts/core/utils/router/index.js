@@ -69,12 +69,10 @@ export const routes = [
         hidden: true
     },
 
-
-
     {
-        path: '/EditBooks',
+        path: '/courses/edit',
         name: 'EditBooks',
-        component: () => import( /* webpackChunkName: "page-login" */ '../../../template/pages/EditBooks'),
+        component: getComponent('Courses', 'Edit'),
         meta: {
             auth: true,
             icon: 'user'
