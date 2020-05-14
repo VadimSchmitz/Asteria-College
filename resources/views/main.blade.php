@@ -23,12 +23,11 @@
         <div id="vue-loading">{{ __('Loading') }}..</div>
     </div>
 </div>
-
-<!-- Scripts -->
-<script src="{{ url('assets/scripts') }}{{mix('/AdminLTE.js') }}"></script>
-<script src="{{ url('assets/scripts') }}{{mix('/app.js') }}"></script>
-
-<script src="{{ mix('assets/scripts/fontawesome-all.min.js')}}"></script>
 </body>
+    <!-- Scripts -->
+    <script src="{{ mix('assets/scripts//app.js') }}"></script>
+    <script src="{{ mix('assets/scripts//AdminLTE.js') }}"></script>
+    <script src="{{ mix('assets/scripts/fontawesome-all.min.js')}}"></script>
+    <!-- Scripts END -->
 </html>
 
