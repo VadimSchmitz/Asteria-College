@@ -38,7 +38,19 @@ class CoursesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if($this->validateCourse()) {
+            Courses::create([
+                'name' => $request->name,
+                'level' => $request->level,
+                'color' => $request->color,
+
+
+            ]);
+
+
+        }
+
+       return response('/#/dashboard');
     }
 
     /**
@@ -88,5 +100,14 @@ class CoursesController extends Controller
     public function destroy(Courses $courses)
     {
         //
+    }
+
+    public function validateCourse()
+    {
+        return request()->validate([
+            'name' => ['required', 'string'],
+            'level' => ['required', 'string'],
+            'color' => ['required', 'string']
+        ]);
     }
 }

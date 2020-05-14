@@ -63,12 +63,18 @@ export const routes = [
         path: '/',
         redirect: 'dashboard',
         hidden: true
-    }
-    // TODO: 404 handler
-    // {
-    //     path: '404',
-    //     redirect: '/error/404'
-    // }
+    },
+
+
+
+    {
+        path: '/EditBooks',
+        name: 'EditBooks',
+        component: () => import( /* webpackChunkName: "page-login" */ '../../../template/pages/EditBooks'),
+        meta: {
+            auth: true,
+            icon: 'user'
+        }}
 ];
 
 const router = new VueRouter({
