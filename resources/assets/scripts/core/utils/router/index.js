@@ -7,7 +7,6 @@ import getComponent from "../../functions/getComponent";
 
 window.axios = axios;
 axios.defaults.baseURL = '/api/';
-Vue.prototype.$axios = axios;
 
 Vue.use(VueAxios, axios);
 Vue.use(VueRouter);
@@ -24,20 +23,23 @@ export const routes = [
         }
     },
     {
+        path: '/',
+        redirect: 'dashboard',
+        hidden: true
+    },
+    {
         path: '/dashboard',
         name: 'Dashboard',
         component: getComponent('Dashboard'),
-        hidden: false,
         meta: {
             auth: true,
-            icon: 'user'
+            icon: 'browser'
         },
     },
     {
         path: '/users',
         name: 'Gebruikers',
         component: getComponent('Users'),
-        hidden: false,
         meta: {
             auth: true,
             admin: true,
@@ -57,18 +59,11 @@ export const routes = [
         path: '/calendar',
         name: 'Calendar',
         component: getComponent('Calendar'),
-        hidden: false,
         meta: {
             auth: true,
             icon: 'alicorn'
         }
     },
-    {
-        path: '/',
-        redirect: 'dashboard',
-        hidden: true
-    },
-
     {
         path: '/courses/edit',
         name: 'EditBooks',
@@ -76,7 +71,8 @@ export const routes = [
         meta: {
             auth: true,
             icon: 'user'
-        }},
+        }
+    },
     // TODO: 404 handler
     {
         path: '/404',

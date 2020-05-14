@@ -1,5 +1,9 @@
 <template>
-    <span class="font-weight-600 d-block" style="width: 100%; height: 100%; padding-top: 2px">{{ getInitials() }}</span>
+    <svg height="100%" viewBox="0 0 34 18" width="100%" xmlns="http://www.w3.org/2000/svg">
+        <text fill="white" lengthAdjust="spacing" textLength="20" x="8" y="14">
+            {{ getInitials() }}
+        </text>
+    </svg>
 </template>
 
 <script>

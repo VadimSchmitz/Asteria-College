@@ -71,6 +71,7 @@
             ElButton: () => import( /* webpackChunkName: "button-component" */  'element-ui/lib/button'),
             ElInput: () => import( /* webpackChunkName: "input-component" */  'element-ui/lib/input'),
             ElCheckbox: () => import( /* webpackChunkName: "button-checkbox" */  'element-ui/lib/checkbox'),
+            ElAvatar: () => import( /* webpackChunkName: "a-avatar-component" */  'element-ui/lib/avatar'),
         },
         data() {
             return {
