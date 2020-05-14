@@ -29,11 +29,7 @@ Route::namespace('API')->group(function() {
 Route::middleware('auth')->namespace('API')->group(function() {
     Route::apiResources([
         'students'=>'StudentsController',
-        'calendar'=>'CalendarController'
+        'calendar'=>'CalendarController',
+        'courses'=> 'CoursesController'
     ]);
 });
-
-
-//Route::apiResource('api/calendar', 'CalendarController');
-
-

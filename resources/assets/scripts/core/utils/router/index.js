@@ -68,6 +68,15 @@ export const routes = [
         redirect: 'dashboard',
         hidden: true
     },
+
+    {
+        path: '/courses/edit',
+        name: 'EditBooks',
+        component: getComponent('Courses', 'Edit'),
+        meta: {
+            auth: true,
+            icon: 'user'
+        }},
     // TODO: 404 handler
     {
         path: '/404',

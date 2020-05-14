@@ -33,9 +33,6 @@ export let validateName = (rule, value, callback) => {
     if (value === '')
         return callback(new Error('Vul alsjeblieft een naam in'));
 
-    else if (!checkUsername(value))
-        return callback(new Error('Vul alsjeblieft een geldige naam in'));
-
     else return callback();
 };
 

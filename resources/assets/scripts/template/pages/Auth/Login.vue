@@ -74,8 +74,6 @@
         },
         data() {
             return {
-                // APP_NAME: process.env.APP_NAME,
-                // APP_URL: process.env.APP_URL,
                 error: null,
                 loading: false,
                 credentials: {
@@ -100,7 +98,7 @@
                         await this.signIn(this.credentials, this.remember)
                             .then(response => setTimeout(() => {
                                     this.loading = false;
-                                    this.$router.push({path: '/dashboard'})
+                                    this.$router.push({path: '/dashboard'});
                                     return true;
                                 }, 1000)
                             ).catch(e => setTimeout(() => {
