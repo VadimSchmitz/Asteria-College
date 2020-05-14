@@ -58,19 +58,6 @@
     white-space:   nowrap;
   }
 
-  @each $name, $color in $theme-colors {
-    .info-box {
-      .bg-#{$name},
-      .bg-gradient-#{$name} {
-        color: color-yiq($color);
-
-        .progress-bar {
-          background-color: color-yiq($color);
-        }
-      }
-    }
-  }
-
   .info-box-more {
     display: block;
   }
