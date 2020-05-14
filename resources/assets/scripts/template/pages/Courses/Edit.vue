@@ -5,62 +5,63 @@
             <div v-if="coursesLoading">
                 Loading...
             </div>
-            <div :style="'color: ' + course.color" v-for="course in courses" v-else>
+            <div :style="'color: ' + course.color" v-else v-for="course in courses">
                 {{course.name}}
             </div>
         </div>
 
         <div>
-<!--            <form>-->
-<!--                <div>-->
+            <!--            <form>-->
+            <!--                <div>-->
 
-<!--                    <div>-->
-<!--                        <label>Vak</label>-->
-<!--                        <div class="control">-->
-<!--                            <input name="name" type="text" placeholder="Vak...">-->
-<!--                        </div>-->
+            <!--                    <div>-->
+            <!--                        <label>Vak</label>-->
+            <!--                        <div class="control">-->
+            <!--                            <input name="name" type="text" placeholder="Vak...">-->
+            <!--                        </div>-->
 
-<!--                        &lt;!&ndash;                    @error('name')&ndash;&gt;-->
-<!--                        &lt;!&ndash;                    <p>{{ $message }}</p>&ndash;&gt;-->
-<!--                        &lt;!&ndash;                    @enderror&ndash;&gt;-->
-<!--                    </div>-->
+            <!--                        &lt;!&ndash;                    @error('name')&ndash;&gt;-->
+            <!--                        &lt;!&ndash;                    <p>{{ $message }}</p>&ndash;&gt;-->
+            <!--                        &lt;!&ndash;                    @enderror&ndash;&gt;-->
+            <!--                    </div>-->
 
-<!--                    <div>-->
-<!--                        <label>Niveau</label>-->
-<!--                        <div class="control">-->
-<!--                            <input level="level"-->
-<!--                                   type="text" placeholder="Niveau...">-->
-<!--                        </div>-->
+            <!--                    <div>-->
+            <!--                        <label>Niveau</label>-->
+            <!--                        <div class="control">-->
+            <!--                            <input level="level"-->
+            <!--                                   type="text" placeholder="Niveau...">-->
+            <!--                        </div>-->
 
-<!--                        <label>Kleur</label>-->
-<!--                        <div class="control">-->
-<!--                            <input type="color">-->
-<!--                        </div>-->
+            <!--                        <label>Kleur</label>-->
+            <!--                        <div class="control">-->
+            <!--                            <input type="color">-->
+            <!--                        </div>-->
 
 
-<!--                        <div>-->
-<!--                            <button type="submit" @click="save">Opslaan</button>-->
-<!--                        </div>-->
+            <!--                        <div>-->
+            <!--                            <button type="submit" @click="save">Opslaan</button>-->
+            <!--                        </div>-->
 
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </form>-->
+            <!--                    </div>-->
+            <!--                </div>-->
+            <!--            </form>-->
 
         </div>
 
         <el-form :model="course" :rules="rules" name='create' ref="create">
 
 
-
             <el-form-item :class="error ? 'is-error' : ''" prop="name">
-                <el-input placeholder="Coursetitel" clearable
+                <el-input clearable placeholder="Coursetitel"
                           type="text" v-model="course.name">
-                    <template slot="prepend"><el-color-picker v-model="course.color" size="medium"></el-color-picker></template>
+                    <template slot="prepend">
+                        <el-color-picker size="medium" v-model="course.color"></el-color-picker>
+                    </template>
                 </el-input>
             </el-form-item>
 
             <el-form-item :class="error ? 'is-error' : ''" prop="niveau">
-                <el-input placeholder="courseniveau" clearable
+                <el-input clearable placeholder="courseniveau"
                           type="number" v-model="course.level">
                     <template slot="prepend"></template>
                 </el-input>
@@ -80,8 +81,8 @@
 </template>
 
 <script>
-    import {Courses} from "../../../core/models/Courses";
-    import {validateName} from "../../../core/functions";
+    import { Courses } from "../../../core/models/Courses";
+    import { validateName } from "../../../core/functions";
 
     export default {
         name: 'Courses',
@@ -97,16 +98,16 @@
                 course: new Courses(),
                 loading: false,
                 rules:
-            {
-                name: [{validator: validateName, trigger: 'blur'}],
-            },
+                    {
+                        name: [{validator: validateName, trigger: 'blur'}],
+                    },
                 error: null,
                 courses: null,
                 coursesLoading: false
             }
         },
         async mounted() {
-          await this.get();
+            await this.get();
         },
         methods: {
             async save() {
