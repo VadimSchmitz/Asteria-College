@@ -1,9 +1,11 @@
 <template>
     <section class="col-12">
-        <div class="callout callout-info">
-            <p>Asteria College</p>
-            {{ alert }}
-        </div>
+        <el-collapse-transition>
+            <div class="callout callout-info" v-show="alert">
+                {{ alert }}
+            </div>
+        </el-collapse-transition>
+
 
         <div class="card card-outline card-info mt-3">
             <div class="overlay" v-show="studentsLoading && students == null">
@@ -39,16 +41,16 @@
                     </tr>
                     </thead>
                     <tbody v-if="students">
-                    <tr :key="student.id" v-for="student in students">
+                    <tr :key="student.id +' '+ student.present" v-for="(student, index) in students">
                         <th scope="row">{{ student.id }}</th>
                         <td>{{ student.first_name }}</td>
                         <td>{{ student.last_name }}</td>
                         <td>
-                            <button @click="change(student.id)" :key="student.changed">
-                                <i class="far" :class="student.present === 1 ? 'fa-check' : 'fa-times'" ></i>
-                                <i class="ml-2 far fa-pencil" v-if="edit"></i>
-                            </button>
+                            <div class="d-flex justify-content-between" style="max-width: 75px">
+                                <i class="my-auto far" :class="student.present ? 'fa-check text-success' : 'fa-times text-danger'"></i>
 
+                                <span @click="change(index)"  v-show="edit"> <i class="ml-2 far fa-pencil"> </i></span>
+                            </div>
                         </td>
 <td></td>
 
@@ -65,6 +67,9 @@
 <script>
     export default {
         name: 'Presentielijst',
+        components: {
+            ElCollapseTransition: () => import(  /* webpackChunkName: "collapse-transition-component" */ 'element-ui/lib/transitions/collapse-transition'),
+        },
         data() {
             return {
                 students: null,
@@ -86,22 +91,21 @@
                         setTimeout(() => {
                             this.studentsLoading = false;
                             this.students = response.data;
-                            this.students.forEach(student => {
-                                student.changed = 0;
-                            });
                         }, 1000);
                     }).catch(error => console.error(error));
             },
-            change(id) {
-                let student = this.students[id];
+            change(index) {
+                let student = this.students[index];
                 student.present = !student.present;
 
-                axios.put(`/students/` + id, student)
+                axios.put(`/students/` + student.id, student)
                     .then(response => {
-                        this.alert = 'U heeft de presentie gewijzigd';
-                        student.changed++;
-                    })
-                    .catch(e => this.alert = e);
+                        this.alert = 'U heeft de presentie van ' + student.first_name + ' ' + student.last_name + ' gewijzigd';
+
+                        setTimeout(() => {
+                            this.alert = null
+                        }, 4500)
+                    }).catch(e => this.alert = e);
             },
             toggleEdit() {
                 return this.edit = !this.edit;
