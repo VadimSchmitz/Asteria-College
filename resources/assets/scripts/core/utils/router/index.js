@@ -54,15 +54,7 @@ export const routes = [
             auth: true,
             icon: 'user'
         },
-    },
-    {
-        path: '/presencelist/edit',
-        component: getComponent('Presencelist', 'Edit'),
-        name: 'Presentielijst wijzigen',
-        hidden: true,
-        meta: {
-            auth: true
-        },
+
     },
     {
         path: '/calendar',
