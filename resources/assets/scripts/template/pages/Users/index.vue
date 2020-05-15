@@ -21,6 +21,7 @@
             Overview: () => import(  /* webpackChunkName: "user-overview-component" */  './components/Overview'),
             Options: () => import(  /* webpackChunkName: "user-options-component" */  './components/Options'),
             Create: () => import(  /* webpackChunkName: "user-create-component" */  './components/Create'),
+            ElCollapseTransition: () => import(  /* webpackChunkName: "collapse-transition-component" */ 'element-ui/lib/transitions/collapse-transition'),
         },
         data() {
             return {

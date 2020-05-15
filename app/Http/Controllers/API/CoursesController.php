@@ -37,7 +37,7 @@ class CoursesController extends Controller
     public function store(Request $request)
     {
         if ($request === null)
-            return $response = response(['Please fill all fields'], 403);
+            return $response = response(['Please fill all fields'], 400);
 
         $this->validate($request, [
             'name' => 'required|min:3',
