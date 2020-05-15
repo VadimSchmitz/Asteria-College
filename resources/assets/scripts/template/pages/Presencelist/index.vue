@@ -44,8 +44,8 @@
                         <td>{{ student.first_name }}</td>
                         <td>{{ student.last_name }}</td>
                         <td>
-                            <button @click="change(student.id)" >
-                                <i class="far" :class="student.present === 1 ? 'fa-check' : 'fa-times'" :key="student.present"></i>
+                            <button @click="change(student.id)" :key="student.changed">
+                                <i class="far" :class="student.present === 1 ? 'fa-check' : 'fa-times'" ></i>
                                 <i class="ml-2 far fa-pencil" v-if="edit"></i>
                             </button>
 
@@ -86,6 +86,9 @@
                         setTimeout(() => {
                             this.studentsLoading = false;
                             this.students = response.data;
+                            this.students.forEach(student => {
+                                student.changed = 0;
+                            });
                         }, 1000);
                     }).catch(error => console.error(error));
             },
@@ -96,6 +99,7 @@
                 axios.put(`/students/` + id, student)
                     .then(response => {
                         this.alert = 'U heeft de presentie gewijzigd';
+                        student.changed++;
                     })
                     .catch(e => this.alert = e);
             },
