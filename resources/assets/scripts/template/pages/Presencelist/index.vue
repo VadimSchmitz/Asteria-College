@@ -21,11 +21,11 @@
 
                         <th>
                             <div class="card-tools d-inline float-right pr-0 mr-0 pb-0">
-                                <!-- <b-link to="/presencelist/edit"> -->
+
                                     <button class="btn btn-tool" type="button" @click="toggleEdit">
                                         <i class="fas fa-edit"></i>
                                     </button>
-                                <!--</b-link>-->
+
 
                                 <button class="btn btn-tool" data-card-widget="maximize" type="button">
                                     <i class="fas fa-expand"></i>
@@ -44,7 +44,7 @@
                         <td>{{ student.first_name }}</td>
                         <td>{{ student.last_name }}</td>
                         <td>
-                            <button @click="change(student.id)">
+                            <button @click="change(student.id)" >
                                 <i class="far" :class="student.present === 1 ? 'fa-check' : 'fa-times'" :key="student.present"></i>
                                 <i class="ml-2 far fa-pencil" v-if="edit"></i>
                             </button>
