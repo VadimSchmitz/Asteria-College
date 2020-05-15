@@ -7,8 +7,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Students::class, function (Faker $faker) {
     return [
-        'first_name' => $faker->name,
-        'last_name'=>$faker->lastName,
+        'name' => $faker->name,
         'present' => $faker->boolean,
         'class' => $faker->numberBetween(0,5)
     ];

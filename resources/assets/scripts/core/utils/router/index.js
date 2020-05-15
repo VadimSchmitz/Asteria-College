@@ -47,21 +47,12 @@ export const routes = [
         },
     },
     {
-        path: '/presencelist',
-        component: getComponent('Presencelist'),
-        name: 'Presentielijst',
+        path: '/presentielijst',
+        name: 'presentielijst',
+        component: () => import( /* webpackChunkName: "page-attendancesheet" */  '../../../template/pages/Attendancesheet'),
         meta: {
             auth: true,
             icon: 'user'
-        },
-    },
-    {
-        path: '/presencelist/edit',
-        component: getComponent('Presencelist', 'Edit'),
-        name: 'Presentielijst wijzigen',
-        hidden: true,
-        meta: {
-            auth: true
         },
     },
     {

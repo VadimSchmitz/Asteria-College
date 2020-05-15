@@ -4,7 +4,6 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Students;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -13,11 +12,21 @@ class StudentsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return JsonResponse
+     * @return Response
      */
     public function index()
     {
-        return response()->json(Students::all(), 200);
+       return Students::all();
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return Response
+     */
+    public function create()
+    {
+        //
     }
 
     /**
@@ -29,64 +38,55 @@ class StudentsController extends Controller
      */
     public function store(Request $request)
     {
-
-        if($request === null){
-            return response()->json(['error' => 'Fill all fields'], 400);
-        }
-        $student = Students::create($request->all())->validateStudent();
-        return response()->json(['student' => $student], 201);
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param Request $request
+     * @param Students $students
      *
      * @return Response
      */
-    public function show(Request $request)
+    public function show(Students $students)
     {
-        return response()->json(['error' => 'This function is not available'], 403);
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param Students $students
+     *
+     * @return Response
+     */
+    public function edit(Students $students)
+    {
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param Request  $request
+     * @param Students $students
      *
      * @return Response
      */
-    public function update(int $id, Request $request)
+    public function update(Request $request, Students $students)
     {
-        if(!$request || !$id)
-            return response()->json(['error' => 'Fill all fields'], 400);
-
-        $student = Students::find($id);
-        $student->update($request->all());
-
-        return response()->json(['success' => 'Student updated', 'student' => $student], 200);
-
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param Request $request
+     * @param Students $students
      *
      * @return Response
      */
-    public function destroy(Request $request)
+    public function destroy(Students $students)
     {
-        return response()->json(['error' => 'This function is not available yet'], 403);
-    }
-    public function validaStudent(Request $request)
-    {
-        return $request->validate([
-            'first_name' => ['required', 'string'],
-            'last_name' => ['required', 'string'],
-            'class' => ['required', 'string'],
-            'present'=>[ 'required','boolean'],
-
-        ]);
+        //
     }
 }
