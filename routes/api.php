@@ -21,9 +21,7 @@ Route::group(['middleware' => 'jwt.refresh'], function(){
 });
 
 Route::namespace('API')->group(function() {
-    Route::apiResources([
-        'users' => 'UserController'
-    ]);
+    Route::apiResources(['users' => 'UserController']);
 });
 
 Route::middleware('auth')->namespace('API')->group(function() {
