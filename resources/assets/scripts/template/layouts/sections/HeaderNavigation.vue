@@ -86,11 +86,6 @@
                     <a class="dropdown-item dropdown-footer" href="#">See All Notifications</a>
                 </div>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" data-slide="true" data-widget="control-sidebar" href="#" role="button">
-                    <i class="fas fa-th-large"></i>
-                </a>
-            </li>
         </ul>
     </nav>
     <!-- /.navbar -->

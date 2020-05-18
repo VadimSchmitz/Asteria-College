@@ -1,6 +1,6 @@
 <template>
     <div class="card card-outline card-cyan">
-        <div class="card-body">
+        <div class="card-body pb-0">
             <el-form :model="credentials" :rules="rules" name='create' ref="create">
                 <b-row>
                     <b-col class="text-center mb-2 mb-lg-auto" cols="12" lg="3" order-lg='1'>
@@ -17,7 +17,7 @@
                         </el-form-item>
 
                         <el-form-item :class="error ? 'is-error' : ' '" prop="name">
-                            <el-input clearable placeholder="Gebruikersnaam" type="text" v-model="credentials.name">
+                            <el-input clearable placeholder="Gebruikersnaam" min-length="3" type="text" v-model="credentials.name">
                             </el-input>
                         </el-form-item>
                     </b-col>
@@ -45,14 +45,17 @@
                 </b-row>
 
                 <b-row>
-                    <b-col cols="6">
+                    <b-col cols="5">
                         <el-form-item :class="error ? 'is-error' : ''" prop="password">
                             <el-input placeholder="Wachtwoord" show-password
-                                      type="password" v-model="credentials.password">
+                                      type="password" min-length="5" v-model="credentials.password">
                             </el-input>
                         </el-form-item>
                     </b-col>
-                        <b-col cols="6">
+                    <b-col cols="2">
+
+                    </b-col>
+                        <b-col cols="5">
                             <el-form-item class="my-auto text-center">
                                 <el-switch
                                         style="display: inline-block"
@@ -96,7 +99,7 @@
             return {
                 rules: {
                     email: [{validator: validateEmail, trigger: 'blur'}],
-                    username: [{validator: validateUsername, trigger: 'blur'}],
+                    name: [{validator: validateUsername, trigger: 'blur'}],
                     first_name: [{validator: validateName, trigger: 'blur'}],
                     last_name: [{validator: validateName, trigger: 'blur'}],
                     password: [{validator: validatePassword, trigger: 'blur'}]

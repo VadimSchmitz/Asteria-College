@@ -5,7 +5,7 @@
         </div>
 
         <div class="p-0">
-            <table class="table table-striped">
+            <table class="table table-striped mb-0">
                 <thead>
                 <tr>
                     <th colspan="3" scope="col"></th>
@@ -28,22 +28,22 @@
                 </thead>
 
                 <tbody v-if="users">
-                <tr :key="user.id" v-for="user in users">
-                    <td style='width: 40px;'>
-                        <el-badge :value="user.is_admin ? 'ADM' : ''" class="item">
-                            <avatar :size="45" :user="user"></avatar>
-                        </el-badge>
-                    </td>
-                    <td colspan="2">
-                        <a class="text-bold">{{ user.first_name }} {{ user.prefix }} {{ user.last_name }}
-                            <small>({{ user.name }})</small></a><br/>
-                        <small>{{ user.email }}</small>
-                    </td>
-                    <td>
-                        <el-checkbox v-model="user.checked" v-show="$parent.edit">
-                        </el-checkbox>
-                    </td>
-                </tr>
+                    <tr :key="user.id" v-for="user in users">
+                        <td style='width: 40px'>
+                            <el-badge :value="user.is_admin ? 'ADM' : ''" class="item">
+                                <avatar :size="45" :user="user"></avatar>
+                            </el-badge>
+                        </td>
+                        <td colspan="2">
+                            <a class="text-bold">{{ user.first_name }} {{ user.prefix }} {{ user.last_name }}
+                                <small>({{ user.name }})</small></a><br/>
+                            <small>{{ user.email }}</small>
+                        </td>
+                        <td>
+                            <el-checkbox v-model="user.checked" v-show="$parent.edit">
+                            </el-checkbox>
+                        </td>
+                    </tr>
                 </tbody>
 
                 <tbody v-else-if="error">

@@ -17,7 +17,7 @@
                 </div>
 
                 <div class="info">
-                    <a class="text-bold mb-0" href="#">{{user.firstName + ' ' + user.prefix + ' ' + user.lastName}}</a><br/>
+                    <a class="text-bold mb-0" href="#">{{user.firstName}} {{user.prefix}} {{user.lastName}}</a><br/>
                     <i>{{user.isAdmin ? 'Administrator' : 'Leraar'}}</i>
                 </div>
             </div>
@@ -43,7 +43,6 @@
                                 </router-link>
                             </li>
                         </ul>
-
                     </li>
                 </ul>
             </nav>
