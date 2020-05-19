@@ -68,7 +68,7 @@
         },
         methods: {
             async fetch() {
-                await axios.get(`/users`)
+                await axios.get(`/students`)
                     .then(response => {
                         setTimeout(() => {
                             this.loading = false;
