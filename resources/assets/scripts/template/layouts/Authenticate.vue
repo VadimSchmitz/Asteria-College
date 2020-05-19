@@ -1,6 +1,6 @@
 <template>
     <section class="authorize">
-        <auth-section v-bind:pageTitle="this.$route.meta.label"></auth-section>
+        <auth-section :pageTitle="this.$route.meta.label"></auth-section>
     </section>
 </template>
 

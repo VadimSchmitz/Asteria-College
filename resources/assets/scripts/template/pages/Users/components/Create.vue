@@ -1,60 +1,74 @@
 <template>
     <div class="card card-outline card-cyan">
-        <div class="card-body">
+        <div class="card-body pb-0">
             <el-form :model="credentials" :rules="rules" name='create' ref="create">
                 <b-row>
                     <b-col class="text-center mb-2 mb-lg-auto" cols="12" lg="3" order-lg='1'>
                         <el-avatar :size=100 icon="fal fa-user fa-2x" v-show="!credentials.email"></el-avatar>
                         <avatar :email='credentials.email' :key="credentials.email" :size='100'
-                                v-show="credentials.email"></avatar>
+                                v-show="credentials.email">
+                        </avatar>
                     </b-col>
 
                     <b-col cols="12" lg="9">
                         <el-form-item :class="error ? 'is-error' : ' '" prop="email">
                             <el-input clearable placeholder="E-mailadres" type="email" v-model="credentials.email">
-                                <template slot="prepend">
-                                    <i class="fas fa-at"></i>
-                                </template>
                             </el-input>
                         </el-form-item>
 
                         <el-form-item :class="error ? 'is-error' : ' '" prop="name">
-                            <el-input clearable placeholder="Gebruikersnaam" type="text" v-model="credentials.name">
-                                <template slot="prepend">
-                                    <i class="fas fa-user"></i>
-                                </template>
+                            <el-input clearable placeholder="Gebruikersnaam" min-length="3" type="text" v-model="credentials.name">
                             </el-input>
                         </el-form-item>
                     </b-col>
                 </b-row>
 
                 <b-row>
-                    <b-col cols="6">
-                        <el-form-item :class="error ? 'is-error' : ' '" prop="firstname">
-                            <el-input clearable placeholder="Voornaam" type="text" v-model="credentials.firstName">
-                                <template slot="prepend">
-                                    <i class="fas fa-user"></i>
-                                </template>
+                    <b-col cols="5">
+                        <el-form-item :class="error ? 'is-error' : ' '" prop="first_name">
+                            <el-input clearable placeholder="Voornaam" type="text" v-model="credentials.first_name">
                             </el-input>
                         </el-form-item>
                     </b-col>
-                    <b-col cols="6">
-                        <el-form-item :class="error ? 'is-error' : ' '" prop="lastname">
-                            <el-input clearable placeholder="Achternaam" type="text" v-model="credentials.lastName">
-                                <template slot="prepend">
-                                    <i class="fas fa-user"></i>
-                                </template>
+                    <b-col cols="2">
+                        <el-form-item prop="prefix">
+                            <el-input clearable placeholder="Tussenvoegsel" type="text" v-model="credentials.prefix">
+                            </el-input>
+                        </el-form-item>
+                    </b-col>
+                    <b-col cols="5">
+                        <el-form-item :class="error ? 'is-error' : ' '" prop="last_name">
+                            <el-input clearable placeholder="Achternaam" type="text" v-model="credentials.last_name">
                             </el-input>
                         </el-form-item>
                     </b-col>
                 </b-row>
 
-                <el-form-item :class="error ? 'is-error' : ''" prop="password">
-                    <el-input placeholder="Wachtwoord" show-password
-                              type="password" v-model="credentials.password">
-                        <template slot="prepend"><i class="fas fa-lock"></i></template>
-                    </el-input>
-                </el-form-item>
+                <b-row>
+                    <b-col cols="5">
+                        <el-form-item :class="error ? 'is-error' : ''" prop="password">
+                            <el-input placeholder="Wachtwoord" show-password
+                                      type="password" min-length="5" v-model="credentials.password">
+                            </el-input>
+                        </el-form-item>
+                    </b-col>
+                    <b-col cols="2">
+
+                    </b-col>
+                        <b-col cols="5">
+                            <el-form-item class="my-auto text-center">
+                                <el-switch
+                                        style="display: inline-block"
+                                        v-model="credentials.is_admin"
+                                        active-color="#13ce66"
+                                        inactive-color="#ff4949"
+                                        active-text="Super administrator"
+                                        inactive-text="Leraar">
+                                </el-switch>
+                            </el-form-item>
+                        </b-col>
+                </b-row>
+
 
                 <el-form-item>
                     <el-button :loading="loading" @click="submit"
@@ -77,26 +91,30 @@
             ElFormItem: () => import( /* webpackChunkName: "form-item-component" */ 'element-ui/lib/form-item'),
             ElButton: () => import( /* webpackChunkName: "button-component" */  'element-ui/lib/button'),
             ElInput: () => import( /* webpackChunkName: "input-component" */  'element-ui/lib/input'),
-            ElCheckbox: () => import( /* webpackChunkName: "button-checkbox" */  'element-ui/lib/checkbox'),
+            ElSwitch: () => import( /* webpackChunkName: "switch-button-component" */  'element-ui/lib/switch'),
             Avatar: () => import(  /* webpackChunkName: "avatar-component" */  '../../../layouts/components/Avatar'),
+            ElAvatar: () => import(  /* webpackChunkName: "el-avatar-component" */  'element-ui/lib/avatar'),
         },
         data() {
             return {
                 rules: {
                     email: [{validator: validateEmail, trigger: 'blur'}],
-                    username: [{validator: validateUsername, trigger: 'blur'}],
-                    firstName: [{validator: validateName, trigger: 'blur'}],
-                    lastName: [{validator: validateName, trigger: 'blur'}],
+                    name: [{validator: validateUsername, trigger: 'blur'}],
+                    first_name: [{validator: validateName, trigger: 'blur'}],
+                    last_name: [{validator: validateName, trigger: 'blur'}],
                     password: [{validator: validatePassword, trigger: 'blur'}]
                 },
                 credentials: {
                     email: '',
                     name: '',
-                    firstName: '',
-                    lastName: '',
-                    password: ''
+                    first_name: '',
+                    prefix: '',
+                    last_name: '',
+                    password: '',
+                    is_admin: false
                 },
-                error: null
+                error: null,
+                loading: false
             }
         },
         methods: {
@@ -106,19 +124,20 @@
                 this.$refs['create'].validate((valid) => {
                     if (valid) {
                         axios.post('auth/register', this.credentials)
-                            .then(response => {
-                                // TODO: Add welcome
-                                setTimeout(() => {
-                                    this.loading = false;
-                                    return true;
-                                }, 1000);
-                            }).catch(e => {
-                            setTimeout(() => {
+                            .then(response => setTimeout(() => {
                                 this.loading = false;
-                                this.error = 'De gegevens die je hebt ingevuld kloppen niet ' + e;
-                                return false
-                            }, 400);
-                        });
+                                this.$parent.alert = {
+                                    type: 'success',
+                                    message: 'De gebruiker is succesvol aangemaakt!'
+                                }
+                            }, 400))
+                            .catch(e => setTimeout(() => {
+                                this.loading = false;
+                                this.$parent.alert = {
+                                    type: 'danger',
+                                    message: ('Deze gebruiker kon niet worden aangemaakt, de volgende fout is opgetreden: ' + e)
+                                }
+                            }, 400));
                     } else {
                         this.loading = false;
                         return false;

@@ -22,6 +22,10 @@ class Students extends Model
         'created_at', 'updated_at'
     ];
 
+    protected $casts = [
+        'present' => 'boolean'
+    ];
+
     public function users()
     {
         return $this->belongsToMany(User::class, 'users_students');
@@ -41,6 +45,4 @@ class Students extends Model
     {
         return $this->belongsToMany('App\Course');
     }
-
-
 }
