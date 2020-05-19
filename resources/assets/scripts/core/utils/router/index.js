@@ -47,6 +47,16 @@ export const routes = [
         },
     },
     {
+        path: '/students',
+        name: 'Studenten',
+        component: getComponent('Students'),
+        meta: {
+            auth: true,
+            admin: true,
+            icon: 'users'
+        },
+    },
+    {
         path: '/presencelist',
         component: getComponent('Presencelist'),
         name: 'Presentielijst',
