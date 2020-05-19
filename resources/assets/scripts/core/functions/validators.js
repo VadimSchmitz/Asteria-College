@@ -26,6 +26,9 @@ export let validateUsername = (rule, value, callback) => {
     else if (!checkUsername(value))
         return callback(new Error('Deze gebruikersnaam is al in gebruik, kies een andere'));
 
+    else if (value.length < 3)
+        return callback(new Error('Zorg dat de gebruikersnaam minimaal 3 tekens bevat'));
+
     else return callback();
 };
 
@@ -39,6 +42,8 @@ export let validateName = (rule, value, callback) => {
 export let validatePassword = (rule, value, callback) => {
     if (value === '')
         return callback(new Error('Vul alsjeblieft een wachtwoord in'));
+    if (value.length < 5)
+        return callback(new Error('Zorg dat het wachtwoord minimaal 5 tekens bevat'));
 
     else return callback();
 };

@@ -6,6 +6,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
@@ -15,24 +16,19 @@ class AuthController extends Controller
         $v = Validator::make($request->all(), [
             'email' => 'required|email|unique:users',
             'password' => 'required|min:5',
-            'name' => 'required|min:3|unique:users'
+            'name' => 'required|min:3|unique:users',
+            'first_name' => 'required',
+            'last_name' => 'required',
         ]);
-        if ($v->fails()) {
-            return response()->json([
-                'status' => 'error',
-                'errors' => $v->errors()
-            ], 422);
-        }
 
-        $user = new User();
-        $user->email = $request->email;
+        if ($v->fails())
+            return response()->json(['status' => 'error', 'message' => $v->errors()], 422);
+
+        $user = User::create($request->all());
         $user->password = bcrypt($request->password);
-        $user->name = $request->name;
-        $user->first_name = $request->firstName;
-        $user->last_name = $request->lastName;
         $user->save();
 
-        return response(['status' => 'success', 'data' => $user], 201);
+        return response()->json(['status' => 'success', 'data' => $user], 200);
     }
 
     public function login(Request $request)

@@ -1,5 +1,14 @@
 <template>
     <b-row>
+        <el-collapse-transition>
+            <b-col cols="12" v-show="alert.type">
+                <div :class="'callout callout-'+ alert.type">
+                    <strong>{{ alert.type === 'success' ? 'Gelukt!' : 'Foutmelding:' }}</strong><br />
+                    {{ alert.message }}
+                </div>
+            </b-col>
+        </el-collapse-transition>
+
         <b-col cols="12" lg="6" xl="8">
             <el-collapse-transition>
                 <create v-show="create"/>
@@ -25,12 +34,33 @@
         },
         data() {
             return {
-                create: false
+                create: false,
+                edit: false,
+                alert: {
+                    type: null,
+                    message: null
+                }
+            }
+        },
+        watch: {
+            alert(val) {
+                if (val.type === 'success')
+                    this.toggleCreate();
+
+                setTimeout(() => this.alert = {
+                    type: null,
+                    message: null
+                }, 4000);
             }
         },
         methods: {
             toggleCreate() {
+                this.edit = false;
                 return this.create = !this.create;
+            },
+            toggleEdit() {
+                this.create = false;
+                return this.edit = !this.edit;
             }
         }
     }
