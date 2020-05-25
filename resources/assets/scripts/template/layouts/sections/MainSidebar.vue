@@ -17,8 +17,8 @@
                 </div>
 
                 <div class="info">
-                    <a class="text-bold mb-0" href="#">{{user.firstName}} {{user.prefix}} {{user.lastName}}</a><br/>
-                    <i>{{user.isAdmin ? 'Administrator' : 'Leraar'}}</i>
+                    <a class="text-bold mb-0" href="#">{{user.first_name}} {{user.prefix}} {{user.last_name}}</a><br/>
+                    <i>{{user.is_admin ? 'Administrator' : 'Leraar'}}</i>
                 </div>
             </div>
 
