@@ -1,7 +1,7 @@
 <template>
     <b-row>
         <el-collapse-transition>
-            <b-col cols="12" v-show="alert.type">
+            <b-col cols="12" v-if="alert.type">
                 <div :class="'callout callout-'+ alert.type">
                     <strong>{{ alert.type === 'success' ? 'Gelukt!' : 'Foutmelding:' }}</strong><br />
                     {{ alert.message }}

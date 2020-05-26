@@ -10,6 +10,8 @@ mix.autoload({jquery: ['$', 'jQuery', 'window.jQuery']})
 
     .sass('resources/assets/scss/app.scss', 'assets/css/web.css', {implementation: require('node-sass')})
     .sass('resources/assets/scss/element/index.scss', 'assets/css/element.css', {implementation: require('node-sass')})
+    .sass('resources/assets/scss/components/index.scss', 'assets/css/components.css', {implementation: require('node-sass')})
+
 
     .options({
         processCssUrls: true,
