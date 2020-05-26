@@ -10,7 +10,7 @@
 
 <script>
     import { mapGetters } from "vuex";
-    import { User } from "./core/models/User";
+    import User from "./core/models/User";
 
     export default {
         name: 'App',
