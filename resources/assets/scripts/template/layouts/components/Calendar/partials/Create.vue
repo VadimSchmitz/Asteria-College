@@ -5,13 +5,13 @@
             <input class="form-control" placeholder="title" type="text" v-model="event.event_name"/>
             <input class="form-control" placeholder="assignment" type="text" v-model="event.assignment"/>
             <VueCtkDateTimePicker format="YYYY-MM-DDTHH:mm:ssZ" id="start_date" v-model="event.start_date"/>
-
             <VueCtkDateTimePicker format="YYYY-MM-DDTHH:mm:ssZ" id="end_date" v-model="event.end_date"/>
 
             <template>
                 <b-button @click="removeEvent" size="m" v-if="!addingMode" variant="danger">Verwijderen</b-button>
                 <b-button @click="$parent.showModal = false" size="m" variant="secondary">Annuleren</b-button>
-                <b-button @click="addingMode ? addEvent : updateEvent" size="m" variant="success" v-text="addingMode ? 'Toevoegen' : 'Wijzigen'" />
+                <b-button @click="addEvent" size="m" variant="success" v-if="addingMode">Toevoegen</b-button>
+                <b-button @click="updateEvent" size="m" variant="success" v-else>Wijzigen</b-button>
             </template>
         </div>
     </div>
@@ -62,18 +62,18 @@
             },
 
             dateSelect(info) {
-                this.addingMode = true;
+                // this.addingMode = true;
 
                 console.log("selected " + info.startStr + " to " + info.endStr);
                 this.event.start_date = info.startStr;
                 this.event.end_date = info.endStr;
             },
             async addEvent() {
-                await axios.post("/calendar", this.event).then(response => this.$parent.getEvents())
+                await axios.post("calendar", this.event).then(response => this.$parent.getEvents())
                     .catch(e => console.log(e));
             },
             async removeEvent() {
-                await axios.delete("/calendar/" + this.event.id).then(resp => this.$parent.getEvents())
+                await axios.delete("calendar/" + this.event.id).then(resp => this.$parent.getEvents())
                     .catch(e => console.log(e));
 
             }
