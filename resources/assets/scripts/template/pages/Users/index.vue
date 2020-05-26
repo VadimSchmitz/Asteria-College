@@ -14,7 +14,7 @@
                 <create v-show="create"/>
             </el-collapse-transition>
 
-            <overview/>
+            <overview :bus="bus" />
         </b-col>
 
         <b-col cols="12" lg="6" xl="4">
@@ -24,6 +24,8 @@
 </template>
 
 <script>
+    import Vue from 'vue';
+
     export default {
         name: 'Users',
         components: {
@@ -36,6 +38,7 @@
             return {
                 create: false,
                 edit: false,
+                bus: new Vue(),
                 alert: {
                     type: null,
                     message: null
@@ -61,6 +64,9 @@
             toggleEdit() {
                 this.create = false;
                 return this.edit = !this.edit;
+            },
+            reload() {
+                this.bus.$emit('submit')
             }
         }
     }
