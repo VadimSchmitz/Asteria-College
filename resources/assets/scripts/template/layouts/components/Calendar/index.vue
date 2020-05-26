@@ -1,6 +1,6 @@
 <template>
     <div class="callout callout-danger calendar-pl-custom">
-        <create-or-edit :updatable='event' :id="(event.id === 0) ? null : event.id" :key='showModal' v-show="showModal"></create-or-edit>
+        <create-or-edit :id="(event.id === 0) ? null : event.id" :key='showModal' v-if="showModal"></create-or-edit>
                 <Fullcalendar :editable="!isLoading" :events="events"
                         :firstDay="1"
                         :header="{
@@ -30,7 +30,6 @@
 
 <script>
     import Vue from "vue";
-    import Fullcalendar from "@fullcalendar/vue";
     import dayGridPlugin from "@fullcalendar/daygrid";
     import TimeGridPlugin from "@fullcalendar/timegrid";
     import InteractionPlugin from "@fullcalendar/interaction";
@@ -42,7 +41,7 @@
     export default {
         name: 'Calendar',
         components: {
-            Fullcalendar,
+            Fullcalendar: () => import(  /* webpackChunkName: "fullcalendar-component" */  '@fullcalendar/vue'),
             CreateOrEdit: () => import(  /* webpackChunkName: "create-or-edit-component" */  './partials/Create')
         },
 
@@ -59,13 +58,11 @@
                 showModal: false,
                 isLoading: false,
                 addingMode: true,
-                indexToUpdate: "",
                 eventsObj: {}
             };
         },
 
         async mounted() {
-            this.isLoading = true;
             await this.getEvents();
         },
 
@@ -73,6 +70,7 @@
             //FullCalendar Render event
             eventRender(info) {
                 //create our component instance
+                console.log(info.event)
                 const event = new CalendarEventClass({
                     propsData: {
                         event: info.event
@@ -82,25 +80,20 @@
                 //assign created component to our eventObj with uuid as key (to destroy in future)
                 this.eventsObj[event._uid] = event;
 
-                //set data-vue="{id}"
                 //append our compiled component to .fc-event
                 info.el.setAttribute("data-vue-id", event._uid);
                 info.el.appendChild(event.$el);
             },
             async eventManipulation(info) {
-                // let event = {
-                //     id: info.event.id,
-                //     start_date: moment(info.event.start).format(),
-                //     end_date: moment(info.event.end).format(),
-                //     event_name: info.event.title,
-                //     assignment: info.event.assignment
-                // };
                 const manipulatedEvent = new Event(info.event);
 
                 await this.updateEvent(manipulatedEvent);
             },
-
-            async updateEvent(manipulatedEvent) {
+            async addEvent() {
+                await axios.post("calendar", this.event).then(response => this.getEvents())
+                    .catch(e => console.log(e));
+            },
+            async updateEvent(manipulatedEvent = this.event) {
                 await axios.put("/calendar/" + manipulatedEvent.id, manipulatedEvent)
                     .then(resp => this.getEvents())
                     .catch(err => console.log("Unable to update event!", err.response.data));
@@ -116,76 +109,32 @@
             // newEventCancel() {
             //     this.resetForm();
             // },
-            dateSelect(info) {
-                //this.addingMode = true;
-
-
-                console.log("selected " + info.startStr + " to " + info.endStr);
-
-                this.event.start_date = info.startStr;
-                this.event.end_date = info.endStr;
-
-                this.showModal = true;
-                //this.$bvModal.show("newEventModal");
+            async dateSelect(info) {
+                this.event = new Event({
+                    start_date: info.startStr,
+                    end_date: info.endStr
+                });
+                return this.showModal = true;
             },
 
-            // addNewEvent() {
-            //     axios .post("/calendar", {
-            //             ...this.newEvent,
-            //             id: undefined,
-            //             start_date: moment(this.newEvent.start_date).format(),
-            //             end_date: moment(this.newEvent.end_date).format()
-            //         })
-            //         .then(data => {
-            //             this.getEvents(); // update our list of events
-            //             this.resetForm(); // clear newEvent properties (e.g. title, start_date, end_date and event_time)
-            //         })
-            //         .catch(err =>
-            //             console.log("Unable to add new event!", err.response.data)
-            //         );
-            // },
             showEvent(arg) {
-                //this.addingMode = false;
-
                 const event = this.events.find(event => event.id === +arg.event.id);
 
                 this.event = new Event(event);
 
                 this.showModal = true;
-
-                //this.$bvModal.show("newEventModal");
             },
 
-            // removeEvent() {
-            //     axios
-            //         .delete("/calendar/" + this.newEvent.id)
-            //         .then(resp => {
-            //             this.resetForm();
-            //             this.getEvents();
-            //             this.addingMode = !this.addingMode;
-            //             this.$bvModal.hide("newEventModal");
-            //         })
-            //         .catch(err =>
-            //             console.log("Unable to delete event!", err.response.data)
-            //         );
-            // },
             async getEvents() {
-                await axios.get("/calendar").then(resp => {
+                this.isLoading = true;
+
+                return await axios.get("/calendar").then(resp => {
+                        this.event = new Event();
                         this.events = resp.data.data;
                         this.isLoading = false;
                         this.showModal = false;
                     }).catch(err => console.log(err.response.data));
             },
-            // resetForm() {
-            //     Object.keys(this.newEvent).forEach(key => {
-            //         return (this.newEvent[key] = "");
-            //     });
-            // }
-        },
-        watch: {
-            indexToUpdate() {
-                return this.indexToUpdate;
-            }
         }
     };
 </script>

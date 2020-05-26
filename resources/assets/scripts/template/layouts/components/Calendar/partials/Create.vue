@@ -1,11 +1,11 @@
 <template>
     <div class='card'>
-        <div class="card-header" :key="event.id" :v-text="addingMode ? 'create a new event' : 'edit an event'"></div>
+        <div class="card-header" :key="$parent.event.id" :v-text="addingMode ? 'create a new event' : 'edit an event'"></div>
         <div class="card-body">
-            <input class="form-control" placeholder="title" type="text" v-model="event.event_name"/>
-            <input class="form-control" placeholder="assignment" type="text" v-model="event.assignment"/>
-            <VueCtkDateTimePicker format="YYYY-MM-DDTHH:mm:ssZ" id="start_date" v-model="event.start_date"/>
-            <VueCtkDateTimePicker format="YYYY-MM-DDTHH:mm:ssZ" id="end_date" v-model="event.end_date"/>
+            <input class="form-control" placeholder="title" type="text" v-model="$parent.event.event_name"/>
+            <input class="form-control" placeholder="assignment" type="text" v-model="$parent.event.assignment"/>
+            <VueCtkDateTimePicker format="YYYY-MM-DDTHH:mm:ssZ" id="start_date" v-model="$parent.event.start_date"/>
+            <VueCtkDateTimePicker format="YYYY-MM-DDTHH:mm:ssZ" id="end_date" v-model="$parent.event.end_date"/>
 
             <template>
                 <b-button @click="removeEvent" size="m" v-if="!addingMode" variant="danger">Verwijderen</b-button>
@@ -19,9 +19,6 @@
 
 
 <script>
-    import moment from "moment";
-    import Event from "../../../../../core/models/Event";
-
     export default {
         name: 'Create',
 
@@ -41,41 +38,16 @@
             }
         },
 
-        mounted() {
-            if (this.id)
-                this.event = new Event(this.updatable)
-        },
-
-        data() {
-            return {
-                event: new Event()
-            }
-        },
-
         methods: {
             async updateEvent() {
-                await this.$parent.updateEvent(this.event);
-            },
-
-            cancel() {
-                this.$parent.showModal = false;
-            },
-
-            dateSelect(info) {
-                // this.addingMode = true;
-
-                console.log("selected " + info.startStr + " to " + info.endStr);
-                this.event.start_date = info.startStr;
-                this.event.end_date = info.endStr;
+                await this.$parent.updateEvent();
             },
             async addEvent() {
-                await axios.post("calendar", this.event).then(response => this.$parent.getEvents())
-                    .catch(e => console.log(e));
+                await this.$parent.addEvent();
             },
             async removeEvent() {
-                await axios.delete("calendar/" + this.event.id).then(resp => this.$parent.getEvents())
+                await axios.delete("calendar/" + this.$parent.event.id).then(resp => this.$parent.getEvents())
                     .catch(e => console.log(e));
-
             }
         }
     };
