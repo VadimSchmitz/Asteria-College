@@ -6,7 +6,7 @@ use App\Contact;
 use Faker\Generator as Faker;
 use Illuminate\Database\Eloquent\Factory;
 
-$factory->define(Contact::class, function (Faker $faker) {
+$factory->define(Contact::class, function(Faker $faker) {
     return [
         'name' => $faker->name,
         'address' => $faker->address,

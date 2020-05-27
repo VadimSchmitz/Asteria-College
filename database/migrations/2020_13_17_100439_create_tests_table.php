@@ -13,7 +13,7 @@ class CreateTestsTable extends Migration
      */
     public function up()
     {
-        Schema::create('tests', function (Blueprint $table) {
+        Schema::create('tests', function(Blueprint $table) {
             $table->id();
             $table->string('name');
 

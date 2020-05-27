@@ -8,10 +8,10 @@
     export default {
         name: 'Event',
         props: {
-           event: {
-               type: Object,
-               required: true
-           }
+            event: {
+                type: Object,
+                required: true
+            }
         },
         methods: {
             clickHandler(type) {

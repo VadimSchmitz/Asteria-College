@@ -4,9 +4,9 @@ namespace App\Http\Controllers\API;
 
 use App\Calendar;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CalendarResource;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use App\Http\Resources\CalendarResource;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -21,8 +21,8 @@ class CalendarController extends Controller
      */
     public function index(Request $request)
     {
-        $from = $request -> input('from');
-        $to = $request -> input('to');
+        $from = $request->input('from');
+        $to = $request->input('to');
 
         return CalendarResource::collection(Calendar::all());
     }
@@ -77,7 +77,7 @@ class CalendarController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  Calendar  $calendar
+     * @param Calendar $calendar
      *
      * @return Response
      */

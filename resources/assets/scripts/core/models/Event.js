@@ -6,6 +6,7 @@ export default class Event {
         this.end_date = this.formatDate(data.end) || this.formatDate(data.end_date);
         this.assignment = data.assignment;
     }
+
     formatDate(date) {
         return date;
     }

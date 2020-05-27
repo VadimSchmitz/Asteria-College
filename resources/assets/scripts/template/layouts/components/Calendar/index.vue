@@ -11,23 +11,23 @@
                             center: 'title',
                             left: 'prev next today',
                         }"
-                        :plugins="calendarPlugins"
-                        :select-mirror="true"
-                        @eventClick="showEvent"
-                        @eventDrop="eventManipulation"
-                        @eventRender="eventRender"
-                        @eventResize="eventManipulation"
-                        @select="dateSelect"
-                        contentHeight="auto"
-                        draggable="true"
-                        height="parent"
-                        hiddenDays="[]"
-                        locale="nl"
-                        maxTime="17:00:00"
-                        minTime="08:00:00"
-                        ref="fullCalendar"
-                        selectable="true"
-                />
+                      :plugins="calendarPlugins"
+                      :select-mirror="true"
+                      @eventClick="showEvent"
+                      @eventDrop="eventManipulation"
+                      @eventRender="eventRender"
+                      @eventResize="eventManipulation"
+                      @select="dateSelect"
+                      contentHeight="auto"
+                      draggable="true"
+                      height="parent"
+                      hiddenDays="[]"
+                      locale="nl"
+                      maxTime="17:00:00"
+                      minTime="08:00:00"
+                      ref="fullCalendar"
+                      selectable="true"
+        />
     </div>
 </template>
 
@@ -39,6 +39,7 @@
     import ListPlugin from "@fullcalendar/list";
     import CalendarEvent from "./partials/Event";
     import Event from "../../../../core/models/Event";
+
     const CalendarEventClass = Vue.extend(CalendarEvent);
 
     export default {
@@ -123,11 +124,11 @@
             async getEvents() {
                 this.isLoading = true;
                 return await axios.get("/calendar").then(resp => {
-                        this.event = new Event();
-                        this.events = resp.data.data;
-                        this.isLoading = false;
-                        this.showModal = false;
-                    }).catch(err => console.log(err.response.data));
+                    this.event = new Event();
+                    this.events = resp.data.data;
+                    this.isLoading = false;
+                    this.showModal = false;
+                }).catch(err => console.log(err.response.data));
             },
         }
     };

@@ -18,15 +18,15 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Voornaam</th>
-                        <th scope = "col">Achternaam</th>
+                        <th scope="col">Achternaam</th>
                         <th scope="col">Aanwezig</th>
 
                         <th>
                             <div class="card-tools d-inline float-right pr-0 mr-0 pb-0">
 
-                                    <button class="btn btn-tool" type="button" @click="toggleEdit">
-                                        <i class="fas fa-edit"></i>
-                                    </button>
+                                <button @click="toggleEdit" class="btn btn-tool" type="button">
+                                    <i class="fas fa-edit"></i>
+                                </button>
 
 
                                 <button class="btn btn-tool" data-card-widget="maximize" type="button">
@@ -47,12 +47,13 @@
                         <td>{{ student.last_name }}</td>
                         <td>
                             <div class="d-flex justify-content-between" style="max-width: 75px">
-                                <i class="my-auto far" :class="student.present ? 'fa-check text-success' : 'fa-times text-danger'"></i>
+                                <i :class="student.present ? 'fa-check text-success' : 'fa-times text-danger'"
+                                   class="my-auto far"></i>
 
-                                <span @click="change(index)"  v-show="edit"> <i class="ml-2 far fa-pencil"> </i></span>
+                                <span @click="change(index)" v-show="edit"> <i class="ml-2 far fa-pencil"> </i></span>
                             </div>
                         </td>
-<td></td>
+                        <td></td>
 
                     </tr>
                     </tbody>
