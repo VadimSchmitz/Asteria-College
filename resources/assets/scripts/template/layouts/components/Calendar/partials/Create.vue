@@ -1,45 +1,38 @@
 <template>
-    <div :key="$parent.event.id" :v-text="addingMode ? 'create a new event' : 'edit an event'"
-         class="card card-outline card-cyan">
+    <div class="card card-outline card-cyan">
         <div class="card-body pb-0">
-            <el-form :model="users" :rules="rules" name='create' ref="create">
+            <el-form :model="$parent.event" :rules="rules" name='create-edit' ref="create-edit" :key="$parent.event.id" :v-text="addingMode ? 'create a new event' : 'edit an event'">
                 <b-row>
-                    <b-col cols="3">
-                        <el-form-item :class="error ? 'is-error' : ' '" prop="title">
-                            <el-input clearable placeholder="Vak" type="text" v-model="$parent.event.event_name">
+                    <b-col cols="12">
+                        <el-form-item :class="error ? 'is-error' : ' '" prop="event_name">
+                            <el-input clearable placeholder="Vak" type="text" autofocus v-model="$parent.event.event_name">
                             </el-input>
                         </el-form-item>
                     </b-col>
-                </b-row>
-                <b-row>
-                    <b-col cols="3">
-                        <el-form-item :class="error ? 'is-error' : ' '" prop="assignment">
+                    <b-col cols="12">
+                        <el-form-item prop="assignment">
                             <el-input clearable placeholder="Opdracht" type="text" v-model="$parent.event.assignment">
                             </el-input>
                         </el-form-item>
                     </b-col>
                 </b-row>
                 <b-row>
-                    <b-col>
+                    <b-col cols="12" md="6">
                         <el-form-item :class="error ? 'is-error' : ' '" prop="start_date">
-                            <div>
-                                <el-date-picker
+                                <el-date-picker class="calendar-input"
                                         v-model="$parent.event.start_date"
                                         type="datetime"
                                         placeholder="Selecteer een begin datum en tijd">
                                 </el-date-picker>
-                            </div>
                         </el-form-item>
                     </b-col>
-                    <b-col>
+                    <b-col cols="12" md="6">
                         <el-form-item :class="error ? 'is-error' : ' '" prop="end_date">
-                            <div>
-                                <el-date-picker
+                                <el-date-picker class="calendar-input"
                                         v-model="$parent.event.end_date"
                                         type="datetime"
                                         placeholder="Selecteer een eind datum en tijd">
                                 </el-date-picker>
-                            </div>
                         </el-form-item>
                     </b-col>
                 </b-row>
@@ -67,7 +60,7 @@
         name: 'Create',
 
         components: {
-            ElDatePicker: () => import( /* webpackChunkName: "form-item2-component" */ 'element-ui/lib/date-picker'),
+            ElDatePicker: () => import( /* webpackChunkName: "form-date-picker-input-component" */ 'element-ui/lib/date-picker'),
             ElForm: () => import( /* webpackChunkName: "form-component" */ 'element-ui/lib/form'),
             ElFormItem: () => import( /* webpackChunkName: "form-item-component" */ 'element-ui/lib/form-item'),
             ElButton: () => import( /* webpackChunkName: "button-component" */  'element-ui/lib/button'),
@@ -84,11 +77,10 @@
         data() {
             return {
                 rules: {
-                    title: [{validator: validateTitle, trigger: 'blur'}],
+                    event_name: [{validator: validateTitle, trigger: 'blur'}],
                     start_date: [{validator: validateStartDate, trigger: 'blur'}],
                     end_date: [{validator: validateEndDate, trigger: 'blur'}],
                 },
-                users: new User(),
                 error: null,
                 loading: false
             }

@@ -45,7 +45,7 @@
         name: 'Calendar',
         components: {
             Fullcalendar: () => import(  /* webpackChunkName: "fullcalendar-component" */  '@fullcalendar/vue'),
-            CreateOrEdit: () => import(  /* webpackChunkName: "create-or-edit-component" */  './partials/Create'),
+            CreateOrEdit: () => import(  /* webpackChunkName: "calendar-create-or-edit-component" */  './partials/Create'),
             ElCollapseTransition: () => import(  /* webpackChunkName: "collapse-transition-component" */ 'element-ui/lib/transitions/collapse-transition'),
         },
 
@@ -83,7 +83,6 @@
                 event.$mount();
                 //assign created component to our eventObj with uuid as key (to destroy in future)
                 this.eventsObj[event._uid] = event;
-
                 //append our compiled component to .fc-event
                 info.el.setAttribute("data-vue-id", event._uid);
                 info.el.appendChild(event.$el);
@@ -94,14 +93,11 @@
                 await this.updateEvent(manipulatedEvent);
             },
             async addEvent() {
-                await axios.post("calendar", this.event).then(response => this.getEvents())
+                await axios.post("calendar", this.event)
+                    .then(response => this.getEvents())
                     .catch(e => console.log(e));
-
-                
-
-
-
             },
+
             async updateEvent(manipulatedEvent = this.event) {
                 await axios.put("/calendar/" + manipulatedEvent.id, manipulatedEvent)
                     .then(resp => this.getEvents())
@@ -110,23 +106,22 @@
 
             async dateSelect(info) {
                 this.event = new Event({
-                    start_date: info.startStr,
-                    end_date: info.endStr
+                    start_date: info.start,
+                    end_date: info.end
                 });
+                console.log(this.event.start_date + '' + this.event.end_date)
+
                 return this.showModal = true;
             },
 
             showEvent(arg) {
                 const event = this.events.find(event => event.id === +arg.event.id);
-
                 this.event = new Event(event);
-
                 this.showModal = true;
             },
 
             async getEvents() {
                 this.isLoading = true;
-
                 return await axios.get("/calendar").then(resp => {
                         this.event = new Event();
                         this.events = resp.data.data;

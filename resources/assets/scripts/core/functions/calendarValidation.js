@@ -1,13 +1,12 @@
 export let validateTitle = (rule, value, callback) => {
     if (!value)
-        return callback(new Error('Vul alsjeblieft een titel in'));
+        return callback(new Error('Vul alsjeblieft een vak in'));
     else return callback();
 };
 export let validateStartDate = (rule, value, callback) => {
     if (!value)
-        return callback(new Error('Vul alsjeblieft een start datum in'));
+        return callback(new Error('Vul alsjeblieft een begin datum in'));
 else return callback();
-
 };
 
 export let validateEndDate = (rule, value, callback) => {
