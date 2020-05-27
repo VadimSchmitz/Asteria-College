@@ -1,12 +1,13 @@
 <?php
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+/** @var Factory $factory */
 
 use App\Reports;
 use Faker\Generator as Faker;
+use Illuminate\Database\Eloquent\Factory;
 
-$factory->define(Reports::class, function (Faker $faker) {
+$factory->define(Reports::class, function(Faker $faker) {
     return [
-        'report'=>$faker->paragraph
+        'report' => $faker->paragraph
     ];
 });

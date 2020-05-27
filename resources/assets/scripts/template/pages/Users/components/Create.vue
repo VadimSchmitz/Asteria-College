@@ -17,7 +17,8 @@
                         </el-form-item>
 
                         <el-form-item :class="error ? 'is-error' : ' '" prop="name">
-                            <el-input clearable placeholder="Gebruikersnaam" min-length="3" type="text" v-model="credentials.name">
+                            <el-input clearable min-length="3" placeholder="Gebruikersnaam" type="text"
+                                      v-model="credentials.name">
                             </el-input>
                         </el-form-item>
                     </b-col>
@@ -47,26 +48,26 @@
                 <b-row>
                     <b-col cols="5">
                         <el-form-item :class="error ? 'is-error' : ''" prop="password">
-                            <el-input placeholder="Wachtwoord" show-password
-                                      type="password" min-length="5" v-model="credentials.password">
+                            <el-input min-length="5" placeholder="Wachtwoord"
+                                      show-password type="password" v-model="credentials.password">
                             </el-input>
                         </el-form-item>
                     </b-col>
                     <b-col cols="2">
 
                     </b-col>
-                        <b-col cols="5">
-                            <el-form-item class="my-auto text-center">
-                                <el-switch
-                                        style="display: inline-block"
-                                        v-model="credentials.is_admin"
-                                        active-color="#13ce66"
-                                        inactive-color="#ff4949"
-                                        active-text="Super administrator"
-                                        inactive-text="Leraar">
-                                </el-switch>
-                            </el-form-item>
-                        </b-col>
+                    <b-col cols="5">
+                        <el-form-item class="my-auto text-center">
+                            <el-switch
+                                    active-color="#13ce66"
+                                    active-text="Super administrator"
+                                    inactive-color="#ff4949"
+                                    inactive-text="Leraar"
+                                    style="display: inline-block"
+                                    v-model="credentials.is_admin">
+                            </el-switch>
+                        </el-form-item>
+                    </b-col>
                 </b-row>
 
 

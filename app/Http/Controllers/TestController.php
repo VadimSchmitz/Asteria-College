@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Test;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class TestController extends Controller
 {
@@ -30,8 +31,9 @@ class TestController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     *
+     * @return Response
      */
     public function store(Request $request)
     {
@@ -41,8 +43,9 @@ class TestController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Test  $test
-     * @return \Illuminate\Http\Response
+     * @param Test $test
+     *
+     * @return Response
      */
     public function show(Test $test)
     {
@@ -52,8 +55,9 @@ class TestController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Test  $test
-     * @return \Illuminate\Http\Response
+     * @param Test $test
+     *
+     * @return Response
      */
     public function edit(Test $test)
     {
@@ -63,9 +67,10 @@ class TestController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Test  $test
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param Test    $test
+     *
+     * @return Response
      */
     public function update(Request $request, Test $test)
     {
@@ -75,8 +80,9 @@ class TestController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Test  $test
-     * @return \Illuminate\Http\Response
+     * @param Test $test
+     *
+     * @return Response
      */
     public function destroy(Test $test)
     {

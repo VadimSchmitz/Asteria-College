@@ -1,6 +1,7 @@
 <template>
     <div class='card'>
-        <div class="card-header" :key="$parent.event.id" :v-text="addingMode ? 'create a new event' : 'edit an event'"></div>
+        <div :key="$parent.event.id" :v-text="addingMode ? 'create a new event' : 'edit an event'"
+             class="card-header"></div>
         <div class="card-body">
             <input class="form-control" placeholder="title" type="text" v-model="$parent.event.event_name"/>
             <input class="form-control" placeholder="assignment" type="text" v-model="$parent.event.assignment"/>
@@ -10,8 +11,8 @@
             <template>
                 <b-button @click="removeEvent" size="m" v-if="!addingMode" variant="danger">Verwijderen</b-button>
                 <b-button @click="$parent.showModal = false" size="m" variant="secondary">Annuleren</b-button>
-                <b-button @click="addEvent" size="m" variant="success" v-if="addingMode">Toevoegen</b-button>
-                <b-button @click="updateEvent" size="m" variant="success" v-else>Wijzigen</b-button>
+                <b-button @click="addEvent" size="m" v-if="addingMode" variant="success">Toevoegen</b-button>
+                <b-button @click="updateEvent" size="m" v-else variant="success">Wijzigen</b-button>
             </template>
         </div>
     </div>

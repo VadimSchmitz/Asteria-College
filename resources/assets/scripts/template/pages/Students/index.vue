@@ -3,7 +3,7 @@
         <el-collapse-transition>
             <b-col cols="12" v-if="alert.type">
                 <div :class="'d-print-none callout callout-'+ alert.type">
-                    <strong>{{ alert.type === 'success' ? 'Gelukt!' : 'Foutmelding:' }}</strong><br />
+                    <strong>{{ alert.type === 'success' ? 'Gelukt!' : 'Foutmelding:' }}</strong><br/>
                     {{ alert.message }}
                 </div>
             </b-col>
@@ -14,11 +14,11 @@
                 <create class='d-print-none' v-show="create"/>
             </el-collapse-transition>
 
-             <overview :bus="bus" />
+            <overview :bus="bus"/>
         </b-col>
 
         <b-col cols="12" lg="6" xl="4">
-            <options class='d-print-none' />
+            <options class='d-print-none'/>
         </b-col>
     </b-row>
 </template>
