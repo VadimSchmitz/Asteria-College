@@ -23,7 +23,6 @@
                         </el-form-item>
                     </b-col>
                 </b-row>
-
                 <b-row>
                     <b-col cols="5">
                         <el-form-item :class="error ? 'is-error' : ' '" prop="first_name">
