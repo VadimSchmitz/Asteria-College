@@ -1,6 +1,9 @@
 <template>
     <div class="callout callout-danger calendar-pl-custom">
-        <create-or-edit :id="(event.id === 0) ? null : event.id" :key='showModal' v-if="showModal"></create-or-edit>
+
+        <el-collapse-transition>
+            <create-or-edit :id="(event.id === 0) ? null : event.id" :key='showModal' v-if="showModal"></create-or-edit>
+        </el-collapse-transition>
                 <Fullcalendar :editable="!isLoading" :events="events"
                         :firstDay="1"
                         :header="{
@@ -42,7 +45,8 @@
         name: 'Calendar',
         components: {
             Fullcalendar: () => import(  /* webpackChunkName: "fullcalendar-component" */  '@fullcalendar/vue'),
-            CreateOrEdit: () => import(  /* webpackChunkName: "create-or-edit-component" */  './partials/Create')
+            CreateOrEdit: () => import(  /* webpackChunkName: "create-or-edit-component" */  './partials/Create'),
+            ElCollapseTransition: () => import(  /* webpackChunkName: "collapse-transition-component" */ 'element-ui/lib/transitions/collapse-transition'),
         },
 
         data() {
@@ -92,6 +96,11 @@
             async addEvent() {
                 await axios.post("calendar", this.event).then(response => this.getEvents())
                     .catch(e => console.log(e));
+
+                
+
+
+
             },
             async updateEvent(manipulatedEvent = this.event) {
                 await axios.put("/calendar/" + manipulatedEvent.id, manipulatedEvent)
