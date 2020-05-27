@@ -5,8 +5,9 @@
             <div v-if="coursesLoading">
                 Loading...
             </div>
-            <div :style="'color: ' + course.color" v-for="course in courses" v-else>
+            <div :style="'background: ' + course.color" v-for="course in courses" v-else>
                 {{course.name}}
+                {{course.level}}
             </div>
         </div>
 
@@ -53,14 +54,14 @@
 
 
             <el-form-item :class="error ? 'is-error' : ''" prop="name">
-                <el-input placeholder="Coursetitel" clearable
+                <el-input placeholder="titel" clearable
                           type="text" v-model="course.name">
                     <template slot="prepend"><el-color-picker v-model="course.color" size="medium"></el-color-picker></template>
                 </el-input>
             </el-form-item>
 
             <el-form-item :class="error ? 'is-error' : ''" prop="niveau">
-                <el-input placeholder="courseniveau" clearable
+                <el-input placeholder="niveau" clearable
                           type="number" v-model="course.level">
                     <template slot="prepend"></template>
                 </el-input>
