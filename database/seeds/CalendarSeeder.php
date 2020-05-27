@@ -1,6 +1,7 @@
 <?php
 
 use App\Calendar;
+use App\Courses;
 use Illuminate\Database\Seeder;
 
 class CalendarSeeder extends Seeder
@@ -12,6 +13,8 @@ class CalendarSeeder extends Seeder
      */
     public function run()
     {
+        factory(Calendar::class, 30)->create();
+
         Calendar::create([
             'event_name' => 'Engels',
             'assignment' => 'Make practice 1-22',

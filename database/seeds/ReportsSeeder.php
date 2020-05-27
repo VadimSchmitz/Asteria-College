@@ -12,6 +12,6 @@ class ReportsSeeder extends Seeder
      */
     public function run()
     {
-        factory(Reports::class, 10)->create();
+        factory(Reports::class, 20)->create();
     }
 }
