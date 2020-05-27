@@ -22,6 +22,15 @@ class DatabaseSeeder extends Seeder
         $this->call(TestSeeder::class);
 
         User::create([
+            'name' => 'Calvin',
+            'first_name' => "Calvin",
+            "last_name" => "Hannewijk",
+            'email' => 'hann0009@hz.nl',
+            'email_verified_at' => now(),
+            'password' => Hash::make("admin"),
+        ]);
+
+        User::create([
             'name' => 'Evan',
             'first_name' => "Evan",
             "last_name" => "Verdoorn",

@@ -84,6 +84,25 @@ export const routes = [
             icon: 'user'
         }
     },
+    {
+        path: '/reports',
+        name: 'Reports',
+        component: getComponent('Reports'),
+        meta: {
+            auth: true,
+            icon: 'browser'
+        },
+    },
+    {
+        path: '/reports/:id',
+        name: 'Students report',
+        component: getComponent('Reports', 'Show'),
+        hidden: true,
+        meta: {
+            auth: true,
+            icon: 'browser'
+        },
+    },
     // TODO: 404 handler
     {
         path: '/404',
