@@ -17,8 +17,8 @@ class CreateStudentsTable extends Migration
             $table->id();
             $table->string('first_name');
             $table->string('last_name');
-            $table->boolean('present');
-            $table->string('class');
+            $table->boolean('present')->nullable();
+            $table->string('class')->nullable();
             $table->timestamps();
         });
     }

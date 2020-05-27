@@ -5,9 +5,9 @@
         </div>
 
         <div class="p-0">
-            <table class="table table-striped">
+            <table class="table table-striped d-print-table">
                 <thead>
-                <tr>
+                <tr class='d-print-head'>
                     <th colspan="2" scope="col"></th>
                     <th scope="col">
                         <div class="card-tools d-inline float-right pr-0 mr-0 pb-0">
@@ -21,16 +21,17 @@
 
                             <button class="btn btn-tool" data-card-widget="maximize" type="button">
                                 <i class="far fa-expand"></i>
-                            </button>
+                            </button>.
+
                         </div>
                     </th>
                 </tr>
                 </thead>
 
                 <tbody v-if="students">
-                <tr :key="student.id" v-for="student in students">
+                <tr :key="student.id" class='d-print-row' v-for="student in students">
                     
-                    <td colspan="2">
+                    <td class='d-print-col' colspan="2">
                         <a class="text-bold">{{ student.first_name }} {{ student.last_name }}
                         </a>
                     </td>
@@ -45,6 +46,7 @@
 <script>
     export default {
         name: 'Overview',
+        props: ['bus'],
         components: {
             Avatar: () => import(  /* webpackChunkName: "avatar-component" */  '../../../layouts/components/Avatar'),
         },
@@ -57,6 +59,7 @@
         },
         async mounted() {
             await this.fetch();
+            this.bus.$on('submit', this.refresh)
         },
         methods: {
             async fetch() {
