@@ -29,6 +29,9 @@ Route::middleware('auth')->namespace('API')->group(function() {
     Route::apiResources([
         'students' => 'StudentsController',
         'calendar' => 'CalendarController',
+        'reports' => 'ReportsController',
         'courses' => 'CoursesController'
     ]);
+
+    Route::get('students/{id}/reports', 'ReportsController@showByStudentID');
 });
