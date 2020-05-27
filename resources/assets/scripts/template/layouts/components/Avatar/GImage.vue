@@ -1,15 +1,13 @@
 <template>
-    <section>
-        <!--    Below a fallback when Gravatar response is 404    -->
-        <user-initials :only-first='false' :user='user' v-if="error"></user-initials>
-        <img :email="email" :src="url" @error="onError" @load="onLoad" alt="" v-bind="attrs" v-else v-on="listeners"/>
-    </section>
+    <!--    Below a fallback when Gravatar response is 404    -->
+    <user-initials :only-first='false' :user='user' v-if="error"></user-initials>
+    <img :email="email" :src="url" @error="onError" @load="onLoad" alt="" v-bind="attrs" v-else v-on="listeners"/>
 </template>
 
 <script>
-    import md5 from "md5";
+        import md5 from "md5";
 
-    export default {
+        export default {
         name: 'GImage',
         inheritAttrs: false,
         props: {
@@ -42,13 +40,11 @@
                 required: false
             }
         },
-
         computed: {
             url() {
                 const protocol = this.protocol.slice(-1) === ':'
                     ? this.protocol
                     : `${this.protocol}:`;
-
                 const img = [
                     `${protocol === ':' ? '' : protocol}//www.gravatar.com/avatar/`,
                     this.hash || md5(this.email.trim().toLowerCase()),
@@ -56,19 +52,14 @@
                     `&d=${this.defaultImg}`,
                     `&r=${this.rating}`
                 ];
-
                 return img.join('');
             },
-
             listeners() {
                 const {load, error, ...listeners} = this.$listeners;
-
                 return listeners;
             },
-
             attrs() {
                 const {src, alt, ...attrs} = this.$attrs;
-
                 return attrs;
             }
         },
@@ -84,7 +75,6 @@
             onLoad(...args) {
                 this.$emit('load', ...args);
             },
-
             onError() {
                 this.error = true
             }

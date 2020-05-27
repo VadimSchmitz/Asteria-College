@@ -2,7 +2,7 @@
     <b-row>
         <el-collapse-transition>
             <b-col cols="12" v-if="alert.type">
-                <div :class="'callout callout-'+ alert.type">
+                <div :class="'d-print-none callout callout-'+ alert.type">
                     <strong>{{ alert.type === 'success' ? 'Gelukt!' : 'Foutmelding:' }}</strong><br />
                     {{ alert.message }}
                 </div>
@@ -11,14 +11,14 @@
 
         <b-col cols="12" lg="6" xl="8">
             <el-collapse-transition>
-                <create v-show="create"/>
+                <create class='d-print-none' v-show="create"/>
             </el-collapse-transition>
 
-            <overview :bus="bus" />
+             <overview :bus="bus" />
         </b-col>
 
         <b-col cols="12" lg="6" xl="4">
-            <options/>
+            <options class='d-print-none' />
         </b-col>
     </b-row>
 </template>
@@ -27,11 +27,11 @@
     import Vue from 'vue';
 
     export default {
-        name: 'Users',
+        name: 'Students',
         components: {
-            Overview: () => import(  /* webpackChunkName: "user-overview-component" */  './components/Overview'),
-            Options: () => import(  /* webpackChunkName: "user-options-component" */  './components/Options'),
-            Create: () => import(  /* webpackChunkName: "user-create-component" */  './components/Create'),
+            Overview: () => import(  /* webpackChunkName: "students-overview-component" */  './components/Overview'),
+            Options: () => import(  /* webpackChunkName: "students-options-component" */  './components/Options'),
+            Create: () => import(  /* webpackChunkName: "students-create-component" */  './components/Create'),
             ElCollapseTransition: () => import(  /* webpackChunkName: "collapse-transition-component" */ 'element-ui/lib/transitions/collapse-transition'),
         },
         data() {

@@ -5,10 +5,10 @@
         </div>
 
         <div class="p-0">
-            <table class="table table-striped mb-0">
+            <table class="table table-striped d-print-table">
                 <thead>
-                <tr>
-                    <th colspan="3" scope="col"></th>
+                <tr class='d-print-head'>
+                    <th colspan="2" scope="col"></th>
                     <th scope="col">
                         <div class="card-tools d-inline float-right pr-0 mr-0 pb-0">
                             <button @click="$parent.toggleCreate" class="btn btn-tool" type="button">
@@ -21,36 +21,23 @@
 
                             <button class="btn btn-tool" data-card-widget="maximize" type="button">
                                 <i class="far fa-expand"></i>
-                            </button>
+                            </button>.
+
                         </div>
                     </th>
                 </tr>
                 </thead>
 
-                <tbody v-if="users">
-                    <tr :key="user.id" v-for="user in users">
-                        <td style='width: 40px'>
-                            <el-badge :value="user.is_admin ? 'ADM' : ''" class="item">
-                                <avatar :size="45" :user="user"></avatar>
-                            </el-badge>
-                        </td>
-                        <td colspan="2">
-                            <a class="text-bold">{{ user.first_name }} {{ user.prefix }} {{ user.last_name }}
-                                <small>({{ user.name }})</small></a><br/>
-                            <small>{{ user.email }}</small>
-                        </td>
-                        <td>
-                            <el-checkbox v-model="user.checked" v-show="$parent.edit">
-                            </el-checkbox>
-                        </td>
-                    </tr>
-                </tbody>
-
-                <tbody v-else-if="error">
-                <tr :key="error">
-                    <td colspan="3">{{ error.message }}</td>
+                <tbody v-if="students">
+                <tr :key="student.id" class='d-print-row' v-for="student in students">
+                    
+                    <td class='d-print-col' colspan="2">
+                        <a class="text-bold">{{ student.first_name }} {{ student.last_name }}
+                        </a>
+                    </td>
                 </tr>
                 </tbody>
+
             </table>
         </div>
     </div>
@@ -61,24 +48,26 @@
         name: 'Overview',
         props: ['bus'],
         components: {
-            ElBadge: () => import(  /* webpackChunkName: "badge-component" */  'element-ui/lib/badge'),
-            ElCheckbox: () => import(  /* webpackChunkName: "checkbox-component" */  'element-ui/lib/checkbox'),
             Avatar: () => import(  /* webpackChunkName: "avatar-component" */  '../../../layouts/components/Avatar'),
         },
         data() {
             return {
-                users: null,
+                students: null,
                 error: null,
                 loading: true
             }
         },
+        async mounted() {
+            await this.fetch();
+            this.bus.$on('submit', this.refresh)
+        },
         methods: {
             async fetch() {
-                await axios.get(`/users`)
+                await axios.get(`/students`)
                     .then(response => {
                         setTimeout(() => {
                             this.loading = false;
-                            this.users = response.data;
+                            this.students = response.data;
                         }, 400);
                     }).catch(e => {
                         this.loading = false;
@@ -87,13 +76,8 @@
             },
             async refresh() {
                 this.loading = true;
-                return await this.fetch();
+                this.students = await this.fetch();
             }
-        },
-        async mounted() {
-            await this.fetch();
-            this.bus.$on('submit', this.refresh)
-        },
-
+        }
     }
 </script>

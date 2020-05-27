@@ -8,11 +8,13 @@ mix.autoload({jquery: ['$', 'jQuery', 'window.jQuery']})
     .js('resources/assets/scripts/app.js', 'app.js')
     .js('resources/assets/plugins/AdminLTE.js', 'AdminLTE.js')
 
-    .sass('resources/assets/scss/app.scss', path.resolve(__dirname, '../css/web.css'), {implementation: require('node-sass')})
-    .sass('resources/assets/scss/element/index.scss', path.resolve(__dirname, '../css/element.css'), {implementation: require('node-sass')})
+    .sass('resources/assets/scss/app.scss', 'assets/css/web.css', {implementation: require('node-sass')})
+    .sass('resources/assets/scss/element/index.scss', 'assets/css/element.css', {implementation: require('node-sass')})
+    .sass('resources/assets/scss/components/index.scss', 'assets/css/components.css', {implementation: require('node-sass')})
+
 
     .options({
-        processCssUrls: false,
+        processCssUrls: true,
         cssNano: {
             discardComments: {removeAll: true},
             discardDuplicates: isProduction,
@@ -67,10 +69,10 @@ mix.autoload({jquery: ['$', 'jQuery', 'window.jQuery']})
             },
             output: {
                 umdNamedDefine: true,
-                publicPath: '/assets/scripts/',
-                path: path.resolve(__dirname, 'public/assets/scripts'),
-                filename: '[name].js',
-                chunkFilename: '[name].js',
+                publicPath: '/',
+                path: path.resolve(__dirname, 'public/'),
+                filename: 'assets/scripts/[name].js',
+                chunkFilename: 'assets/scripts/[name].js',
             },
         };
     })

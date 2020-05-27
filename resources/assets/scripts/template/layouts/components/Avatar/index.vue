@@ -1,8 +1,8 @@
 <template>
     <el-avatar :size='size'
-               style="box-shadow: 0 3px 6px rgba(0,0,0,.20),0 3px 6px rgba(0,0,0,.32); background-color: rgba(17,122,139,0.74)">
+               style="box-shadow: 0 3px 6px rgba(0,0,0,.20),0 3px 6px rgba(0,0,0,.32); background-color: rgba(169,0,241,0.79)">
         <!--    Include de Gravatar    -->
-        <g-image :email="mail" :size='size' :user='user' style="margin: -2px 0 0 0"/>
+        <g-image :email="mail" :size='size' :user='user'/>
     </el-avatar>
 </template>
 
@@ -33,12 +33,8 @@
                 this.mail = this.user.email
         },
         components: {
-            ElAvatar: () => import( /* webpackChunkName: "s-avatar-component" */ 'element-ui/lib/avatar'),
-            GImage: () => ({
-                component: import(  /* webpackChunkName: "gravatar-image-component" */  './GImage'),
-                loading: import( /* webpackChunkName: "user-initials-component" */ './UserInitials'),      // Show placeholder while loading
-                error: import( /* webpackChunkName: "user-initials-component" */ './UserInitials')         // Also when the image fails to load
-            })
+            ElAvatar: () => import( /* webpackChunkName: "a-avatar-component" */ 'element-ui/lib/avatar'),
+            GImage: () => import(  /* webpackChunkName: "gravatar-image-component" */  './GImage')
         },
     }
 </script>

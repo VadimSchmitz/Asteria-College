@@ -12,16 +12,23 @@
             <ul class="nav nav-pills flex-column">
                 <li class="nav-item active">
                     <a @click="$parent.toggleCreate" class="nav-link cursor-pointer">
-                        Gebruiker aanmaken
+                        Student aanmaken
                         <span class="badge bg-success float-right"><i class="far fa-plus"></i></span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" @click="$parent.toggleEdit">
-                        Gebruikers wijzigen
+                <li class="nav-item active">
+                    <a class="nav-link">
+                        Student wijzigen
                         <span class="badge bg-danger float-right"><i class="far fa-edit"></i></span>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link">
+                        Student verwijderen
+                        <span class="badge bg-danger float-right"><i class="far fa-edit"></i></span>
+                    </a>
+                </li>
+
             </ul>
         </div>
     </div>

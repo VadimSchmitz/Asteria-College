@@ -17,8 +17,8 @@
                 </div>
 
                 <div class="info">
-                    <a class="text-bold mb-0" href="#">{{user.firstName + ' ' + user.lastName}}</a><br/>
-                    <i>Administrator</i>
+                    <a class="text-bold mb-0" href="#">{{user.first_name}} {{user.prefix}} {{user.last_name}}</a><br/>
+                    <i>{{user.is_admin ? 'Administrator' : 'Leraar'}}</i>
                 </div>
             </div>
 
@@ -36,15 +36,13 @@
 
                         <ul class='nav has-treeview' v-if="route.children">
                             <li class="nav-item" v-for="childRoute in route.children">
-                                <router-link
-                                        :class="(childRoute.path === currentRoute.path) ? 'nav-link active' : 'nav-link'"
+                                <router-link :class="(childRoute.path === currentRoute.path) ? 'nav-link active' : 'nav-link'"
                                         :to="childRoute.path">
                                     <i :class="'fa-' + childRoute.meta.icon" class="nav-icon fal "></i>
                                     <p>{{ childRoute.name }}</p>
                                 </router-link>
                             </li>
                         </ul>
-
                     </li>
                 </ul>
             </nav>
