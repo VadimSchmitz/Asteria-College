@@ -27,24 +27,16 @@
                 </tr>
                 </thead>
 
-                <tbody v-if="users">
-                <tr :key="user.id" v-for="user in users">
-                    <td style='width: 40px;'>
-                        <avatar :size="45" :user="user" class="d-block my-1"></avatar>
-                    </td>
+                <tbody v-if="students">
+                <tr :key="student.id" v-for="student in students">
+                    
                     <td colspan="2">
-                        <a class="text-bold">{{ user.first_name }} {{ user.last_name }}
-                            <small>({{ user.name }})</small></a><br/>
-                        <small>{{ user.email }}</small>
+                        <a class="text-bold">{{ student.first_name }} {{ student.last_name }}
+                        </a>
                     </td>
                 </tr>
                 </tbody>
 
-                <tbody v-else-if="error">
-                <tr :key="error">
-                    <td colspan="3">{{ error.message }}</td>
-                </tr>
-                </tbody>
             </table>
         </div>
     </div>
@@ -58,7 +50,7 @@
         },
         data() {
             return {
-                users: null,
+                students: null,
                 error: null,
                 loading: true
             }
@@ -72,7 +64,7 @@
                     .then(response => {
                         setTimeout(() => {
                             this.loading = false;
-                            this.users = response.data;
+                            this.students = response.data;
                         }, 400);
                     }).catch(e => {
                         this.loading = false;
@@ -81,7 +73,7 @@
             },
             async refresh() {
                 this.loading = true;
-                this.users = await this.fetch();
+                this.students = await this.fetch();
             }
         }
     }

@@ -24,6 +24,8 @@ Route::namespace('API')->group(function() {
     Route::apiResources(['users' => 'UserController']);
 });
 
+
+
 Route::middleware('auth')->namespace('API')->group(function() {
     Route::apiResources([
         'students'=>'StudentsController',

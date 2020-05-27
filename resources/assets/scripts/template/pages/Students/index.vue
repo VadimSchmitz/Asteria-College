@@ -15,6 +15,8 @@
 </template>
 
 <script>
+    import Vue from 'vue';
+
     export default {
         name: 'Students',
         components: {
@@ -25,12 +27,22 @@
         },
         data() {
             return {
-                create: false
+                create: false,
+                bus: new Vue(),
             }
         },
+        
         methods: {
             toggleCreate() {
+                this.edit = false;
                 return this.create = !this.create;
+            },
+            toggleEdit() {
+                this.create = false;
+                return this.edit = !this.edit;
+            },
+            reload() {
+                this.bus.$emit('submit')
             }
         }
     }
