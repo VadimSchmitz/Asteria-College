@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Http\Controllers\Controller;
 use App\User;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 
-class UserController extends \App\Http\Controllers\Controller
+class UserController extends Controller
 {
     public function __invoke()
     {
@@ -27,21 +27,26 @@ class UserController extends \App\Http\Controllers\Controller
      *
      * @param Request $request
      *
-     * @return Response
-     * @throws ValidationException
+     * @return JsonResponse
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required',
+        $v = Validator::make($request->all(), [
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:5',
+            'name' => 'required|min:3|unique:users',
+            'first_name' => 'required',
+            'last_name' => 'required',
         ]);
 
-        return User::create([
-            'name' => $request['name'],
-            'email' => $request['email'],
-            'password' => Hash::make($request['password']),
-        ]);
+        if ($v->fails())
+            return response()->json(['status' => 'error', 'message' => $v->errors()], 422);
+
+        $user = User::create($request->all());
+        $user->password = bcrypt($request->password);
+        $user->save();
+
+        return response()->json(['status' => 'success', 'data' => $user], 200);
     }
 
     /**

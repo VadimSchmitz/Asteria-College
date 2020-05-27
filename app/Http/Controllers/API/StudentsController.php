@@ -7,6 +7,7 @@ use App\Students;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Validator;
 
 class StudentsController extends Controller
 {
@@ -29,12 +30,17 @@ class StudentsController extends Controller
      */
     public function store(Request $request)
     {
+        $v = Validator::make($request->all(), [
+            'first_name' => 'required',
+            'last_name' => 'required'
+        ]);
 
-        if($request === null){
-            return response()->json(['error' => 'Fill all fields'], 400);
-        }
-        $student = Students::create($request->all())->validateStudent();
-        return response()->json(['student' => $student], 201);
+        if ($v->fails())
+            return response()->json(['status' => 'error', 'message' => $v->errors()], 422);
+
+        $student = Students::create($request->all());
+
+        return response()->json(['status' => 'success', 'data' => $student], 201);
     }
 
     /**
@@ -52,13 +58,13 @@ class StudentsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request  $request
+     * @param Request $request
      *
      * @return Response
      */
     public function update(int $id, Request $request)
     {
-        if(!$request || !$id)
+        if (!$request || !$id)
             return response()->json(['error' => 'Fill all fields'], 400);
 
         $student = Students::find($id);
@@ -79,14 +85,5 @@ class StudentsController extends Controller
     {
         return response()->json(['error' => 'This function is not available yet'], 403);
     }
-    public function validaStudent(Request $request)
-    {
-        return $request->validate([
-            'first_name' => ['required', 'string'],
-            'last_name' => ['required', 'string'],
-            'class' => ['required', 'string'],
-            'present'=>[ 'required','boolean'],
 
-        ]);
-    }
 }

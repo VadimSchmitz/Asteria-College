@@ -16,7 +16,7 @@ class User extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'first_name', 'last_name', 'password',
+        'name', 'email', 'first_name', 'prefix', 'last_name', 'password', 'is_admin'
     ];
 
     /**
@@ -35,6 +35,7 @@ class User extends Authenticatable implements JWTSubject
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'is_admin' => 'boolean'
     ];
 
 
@@ -45,6 +46,7 @@ class User extends Authenticatable implements JWTSubject
 
     /**
      * Get the identifier
+     *
      * @return JWTSubject
      */
     public function getJWTIdentifier()
@@ -54,6 +56,7 @@ class User extends Authenticatable implements JWTSubject
 
     /**
      * Get custom claims
+     *
      * @return array
      */
     public function getJWTCustomClaims()

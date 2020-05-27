@@ -1,0 +1,14 @@
+// Import component styling
+@import "~@fullcalendar/core/main.min";
+@import "~@fullcalendar/daygrid/main.min";
+@import "~@fullcalendar/timegrid/main.min";
+
+.calendar {
+  &-pl-custom {
+    padding-left:  1px;
+    padding-right: 0;
+  }
+  &-input {
+    width: 100% !important;
+  }
+}

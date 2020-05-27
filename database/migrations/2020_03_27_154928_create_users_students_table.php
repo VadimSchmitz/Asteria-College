@@ -14,7 +14,7 @@ class CreateUsersStudentsTable extends Migration
     public function up()
     {
 
-        Schema::create('users_students', function (Blueprint $table) {
+        Schema::create('users_students', function(Blueprint $table) {
             $table->unsignedBigInteger('user_id')->unsigned();
             $table->unsignedBigInteger('student_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

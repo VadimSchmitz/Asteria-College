@@ -11,7 +11,7 @@ class Students extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'present'];
+    protected $fillable = ['first_name', 'last_name', 'class', 'present'];
 
     /**
      * Hidden attributes in arrays
@@ -20,6 +20,10 @@ class Students extends Model
      */
     protected $hidden = [
         'created_at', 'updated_at'
+    ];
+
+    protected $casts = [
+        'present' => 'boolean'
     ];
 
     public function users()
@@ -41,6 +45,4 @@ class Students extends Model
     {
         return $this->belongsToMany('App\Course');
     }
-
-
 }

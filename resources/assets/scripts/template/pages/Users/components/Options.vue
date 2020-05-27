@@ -17,7 +17,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link">
+                    <a @click="$parent.toggleEdit" class="nav-link">
                         Gebruikers wijzigen
                         <span class="badge bg-danger float-right"><i class="far fa-edit"></i></span>
                     </a>
