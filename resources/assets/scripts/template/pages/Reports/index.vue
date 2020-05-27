@@ -13,7 +13,7 @@
 
                 </thead>
                 <tbody v-if="students">
-                <tr :key="student.id" v-for="(student, index) in students" @click="goToReports(student.id)">
+                <tr :key="student.id" v-for="student in students" @click="goToReports(student.id)">
 
                     <td>{{ student.first_name }}</td>
                     <td>{{ student.last_name }}</td>
@@ -53,8 +53,7 @@
                     }).catch(error => console.error(error));
             },
             goToReports(id) {
-                this.$router.push({ name: 'Studentreport', params: { student: id } })
-                // this.$router.push({ name: 'Dashboard' })
+                this.$router.push({path: '/reports/' + id});
             }
         }
     }

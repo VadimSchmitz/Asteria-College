@@ -1,19 +1,17 @@
 <template>
-    <div class="card card-outline card-info mt-3">
-        <div class="overlay" v-show="reportsLoading && reports == null">
+    <div class="card card-outline card-info mt-3" v-if="reports">
+        <div class="overlay" v-show="reportsLoading && reports === null">
             <i class="fas fa-2x fa-sync-alt fa-spin"></i>
         </div>
 
         <div class="p-0">
             <table class="table table-striped">
                 <thead>
-                <th scope="col">Report</th>
-
-
+                <th scope="col">Report #{{student.first_name}}</th>
                 </thead>
-                <tbody v-if="reports">
-                <tr :key="report.id" v-for="report in reports">
+                <tbody>
 
+                <tr v-for="report in reports">
                     <td>{{ report.report }}</td>
 
                 </tr>
@@ -24,6 +22,8 @@
 </template>
 
 <script>
+    import Student from "../../../core/models/Student";
+
     export default {
         name: 'Studentreport',
         data() {
@@ -31,23 +31,27 @@
                 reports: null,
                 reportsLoading: false,
                 edit: false,
-                alert: null
+                student: null,
+                alert: null,
+                id: null
             }
         },
-        mounted() {
-            this.getReports()
+        async mounted() {
+            this.id = await this.$route.params.id;
+            await this.getReports();
         },
         methods: {
-            getReports() {
+            async getReports() {
                 this.reportsLoading = true;
 
-                axios.get(`/reports`)
+                axios.get(`/students/` + this.id + '/reports')
                     .then(response => {
                         // Timeout only to show loading screen
                         setTimeout(() => {
                             this.reportsLoading = false;
-                            this.reports = response.data;
-                        }, 1000);
+                            this.student = new Student(response.data.student)
+                            this.reports = response.data.reports;
+                        }, 400);
                     }).catch(error => console.error(error));
             },
         }

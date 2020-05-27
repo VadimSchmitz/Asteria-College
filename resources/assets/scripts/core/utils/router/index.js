@@ -94,9 +94,10 @@ export const routes = [
         },
     },
     {
-        path: '/studentreport',
-        name: 'Studentreport',
-        component: getComponent('Reports', 'show'),
+        path: '/reports/:id',
+        name: 'Students report',
+        component: getComponent('Reports', 'Show'),
+        hidden: true,
         meta: {
             auth: true,
             icon: 'browser'

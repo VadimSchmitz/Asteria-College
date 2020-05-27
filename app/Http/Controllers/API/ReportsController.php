@@ -4,6 +4,9 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Reports;
+use App\Students;
+use Facade\FlareClient\Report;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -12,21 +15,11 @@ class ReportsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return Response
+     * @return JsonResponse
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create()
-    {
-        //
+       return response()->json(Reports::all()->toArray(), 200);
     }
 
     /**
@@ -44,25 +37,25 @@ class ReportsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param Reports $reports
+     * @param int $id
      *
-     * @return Response
+     * @return JsonResponse
      */
-    public function show(Reports $reports)
+    public function show($id)
     {
-        //
+        return response()->json(Reports::findOrFail($id), 200);
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Display the specified resource.
      *
-     * @param Reports $reports
+     * @param int $id
      *
-     * @return Response
+     * @return JsonResponse
      */
-    public function edit(Reports $reports)
+    public function showByStudentID($id)
     {
-        //
+        return response()->json(["student" => Students::findOrFail($id), "reports" => Reports::all()->where("student_id",  $id)], 200);
     }
 
     /**
