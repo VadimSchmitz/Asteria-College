@@ -1,11 +1,18 @@
 <template>
-    <div>{{event.extendedProps.assignment}}</div>
+    <div>
+        {{event.extendedProps.assignment}}
+    </div>
 </template>
 
 <script>
     export default {
         name: 'Event',
-        props: ['event'],
+        props: {
+           event: {
+               type: Object,
+               required: true
+           }
+        },
         methods: {
             clickHandler(type) {
                 this.$emit(type, this.event)

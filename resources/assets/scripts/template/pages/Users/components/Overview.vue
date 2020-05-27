@@ -59,6 +59,7 @@
 <script>
     export default {
         name: 'Overview',
+        props: ['bus'],
         components: {
             ElBadge: () => import(  /* webpackChunkName: "badge-component" */  'element-ui/lib/badge'),
             ElCheckbox: () => import(  /* webpackChunkName: "checkbox-component" */  'element-ui/lib/checkbox'),
@@ -70,9 +71,6 @@
                 error: null,
                 loading: true
             }
-        },
-        async mounted() {
-            await this.fetch();
         },
         methods: {
             async fetch() {
@@ -89,8 +87,13 @@
             },
             async refresh() {
                 this.loading = true;
-                this.users = await this.fetch();
+                return await this.fetch();
             }
-        }
+        },
+        async mounted() {
+            await this.fetch();
+            this.bus.$on('submit', this.refresh)
+        },
+
     }
 </script>

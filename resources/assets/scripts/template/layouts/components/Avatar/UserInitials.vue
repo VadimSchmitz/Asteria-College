@@ -8,7 +8,7 @@
 
 <script>
     import { mapGetters } from "vuex";
-    import { User } from "../../../../core/models/User";
+    import User from "../../../../core/models/User";
 
     export default {
         name: 'UserInitials',
@@ -32,10 +32,10 @@
             getInitials() {
                 let user = this.fallBackUser;
                 if (this.user) user = new User(this.user);
-                let hasName = this.onlyFirst ? (user.firstName.length > 1) : (user.firstName.length > 1 && user.lastName.length > 1);
+                let hasName = this.onlyFirst ? (user.first_name.length > 1) : (user.first_name.length > 1 && user.last_name.length > 1);
 
                 if (hasName)
-                    return user.firstName.substring(0, 1).toUpperCase() + (this.onlyFirst ? '' : (user.lastName.substring(0, 1).toUpperCase()));
+                    return user.first_name.substring(0, 1).toUpperCase() + (this.onlyFirst ? '' : (user.last_name.substring(0, 1).toUpperCase()));
                 else
                     return user.name;
             }

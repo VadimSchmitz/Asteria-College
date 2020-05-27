@@ -10,7 +10,7 @@ export let checkUsername = async (username) => {
 };
 
 export let validateEmail = (rule, value, callback) => {
-    if (value === '')
+    if (!value)
         return callback(new Error('Vul alsjeblieft een emailadres in'));
 
     else if (!checkEmail(value))
@@ -20,7 +20,7 @@ export let validateEmail = (rule, value, callback) => {
 };
 
 export let validateUsername = (rule, value, callback) => {
-    if (value === '')
+    if (!value)
         return callback(new Error('Vul alsjeblieft een gebruikersnaam in'));
 
     else if (!checkUsername(value))
@@ -33,16 +33,16 @@ export let validateUsername = (rule, value, callback) => {
 };
 
 export let validateName = (rule, value, callback) => {
-    if (value === '')
+    if (!value)
         return callback(new Error('Vul alsjeblieft een naam in'));
 
     else return callback();
 };
 
 export let validatePassword = (rule, value, callback) => {
-    if (value === '')
+    if (!value)
         return callback(new Error('Vul alsjeblieft een wachtwoord in'));
-    if (value.length < 5)
+    else if (value.length < 5)
         return callback(new Error('Zorg dat het wachtwoord minimaal 5 tekens bevat'));
 
     else return callback();

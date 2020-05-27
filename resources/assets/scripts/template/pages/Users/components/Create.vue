@@ -83,6 +83,7 @@
 
 <script>
     import { validateEmail, validateName, validatePassword, validateUsername } from "../../../../core/functions";
+    import User from "../../../../core/models/User";
 
     export default {
         name: 'Create',
@@ -104,44 +105,36 @@
                     last_name: [{validator: validateName, trigger: 'blur'}],
                     password: [{validator: validatePassword, trigger: 'blur'}]
                 },
-                credentials: {
-                    email: '',
-                    name: '',
-                    first_name: '',
-                    prefix: '',
-                    last_name: '',
-                    password: '',
-                    is_admin: false
-                },
+                credentials: new User(),
                 error: null,
                 loading: false
             }
         },
+
         methods: {
-            submit() {
+            async submit() {
                 this.loading = true;
 
-                this.$refs['create'].validate((valid) => {
+                await this.$refs['create'].validate(async (valid) => {
                     if (valid) {
-                        axios.post('auth/register', this.credentials)
-                            .then(response => setTimeout(() => {
-                                this.loading = false;
-                                this.$parent.alert = {
-                                    type: 'success',
-                                    message: 'De gebruiker is succesvol aangemaakt!'
-                                }
-                            }, 400))
-                            .catch(e => setTimeout(() => {
-                                this.loading = false;
-                                this.$parent.alert = {
-                                    type: 'danger',
-                                    message: ('Deze gebruiker kon niet worden aangemaakt, de volgende fout is opgetreden: ' + e)
-                                }
-                            }, 400));
-                    } else {
-                        this.loading = false;
-                        return false;
+                        try {
+                            await axios.post('auth/register', this.credentials)
+                                .then(response => setTimeout(() => {
+                                    this.$parent.alert = {
+                                        type: 'success',
+                                        message: 'De gebruiker is succesvol aangemaakt!'
+                                    }
+                                    this.credentials = new User();
+                                    this.$parent.reload();
+                                }, 400))
+                        } catch (e) {
+                            setTimeout(() => this.$parent.alert = {
+                                type: 'danger',
+                                message: ('Deze gebruiker kon niet worden aangemaakt, de volgende fout is opgetreden: ' + e)
+                            }, 400)
+                        }
                     }
+                    this.loading = false;
                 });
             }
         }
