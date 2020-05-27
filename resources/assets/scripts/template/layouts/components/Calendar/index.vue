@@ -99,16 +99,6 @@
                     .catch(err => console.log("Unable to update event!", err.response.data));
             },
 
-            // newEventOk() {
-            //     if (this.addingMode) {
-            //         this.addNewEvent();
-            //     } else {
-            //         this.updateEvent(this.newEvent);
-            //     }
-            // },
-            // newEventCancel() {
-            //     this.resetForm();
-            // },
             async dateSelect(info) {
                 this.event = new Event({
                     start_date: info.startStr,
