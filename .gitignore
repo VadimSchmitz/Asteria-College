@@ -2,13 +2,15 @@
 
 storage/*.key
 
+# Ignore all files in directory
 public/*
+
+# Except this files
 !public/.htaccess
 !public/index.php
 !public/robots.txt
 !public/favicon.ico
 !public/web.config
-
 
 /node_modules
 /vendor
