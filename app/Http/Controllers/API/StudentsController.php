@@ -58,13 +58,13 @@ class StudentsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request  $request
+     * @param Request $request
      *
      * @return Response
      */
     public function update(int $id, Request $request)
     {
-        if(!$request || !$id)
+        if (!$request || !$id)
             return response()->json(['error' => 'Fill all fields'], 400);
 
         $student = Students::find($id);
@@ -85,5 +85,5 @@ class StudentsController extends Controller
     {
         return response()->json(['error' => 'This function is not available yet'], 403);
     }
-    
+
 }

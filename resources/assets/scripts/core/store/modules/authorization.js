@@ -11,10 +11,10 @@ export default {
 
     actions: {
         async signIn({commit}, credentials, remember) {
-            await Vue.auth.login({
+            return await Vue.auth.login({
                 body: credentials,
                 data: credentials,
-                rememberMe: false
+                rememberMe: remember
             }).then(response => {
                 commit('SET_AUTHENTICATED', true);
                 commit('SET_USER', new User(response.data.user));

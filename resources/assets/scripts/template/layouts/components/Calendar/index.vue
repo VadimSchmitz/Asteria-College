@@ -1,6 +1,9 @@
 <template>
     <div class="callout callout-danger calendar-pl-custom">
-        <create-or-edit :id="(event.id === 0) ? null : event.id" :key='showModal' v-if="showModal"></create-or-edit>
+
+        <el-collapse-transition>
+            <create-or-edit :id="(event.id === 0) ? null : event.id" :key='showModal' v-if="showModal"></create-or-edit>
+        </el-collapse-transition>
                 <Fullcalendar :editable="!isLoading" :events="events"
                         :firstDay="1"
                         :header="{
@@ -8,23 +11,23 @@
                             center: 'title',
                             left: 'prev next today',
                         }"
-                        :plugins="calendarPlugins"
-                        :select-mirror="true"
-                        @eventClick="showEvent"
-                        @eventDrop="eventManipulation"
-                        @eventRender="eventRender"
-                        @eventResize="eventManipulation"
-                        @select="dateSelect"
-                        contentHeight="auto"
-                        draggable="true"
-                        height="parent"
-                        hiddenDays="[]"
-                        locale="nl"
-                        maxTime="17:00:00"
-                        minTime="08:00:00"
-                        ref="fullCalendar"
-                        selectable="true"
-                />
+                      :plugins="calendarPlugins"
+                      :select-mirror="true"
+                      @eventClick="showEvent"
+                      @eventDrop="eventManipulation"
+                      @eventRender="eventRender"
+                      @eventResize="eventManipulation"
+                      @select="dateSelect"
+                      contentHeight="auto"
+                      draggable="true"
+                      height="parent"
+                      hiddenDays="[]"
+                      locale="nl"
+                      maxTime="17:00:00"
+                      minTime="08:00:00"
+                      ref="fullCalendar"
+                      selectable="true"
+        />
     </div>
 </template>
 
@@ -36,13 +39,15 @@
     import ListPlugin from "@fullcalendar/list";
     import CalendarEvent from "./partials/Event";
     import Event from "../../../../core/models/Event";
+
     const CalendarEventClass = Vue.extend(CalendarEvent);
 
     export default {
         name: 'Calendar',
         components: {
             Fullcalendar: () => import(  /* webpackChunkName: "fullcalendar-component" */  '@fullcalendar/vue'),
-            CreateOrEdit: () => import(  /* webpackChunkName: "create-or-edit-component" */  './partials/Create')
+            CreateOrEdit: () => import(  /* webpackChunkName: "calendar-create-or-edit-component" */  './partials/Create'),
+            ElCollapseTransition: () => import(  /* webpackChunkName: "collapse-transition-component" */ 'element-ui/lib/transitions/collapse-transition'),
         },
 
         data() {
@@ -79,7 +84,6 @@
                 event.$mount();
                 //assign created component to our eventObj with uuid as key (to destroy in future)
                 this.eventsObj[event._uid] = event;
-
                 //append our compiled component to .fc-event
                 info.el.setAttribute("data-vue-id", event._uid);
                 info.el.appendChild(event.$el);
@@ -90,50 +94,41 @@
                 await this.updateEvent(manipulatedEvent);
             },
             async addEvent() {
-                await axios.post("calendar", this.event).then(response => this.getEvents())
+                await axios.post("calendar", this.event)
+                    .then(response => this.getEvents())
                     .catch(e => console.log(e));
             },
+
             async updateEvent(manipulatedEvent = this.event) {
                 await axios.put("/calendar/" + manipulatedEvent.id, manipulatedEvent)
                     .then(resp => this.getEvents())
                     .catch(err => console.log("Unable to update event!", err.response.data));
             },
 
-            // newEventOk() {
-            //     if (this.addingMode) {
-            //         this.addNewEvent();
-            //     } else {
-            //         this.updateEvent(this.newEvent);
-            //     }
-            // },
-            // newEventCancel() {
-            //     this.resetForm();
-            // },
             async dateSelect(info) {
                 this.event = new Event({
-                    start_date: info.startStr,
-                    end_date: info.endStr
+                    start_date: info.start,
+                    end_date: info.end
                 });
+                console.log(this.event.start_date + '' + this.event.end_date)
+
                 return this.showModal = true;
             },
 
             showEvent(arg) {
                 const event = this.events.find(event => event.id === +arg.event.id);
-
                 this.event = new Event(event);
-
                 this.showModal = true;
             },
 
             async getEvents() {
                 this.isLoading = true;
-
                 return await axios.get("/calendar").then(resp => {
-                        this.event = new Event();
-                        this.events = resp.data.data;
-                        this.isLoading = false;
-                        this.showModal = false;
-                    }).catch(err => console.log(err.response.data));
+                    this.event = new Event();
+                    this.events = resp.data.data;
+                    this.isLoading = false;
+                    this.showModal = false;
+                }).catch(err => console.log(err.response.data));
             },
         }
     };

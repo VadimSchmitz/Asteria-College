@@ -14,11 +14,20 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(ActivitiesSeeder::class);
-//        $this->call(ContactSeeder::class);
         $this->call(CoursesSeeder::class);
+        $this->call(CalendarSeeder::class);
         $this->call(ReportsSeeder::class);
         $this->call(StudentsSeeder::class);
         $this->call(TestSeeder::class);
+
+        User::create([
+            'name' => 'Calvin',
+            'first_name' => "Calvin",
+            "last_name" => "Hannewijk",
+            'email' => 'hann0009@hz.nl',
+            'email_verified_at' => now(),
+            'password' => Hash::make("admin"),
+        ]);
 
         User::create([
             'name' => 'Evan',

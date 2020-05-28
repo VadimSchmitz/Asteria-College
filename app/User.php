@@ -46,6 +46,7 @@ class User extends Authenticatable implements JWTSubject
 
     /**
      * Get the identifier
+     *
      * @return JWTSubject
      */
     public function getJWTIdentifier()
@@ -55,6 +56,7 @@ class User extends Authenticatable implements JWTSubject
 
     /**
      * Get custom claims
+     *
      * @return array
      */
     public function getJWTCustomClaims()

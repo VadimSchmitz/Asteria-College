@@ -21,7 +21,8 @@
 
                             <button class="btn btn-tool" data-card-widget="maximize" type="button">
                                 <i class="far fa-expand"></i>
-                            </button>.
+                            </button>
+                            .
 
                         </div>
                     </th>
@@ -30,7 +31,7 @@
 
                 <tbody v-if="students">
                 <tr :key="student.id" class='d-print-row' v-for="student in students">
-                    
+
                     <td class='d-print-col' colspan="2">
                         <a class="text-bold">{{ student.first_name }} {{ student.last_name }}
                         </a>

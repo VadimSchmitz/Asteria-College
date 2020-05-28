@@ -5,9 +5,9 @@
 </template>
 
 <script>
-        import md5 from "md5";
+    import md5 from "md5";
 
-        export default {
+    export default {
         name: 'GImage',
         inheritAttrs: false,
         props: {

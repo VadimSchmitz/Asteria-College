@@ -13,7 +13,7 @@ class CreateCalendarsTable extends Migration
      */
     public function up()
     {
-        Schema::create('calendars', function (Blueprint $table) {
+        Schema::create('calendars', function(Blueprint $table) {
             $table->id();
             $table->string('event_name');
             $table->string('assignment')->nullable();

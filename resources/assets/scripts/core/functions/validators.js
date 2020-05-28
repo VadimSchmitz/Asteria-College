@@ -32,6 +32,23 @@ export let validateUsername = (rule, value, callback) => {
     else return callback();
 };
 
+export let validateLoginName = (rule, value, callback) => {
+    if (!value)
+        return callback(new Error('Vul alsjeblieft een gebruikersnaam in'));
+
+    else if (checkEmail(value))
+        return callback(new Error('Log in met je gebruikersnaam'));
+
+    else return callback();
+};
+
+export let validateLoginPassword = (rule, value, callback) => {
+    if (!value)
+        return callback(new Error('Vul alsjeblieft een wachtwoord in'));
+
+    else return callback();
+};
+
 export let validateName = (rule, value, callback) => {
     if (!value)
         return callback(new Error('Vul alsjeblieft een naam in'));

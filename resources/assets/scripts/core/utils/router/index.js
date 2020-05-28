@@ -13,22 +13,7 @@ Vue.use(VueRouter);
 
 export const routes = [
     {
-        path: '/login',
-        name: 'Authenticate',
-        component: getComponent('Auth', 'Login'),
-        hidden: true,
-        meta: {
-            auth: false,
-            icon: 'user'
-        }
-    },
-    {
         path: '/',
-        redirect: 'dashboard',
-        hidden: true
-    },
-    {
-        path: '/dashboard',
         name: 'Dashboard',
         component: getComponent('Dashboard'),
         meta: {
@@ -83,6 +68,25 @@ export const routes = [
             auth: true,
             icon: 'user'
         }
+    },
+    {
+        path: '/reports',
+        name: 'Reports',
+        component: getComponent('Reports'),
+        meta: {
+            auth: true,
+            icon: 'browser'
+        },
+    },
+    {
+        path: '/reports/:id',
+        name: 'Students report',
+        component: getComponent('Reports', 'Show'),
+        hidden: true,
+        meta: {
+            auth: true,
+            icon: 'browser'
+        },
     },
     // TODO: 404 handler
     {
