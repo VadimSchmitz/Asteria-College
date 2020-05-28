@@ -1,11 +1,14 @@
 .idea
 
-public/
-public/assets/*
-public/mix-manifest.json
-public/storage
-
 storage/*.key
+
+public/*
+!public/.htaccess
+!public/index.php
+!public/robots.txt
+!public/favicon.ico
+!public/web.config
+
 
 /node_modules
 /vendor
