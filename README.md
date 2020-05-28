@@ -23,11 +23,15 @@ $ `php artisan migrate:refresh —seed`
 
 $ `composer dump-autoload`
 ***
-#### Run the project
+
+#### Build and run the project in development mode
 $ `npm run watch`
-*** 
+
 Now, a window wil open and every time you edit something it wil automaticly compile and reload
 
+#### Build the project for deployment
+$ `npm run prod`
+*** 
 
 ### Development Team
 
