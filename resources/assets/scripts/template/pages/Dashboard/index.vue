@@ -3,7 +3,7 @@
         <b-col cols="12">
             <div class="callout callout-info">
                 <p>Asteria College</p>
-                Welkom blablabla
+                Welkom
             </div>
         </b-col>
     </b-row>
