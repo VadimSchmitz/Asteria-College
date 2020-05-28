@@ -13,22 +13,7 @@ Vue.use(VueRouter);
 
 export const routes = [
     {
-        path: '/login',
-        name: 'Authenticate',
-        component: getComponent('Auth', 'Login'),
-        hidden: true,
-        meta: {
-            auth: false,
-            icon: 'user'
-        }
-    },
-    {
         path: '/',
-        redirect: 'dashboard',
-        hidden: true
-    },
-    {
-        path: '/dashboard',
         name: 'Dashboard',
         component: getComponent('Dashboard'),
         meta: {
