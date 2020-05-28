@@ -79,7 +79,7 @@
                         setTimeout(() => {
                             this.loading = false;
                             this.users = response.data;
-                        }, 400);
+                        }, 200);
                     }).catch(e => {
                         this.loading = false;
                         this.error = e;
