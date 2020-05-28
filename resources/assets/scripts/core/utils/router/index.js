@@ -12,8 +12,9 @@ Vue.use(VueAxios, axios);
 Vue.use(VueRouter);
 
 export const routes = [
+    { path: '/', redirect: '/dashboard', hidden: true},
     {
-        path: '/',
+        path: '/dashboard',
         name: 'Dashboard',
         component: getComponent('Dashboard'),
         meta: {
@@ -28,7 +29,7 @@ export const routes = [
         meta: {
             auth: true,
             admin: true,
-            icon: 'users'
+            icon: 'sheep'
         },
     },
     {
@@ -88,18 +89,42 @@ export const routes = [
             icon: 'browser'
         },
     },
-    // TODO: 404 handler
+
+    {
+        path: '/administration',
+        name: 'Administratie',
+        component: getComponent('Administration'),
+        meta: {
+            auth: true,
+            admin: true,
+            icon: 'cloud-upload'
+        },
+    },
+    {
+        path: '*',
+        redirect: '/404',
+        hidden: true,
+        meta: {
+            auth: true,
+            icon: 'error'
+        },
+    },
     {
         path: '/404',
-        redirect: '/error/404',
-        hidden: true
+        name: 'Pagina niet gevonden',
+        component: getComponent('Error', 'NotFound'),
+        hidden: true,
+        meta: {
+            auth: true,
+            icon: 'error'
+        },
     }
 ];
 
 export const router = new VueRouter({
     mode: "history",
     base: __dirname,
-    // linkActiveClass: "active",
+    linkActiveClass: "active",
     routes: routes,
 });
 

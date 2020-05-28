@@ -1,11 +1,17 @@
-.idea
-
-public/
-public/assets/*
-public/mix-manifest.json
-public/storage
+.idea/
+.github/
 
 storage/*.key
+
+# Ignore all files in directory
+public/*
+
+# Except this files
+!public/.htaccess
+!public/index.php
+!public/robots.txt
+!public/favicon.ico
+!public/web.config
 
 /node_modules
 /vendor
@@ -16,6 +22,8 @@ storage/*.key
 .editorconfig
 
 .phpunit.result.cache
+.styleci.yml
+
 Homestead.json
 Homestead.yaml
 npm-debug.log

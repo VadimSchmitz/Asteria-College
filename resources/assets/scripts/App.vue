@@ -1,9 +1,12 @@
 <template class="app">
     <section id="app">
-        <transition appear name="fade" type="in-out">
-            <authenticate v-if="!this.$auth.check()"></authenticate>
-
-            <authorized :key="authenticated" v-else></authorized>
+        <transition name="fade" mode="out-in">
+            <div v-show="!loading">
+                <transition name="fade" mode="out-in">
+                    <authenticate v-if="!this.$auth.check()"></authenticate>
+                    <authorized  v-else></authorized>
+                </transition>
+            </div>
         </transition>
     </section>
 </template>
@@ -11,6 +14,8 @@
 <script>
     import { mapGetters } from "vuex";
     import User from "./core/models/User";
+    import { Loading } from 'element-ui';
+    let loadingInstance1 = Loading.service({ fullscreen: true });
 
     export default {
         name: 'App',
@@ -31,6 +36,19 @@
                     this.$store.commit('auth/SET_USER', new User(this.$auth.user()));
                 }
             },
+        },
+        data() {
+            return {
+                loading: true
+            }
+        },
+        async mounted() {
+            return setTimeout(() => {
+                this.loading = false
+                setTimeout(() => loadingInstance1.close() , 200)
+            }, 1000);
+        },
+        methods: {
         }
     }
 </script>

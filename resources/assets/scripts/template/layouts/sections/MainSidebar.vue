@@ -27,8 +27,8 @@
                 <ul class="nav nav-pills nav-sidebar flex-column" data-accordion="false" data-widget="treeview"
                     role="menu">
 
-                    <li :class="route.children ? 'has-treeview' : '' " class="nav-item" v-for="route in navRoutes">
-                        <router-link :class="(route.path === currentRoute.path) ? 'nav-link active' : 'nav-link'"
+                    <li class="nav-item" v-for="route in navRoutes">
+                        <router-link class="nav-link"
                                      :to="route.path">
                             <i :class="'fa-' + route.meta.icon" class="nav-icon fal "></i>
                             <p>{{ route.name }}</p>
@@ -37,7 +37,7 @@
                         <ul class='nav has-treeview' v-if="route.children">
                             <li class="nav-item" v-for="childRoute in route.children">
                                 <router-link
-                                        :class="(childRoute.path === currentRoute.path) ? 'nav-link active' : 'nav-link'"
+                                        :class="(childRoute.path === currentRoute.path) ? 'nav-link' : 'nav-link'"
                                         :to="childRoute.path">
                                     <i :class="'fa-' + childRoute.meta.icon" class="nav-icon fal "></i>
                                     <p>{{ childRoute.name }}</p>

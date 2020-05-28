@@ -4,3 +4,19 @@
   cursor: pointer;
 }
 
+.el-upload {
+  display: block !important;
+  &-dragger {
+    width: 100% !important;
+  }
+  &-list {
+    &__item-thumbnail {
+      display: block;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      background: url('https://cdn0.iconfinder.com/data/icons/flat-file-format/100/csv-512.png') no-repeat;
+      background-size: cover;
+      padding-left: 70px;
+    }
+  }
+}

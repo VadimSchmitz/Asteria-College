@@ -6,14 +6,15 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">{{ pageTitle }}</h1>
+                        <h1 class="m-0 text-dark">{{ pageTitle ? pageTitle : 'Pagina niet gevonden' }}</h1>
                     </div>
+
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item">
-                                <router-link to="/">Home</router-link>
+                                <b-link to="/">Home</b-link>
                             </li>
-                            <li class="breadcrumb-item active">{{ pageTitle }}</li>
+                            <li class="breadcrumb-item active">{{ pageTitle ? pageTitle : 'Pagina niet gevonden' }}</li>
                         </ol>
                     </div>
                 </div>
@@ -26,7 +27,9 @@
             <b-container fluid="true">
                 <b-row cols="12">
                     <b-col cols="12">
-                        <router-view></router-view>
+                        <transition name="fade" mode="out-in">
+                            <router-view></router-view>
+                        </transition>
                     </b-col>
                 </b-row>
             </b-container>
@@ -45,6 +48,6 @@
                 type: String,
                 default: 'Dashboard'
             }
-        }
+        },
     }
 </script>
