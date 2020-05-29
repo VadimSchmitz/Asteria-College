@@ -18,7 +18,6 @@ public/*
 
 .env
 .env.backup
-.env
 .editorconfig
 
 .phpunit.result.cache
