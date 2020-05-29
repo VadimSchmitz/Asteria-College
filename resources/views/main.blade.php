@@ -27,8 +27,8 @@
 </div>
 </body>
 <!-- Scripts -->
-<script src="{{ mix('assets/scripts//app.js') }}"></script>
-<script src="{{ mix('assets/scripts//AdminLTE.js') }}"></script>
+<script src="{{ mix('assets/scripts/app.js') }}"></script>
+<script src="{{ mix('assets/scripts/AdminLTE.js') }}"></script>
 <script src="{{ mix('assets/scripts/fontawesome-all.min.js')}}"></script>
 <!-- Scripts END -->
 </html>
