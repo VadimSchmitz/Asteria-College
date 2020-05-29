@@ -47,7 +47,7 @@ class AuthController extends Controller
 
     public function logout()
     {
-        auth()->invalidate();
+    
 
         return response([
             'status' => 'success',
